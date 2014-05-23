@@ -2,7 +2,7 @@ modules = [
   'ui.router'
 ]
 
-home = angular.module 'ngBoilerplate.home', modules
+home = angular.module 'tumblrGame.home', modules
 
 homeConfig = ($stateProvider) ->
   $stateProvider.state "home",

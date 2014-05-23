@@ -1,10 +1,11 @@
 modules = [
   'templates',
-  'ngBoilerplate.home',
+  'tumblrGame.home',
+  'tumblrGame.rounds',
   'ui.router'
 ]
 
-appModule = angular.module('ngBoilerplate', modules)
+appModule = angular.module('tumblrGame', modules)
 
 
 appConfig = ($stateProvider, $urlRouterProvider) ->
@@ -17,7 +18,7 @@ appModule.config appConfig
 appController = ($scope, $location) ->
   $scope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->
     if angular.isDefined(toState.data.pageTitle)
-      $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate'
+      $scope.pageTitle = toState.data.pageTitle + ' | TUMBLR: THE GAME'
 
 appController.$inject = ['$scope', '$location']
 appModule.controller 'AppCtrl', appController
