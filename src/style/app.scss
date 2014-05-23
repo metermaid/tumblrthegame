@@ -4,20 +4,47 @@
 @import "colors";
 
 body {
-	background: white;
+	background: $tumblrblue;
+	color: $white;
 	margin: 0;
 }
 
 #container {
   @include outer-container;
-  aside { @include span-columns(3); }
-  article { @include span-columns(9); }
-  section { @include span-columns(12); }
+  #main {
+	  background: $tumblrdarkblue;
+	  border-radius: 15px;
+	  padding: 20px;
+	  text-align: center;
+	  aside { @include span-columns(3); }
+	  article { @include span-columns(9); }
+	  section { @include span-columns(12); }
+	  input[type="text"] {
+	  		text-align: center;
+	  }
+	  .post {
+		  	background: $white;
+		  	border-radius: 6px;
+		  	display: inline-block;
+		  	padding: 15px;
+		  	margin: 0 10px 20px;
+		  	max-width: 290px;
+			height: 290px;
+		  	overflow: hidden;
+		  	img {
+		  		width: auto;
+		  		height: 100%;
+		  	}
+	  }
+	}
 }
 
 #main-header {
 	padding: 0.5em;
 	color: white;
+	h1 {
+		font: "Bookman Old Style", Bookman, Garamond, serif;
+	}
 }
 
 .f-left {

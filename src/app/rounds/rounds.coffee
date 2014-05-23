@@ -35,7 +35,7 @@ class RoundsCtrl
 
   constructor: ($scope, RoundsRes) ->
 
-    RoundsRes.jsonp_query tag: "photo", (response) ->
+    RoundsRes.jsonp_query tag: "adventure time", (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 

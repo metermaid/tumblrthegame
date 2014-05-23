@@ -1,135 +1,38 @@
-/***
+//
+// COLOR VARIABLES
+//
+// - Cool
+// - Warm
+// - Gray Scale
+//
 
-   colors.css v1.0
-   http://clrs.cc
-   @mrmrs
-   MIT License
+// custom colours
 
-***/
-/*
+$tumblrblue: #2c4762;
+$tumblrgrey: #444;
+$tumblrdarkblue: rgb(44, 71, 98);
+// Cool
 
-   SKINS
-   • Backgrounds
-   • Colors
+$aqua:  #7FDBFF;
+$blue:  #0074D9;
+$navy:  #001F3F;
+$teal:  #39CCCC;
+$green: #2ECC40;
+$olive: #3D9970;
+$lime:  #01FF70;
 
-*/
-/* Backgrounds */
-.bg-navy {
-  background-color: #001f3f; }
+// Warm
 
-.bg-blue {
-  background-color: #0074d9; }
+$yellow:  #FFDC00;
+$orange:  #FF851B;
+$red:     #FF4136;
+$fuchsia: #F012BE;
+$purple:  #B10DC9;
+$maroon:  #85144B;
 
-.bg-aqua {
-  background-color: #7fdbff; }
+// Gray Scale
 
-.bg-teal {
-  background-color: #39cccc; }
-
-.bg-olive {
-  background-color: #3d9970; }
-
-.bg-green {
-  background-color: #2ecc40; }
-
-.bg-lime {
-  background-color: #01ff70; }
-
-.bg-yellow {
-  background-color: #ffdc00; }
-
-.bg-orange {
-  background-color: #ff851b; }
-
-.bg-red {
-  background-color: #ff4136; }
-
-.bg-fuchsia {
-  background-color: #f012be; }
-
-.bg-purple {
-  background-color: #b10dc9; }
-
-.bg-maroon {
-  background-color: #85144b; }
-
-.bg-white {
-  background-color: white; }
-
-.bg-gray {
-  background-color: #aaaaaa; }
-
-.bg-silver {
-  background-color: #dddddd; }
-
-.bg-black {
-  background-color: #111111; }
-
-/* Colors */
-.navy {
-  color: #001f3f; }
-
-.blue {
-  color: #0074d9; }
-
-.aqua {
-  color: #7fdbff; }
-
-.teal {
-  color: #39cccc; }
-
-.olive {
-  color: #3d9970; }
-
-.green {
-  color: #2ecc40; }
-
-.lime {
-  color: #01ff70; }
-
-.yellow {
-  color: #ffdc00; }
-
-.orange {
-  color: #ff851b; }
-
-.red {
-  color: #ff4136; }
-
-.fuchsia {
-  color: #f012be; }
-
-.purple {
-  color: #b10dc9; }
-
-.maroon {
-  color: #85144b; }
-
-.white {
-  color: white; }
-
-.silver {
-  color: #dddddd; }
-
-.gray {
-  color: #aaaaaa; }
-
-.black {
-  color: #111111; }
-
-/* Prettier Links */
-a {
-  -webkit-transition: color 0.3s ease-in-out;
-  transition: color 0.3s ease-in-out; }
-
-a:link {
-  color: #0074d9; }
-
-a:visited {
-  color: #b10dc9; }
-
-a:hover {
-  color: #7fdbff; }
-
-a:active {
-  color: #ff851b; }
+$white:  #fff;
+$silver: #ddd;
+$gray:   #aaa;
+$black:  #111;
