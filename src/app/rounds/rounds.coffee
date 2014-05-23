@@ -20,13 +20,23 @@ roundsConfig = ($stateProvider) ->
 roundsConfig.$inject = ['$stateProvider']
 rounds.config roundsConfig
 
-rounds.factory "RoundsRes", ($resource) ->
-  $resource "http://api.tumblr.com/v2/tagged?api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGut&tag=fart"
+rounds.factory "RoundsRes", [
+  "$resource"
+  ($resource) ->
+    return $resource("http://api.tumblr.com/v2/tagged?api_key=PLACEHOLDER&tag=:tag&callback=JSON_CALLBACK", {},
+      jsonp_query:
+        tag: @tag
+        method: "JSONP"
+    )
+]
 
 class RoundsCtrl
-  @$inject = ['$scope', '$filter', 'RoundsRes']
+  @$inject = ['$scope', 'RoundsRes']
 
-  constructor: ($scope, $filter, RoundsRes) ->
-    $scope.posts = RoundsRes.query()
+  constructor: ($scope, RoundsRes) ->
+
+    RoundsRes.jsonp_query tag: "photo", (response) ->
+      $scope.message = response.meta
+      $scope.posts = response.response
 
 rounds.controller 'RoundsCtrl', RoundsCtrl

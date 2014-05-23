@@ -1,0 +1,5 @@
+{{message}}
+
+<div class="entry" ng-repeat="post in posts  | filter:{ type : 'photo' } | limitTo: 6">
+	<img src="{{post.photos[0].original_size.url}}" />
+</div>
