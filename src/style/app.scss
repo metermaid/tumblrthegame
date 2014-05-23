@@ -1,0 +1,41 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "bitters/bitters";
+@import "colors";
+
+body {
+	background: white;
+	margin: 0;
+}
+
+#container {
+  @include outer-container;
+  aside { @include span-columns(3); }
+  article { @include span-columns(9); }
+  section { @include span-columns(12); }
+}
+
+#main-header {
+	padding: 0.5em;
+}
+
+.f-left {
+	float: left;
+}
+.f-right {
+	float: right;
+}
+.al-left {
+	text-align: left;
+}
+.al-center {
+	text-align: center;
+}
+.al-right {
+	text-align: right;
+}
+a {
+	color: #ffa144;
+	font-weight: bold;
+	text-decoration: none;
+}

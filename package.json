@@ -1,0 +1,40 @@
+{
+  "author": "Rita Cheng",
+  "name": "ngbp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/metermaid/ngbp",
+  "devDependencies": {
+    "coffee-script": "^1.7.1",
+
+    "gulp": "^3.6.2",
+    "gulp-concat": "^2.2.0",
+    "gulp-clean": "^0.2.4",
+    "run-sequence": "^0.3.6",
+    "gulp-load-plugins": "^0.4.0",
+
+    "gulp-coffee": "^1.4.1",
+    "gulp-coffeelint": "^0.2.2",
+    "gulp-inject": "^0.4.1",
+    "gulp-ng-html2js": "^0.1.6",
+    "gulp-ruby-sass": "^0.4.1",
+
+    "gulp-print": "^1.0.3",
+
+    "gulp-uglify": "^0.2.1",
+    "gulp-minify-html": "^0.1.2",
+
+    "gulp-karma": "git://github.com/lazd/gulp-karma.git#adb54c4fdddb442778aa114343645b75192e41e5",
+    "karma-phantomjs-launcher": "~0.1.1",
+    "karma-jasmine": "^0.1.5",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-coffee-preprocessor": "^0.2.1",
+    "karma": "^0.12.9",
+    "karma-script-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+
+    "protractor": "0.22.0",
+    "gulp-protractor": "^0.0.7",
+    "astrolabe": "^0.3.4-alpha"
+  }
+}
