@@ -1,29 +1,26 @@
-# ngbp (based on [ngBoilerplate](http://joshdmiller.github.com/ng-boilerplate)) 
+tumblrthegame
+=============
 
-An opinionated version of an opinionated [kickstarter](http://joshdmiller.github.com/ng-boilerplate) for [AngularJS](http://angularjs.org) projects.
+TUMBLR. THE GAME.
 
-Fork with the following goals:
-- Coffee script by default
-- Change build systems from Grunt to Gulp (It's much faster, and more understandable for me. Code > Configuration)
-- Include SASS and Bourbon / Neat / Bitters / some Refills
-
-***
+=============
 
 ## Quick Start
 
-Install Node.js and then:
+Install Node.js (http://nodejs.org/download/)
+and install ruby and ruby gems. (If Windows: https://forwardhq.com/support/installing-ruby-windows)
 
 ```sh
-$ git clone git://github.com/metermaid/ngbp
-$ cd ngbp
+$ git clone git://github.com/metermaid/tumblrthegame
+$ cd tumblrthegame
 $ sudo npm -g gulp karma bower
 $ npm install
 $ bower install
-$ gem install sass (assuming you have ruby and rubygems...)
+$ gem install sass
 $ gulp
 
 ```
 
-Finally, open `file:///path/to/ngbp/build/index.html` in your browser.
+Finally, open `file:///path/to/tumblrthegame/build/index.html` in your browser.
 
 Happy hacking!
