@@ -33,9 +33,9 @@ rounds.factory "RoundsRes", [
 ]
 
 class RoundsCtrl
-  @$inject = ['$scope', 'RoundsRes', '$route']
+  @$inject = ['$scope', 'RoundsRes', '$state']
 
-  constructor: ($scope, RoundsRes, $route) ->
+  constructor: ($scope, RoundsRes, $state) ->
     $scope.type = 'series'
     all_tags = {
       'series': ["adventure time", "supernatural", "doctor who", "lotr", "harry potter"],
@@ -55,7 +55,7 @@ class RoundsCtrl
       $scope.correct = $scope.tag_regex.test(guess)
 
     $scope.$watch "correct", (correct) ->
-      $route.reload if correct
+      $state.go($state.$current, null, { reload: true }) if correct
 
 
 rounds.controller 'RoundsCtrl', RoundsCtrl
