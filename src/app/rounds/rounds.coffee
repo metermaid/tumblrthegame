@@ -25,7 +25,7 @@ rounds.directive "tagChecker", ->
 rounds.factory "RoundsRes", [
   "$resource"
   ($resource) ->
-    return $resource("http://api.tumblr.com/v2/tagged?api_key=PLACEHOLDER&tag=:tag&callback=JSON_CALLBACK", {},
+    return $resource("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&callback=JSON_CALLBACK", {},
       jsonp_query:
         tag: @tag
         method: "JSONP"
@@ -33,9 +33,9 @@ rounds.factory "RoundsRes", [
 ]
 
 class RoundsCtrl
-  @$inject = ['$scope', 'RoundsRes']
+  @$inject = ['$scope', 'RoundsRes', '$route']
 
-  constructor: ($scope, RoundsRes) ->
+  constructor: ($scope, RoundsRes, $route) ->
     $scope.type = 'series'
     all_tags = {
       'series': ["adventure time", "supernatural", "doctor who", "lotr", "harry potter"],
@@ -52,7 +52,10 @@ class RoundsCtrl
 
     $scope.$watch "guess", (guess) ->
       return 0  if not guess or guess.length is 0
-      $scope.correct = guess.match $scope.tag_regex
+      $scope.correct = $scope.tag_regex.test(guess)
+
+    $scope.$watch "correct", (correct) ->
+      $route.reload if correct
 
 
 rounds.controller 'RoundsCtrl', RoundsCtrl
