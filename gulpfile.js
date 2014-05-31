@@ -166,5 +166,7 @@ gulp.task('build', function() {
     'index');
 });
 
-gulp.task('default', ['build', 'karma', 'watch', 'karma-autowatch'], function() {
+gulp.task('default', ['templates'], function() { // TODO: figure out why karma otherwise fails to load templates...
+  runSequence('build',
+    ['watch', 'karma-autowatch']);
 });

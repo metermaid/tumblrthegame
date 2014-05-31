@@ -22,6 +22,15 @@ rounds.config roundsConfig
 
 rounds.directive "tagChecker", ->
 
+rounds.service "TagsService", ->
+  random_tag: (type) ->
+    all_tags = {
+      'series': ["adventure time", "supernatural", "doctor who", "lotr", "harry potter"],
+      'characters': ["hannibal lecter", "mako mori", "katniss everdeen"]
+    }
+    tags = all_tags[type]
+    return tags[Math.floor(Math.random() * tags.length)]
+
 rounds.factory "RoundsRes", [
   "$resource"
   ($resource) ->
@@ -33,26 +42,21 @@ rounds.factory "RoundsRes", [
 ]
 
 class RoundsCtrl
-  @$inject = ['$scope', 'RoundsRes', '$state']
+  @$inject = ['$scope', 'TagsService', 'RoundsRes', '$state']
 
-  constructor: ($scope, RoundsRes, $state) ->
+  constructor: ($scope, TagsService, RoundsRes, $state) ->
     $scope.type = 'series'
-    all_tags = {
-      'series': ["adventure time", "supernatural", "doctor who", "lotr", "harry potter"],
-      'characters': ["hannibal lecter", "mako mori", "katniss everdeen"]
-    }
-    tags = all_tags[$scope.type]
-    tag = tags[Math.floor(Math.random() * tags.length)]
+    tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
-    $scope.tag_regex = new RegExp('^#'+tag+'$', "i")
+    tag_regex = new RegExp('^#'+tag+'$', "i")
     RoundsRes.jsonp_query tag: tag, (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 
     $scope.$watch "guess", (guess) ->
       return 0  if not guess or guess.length is 0
-      $scope.correct = $scope.tag_regex.test(guess)
+      $scope.correct = tag_regex.test(guess)
 
     $scope.$watch "correct", (correct) ->
       $state.go($state.$current, null, { reload: true }) if correct
