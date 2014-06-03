@@ -2,6 +2,7 @@
 @import "neat/neat";
 @import "bitters/bitters";
 @import "colors";
+@import "icons";
 
 body {
 	background: $tumblrblue;
@@ -48,6 +49,33 @@ body {
 		letter-spacing: -0.0225em;
 		font-family: "Bookman Old Style", Bookman, Garamond, serif;
 	}
+}
+
+button, .button {
+	display: inline-block;
+	margin: 0 auto;
+	background: $tumblrlightblue;
+	border-radius: 2px;
+	font-weight: bold;
+	color: $white;
+	&.start {
+		width: 250px;
+		height: 45px;
+		line-height: 45px;
+		font-size: 16px;
+		text-align: center;
+	}
+	&:active, &:hover, &:visited {
+		color: $white;
+	}
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 10px;
+	font-size: 14px;
 }
 
 .f-left {
