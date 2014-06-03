@@ -1,6 +1,7 @@
 
 modules = [
   'ui.router',
+  'common.user_storage',
   'ngResource'
 ]
 
@@ -19,8 +20,6 @@ roundsConfig = ($stateProvider) ->
 
 roundsConfig.$inject = ['$stateProvider']
 rounds.config roundsConfig
-
-rounds.directive "tagChecker", ->
 
 rounds.service "TagsService", ->
   random_tag: (type) ->
@@ -42,9 +41,10 @@ rounds.factory "RoundsRes", [
 ]
 
 class RoundsCtrl
-  @$inject = ['$scope', 'TagsService', 'RoundsRes', '$state']
+  @$inject = ['$scope', 'TagsService', 'RoundsRes', 'gameStorage', '$state']
 
-  constructor: ($scope, TagsService, RoundsRes, $state) ->
+  constructor: ($scope, TagsService, RoundsRes, gameStorage, $state) ->
+    $scope.round = gameStorage.get('current_round')
     $scope.type = 'series'
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
@@ -59,7 +59,9 @@ class RoundsCtrl
       $scope.correct = tag_regex.test(guess)
 
     $scope.$watch "correct", (correct) ->
-      $state.go($state.$current, null, { reload: true }) if correct
+      if correct
+        gameStorage.increment('current_round', 1)
+        $state.go($state.$current, null, { reload: true })
 
 
 rounds.controller 'RoundsCtrl', RoundsCtrl
