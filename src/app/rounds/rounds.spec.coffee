@@ -23,7 +23,7 @@ describe 'game rounds', ->
 	describe "Rounds controller", ->
 
 		beforeEach angular.mock.inject(($controller) ->
-			$controller "RoundsCtrl",
+			$controller "RoundCtrl",
 			  $scope: scope
 			  $state: scope.$state
 

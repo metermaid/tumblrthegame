@@ -7,11 +7,11 @@ modules = [
 rounds = angular.module 'tumblrGame.rounds', modules
 
 roundsConfig = ($stateProvider) ->
-  $stateProvider.state "rounds",
-    url: "/rounds"
+  $stateProvider.state "round",
+    params: ["type"]
     views:
       main:
-        controller: "RoundsCtrl"
+        controller: "RoundCtrl"
         templateUrl: "rounds/index.tpl.html"
 
     data:
@@ -26,7 +26,8 @@ rounds.service "TagsService", ->
   random_tag: (type) ->
     all_tags = {
       'series': ["adventure time", "supernatural", "doctor who", "lotr", "harry potter"],
-      'characters': ["hannibal lecter", "mako mori", "katniss everdeen"]
+      'characters': ["hannibal lecter", "mako mori", "katniss everdeen"],
+      'anime': ['cowboy bebop', 'space dandy', 'kill la kill', 'attack on titan']
     }
     tags = all_tags[type]
     return tags[Math.floor(Math.random() * tags.length)]
@@ -41,11 +42,11 @@ rounds.factory "RoundsRes", [
     )
 ]
 
-class RoundsCtrl
-  @$inject = ['$scope', 'TagsService', 'RoundsRes', '$state']
+class RoundCtrl
+  @$inject = ['$scope', 'TagsService', 'RoundsRes', '$state', '$stateParams']
 
-  constructor: ($scope, TagsService, RoundsRes, $state) ->
-    $scope.type = 'series'
+  constructor: ($scope, TagsService, RoundsRes, $state, $stateParams) ->
+    $scope.type = $stateParams.type || 'series'
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
@@ -62,4 +63,4 @@ class RoundsCtrl
       $state.go($state.$current, null, { reload: true }) if correct
 
 
-rounds.controller 'RoundsCtrl', RoundsCtrl
+rounds.controller 'RoundCtrl', RoundCtrl
