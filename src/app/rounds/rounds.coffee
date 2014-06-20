@@ -34,7 +34,7 @@ rounds.service "TagsService", ->
 rounds.factory "RoundsRes", [
   "$resource"
   ($resource) ->
-    return $resource("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&callback=JSON_CALLBACK", {},
+    return $resource("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&before=:before&callback=JSON_CALLBACK", {},
       jsonp_query:
         tag: @tag
         method: "JSONP"
@@ -50,7 +50,7 @@ class RoundsCtrl
     $scope.correct = false
     $scope.guess = ""
     tag_regex = new RegExp('^#'+tag+'$', "i")
-    RoundsRes.jsonp_query tag: tag, (response) ->
+    RoundsRes.jsonp_query tag: "adventure time", before: (Date.now() - (Math.floor(Math.random() * 2678400 * 12))) / 1000, (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 
