@@ -1,6 +1,7 @@
 
 modules = [
   'ui.router',
+  'common.user_storage',
   'ngResource'
 ]
 
@@ -20,8 +21,6 @@ roundsConfig = ($stateProvider) ->
 roundsConfig.$inject = ['$stateProvider']
 rounds.config roundsConfig
 
-rounds.directive "tagChecker", ->
-
 rounds.service "TagsService", ->
   random_tag: (type) ->
     all_tags = {
@@ -35,23 +34,31 @@ rounds.service "TagsService", ->
 rounds.factory "RoundsRes", [
   "$resource"
   ($resource) ->
-    return $resource("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&callback=JSON_CALLBACK", {},
+    return $resource("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&before=:before&callback=JSON_CALLBACK", {},
       jsonp_query:
         tag: @tag
         method: "JSONP"
     )
 ]
 
-class RoundCtrl
-  @$inject = ['$scope', 'TagsService', 'RoundsRes', '$state', '$stateParams']
+# gives a random timestamp from the last number of months
+rounds.service "RandomDateService", ->
+  service = 
+    oneMonth: 2678400
+    fromPastMonths: (months) ->
+      (Date.now() - (Math.floor(Math.random() * service.oneMonth * months))) / 1000
 
-  constructor: ($scope, TagsService, RoundsRes, $state, $stateParams) ->
+class RoundsCtrl
+  @$inject: ['$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams']
+
+  constructor: ($scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams) ->
+    $scope.round = gameStorage.get('current_round')
     $scope.type = $stateParams.type || 'series'
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
     tag_regex = new RegExp('^#'+tag+'$', "i")
-    RoundsRes.jsonp_query tag: tag, (response) ->
+    RoundsRes.jsonp_query tag: tag, before: RandomDateService.fromPastMonths(12), (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 
@@ -60,7 +67,9 @@ class RoundCtrl
       $scope.correct = tag_regex.test(guess)
 
     $scope.$watch "correct", (correct) ->
-      $state.go($state.$current, null, { reload: true }) if correct
+      if correct
+        gameStorage.increment('current_round', 1)
+        $state.go($state.$current, null, { reload: true })
 
 
 rounds.controller 'RoundCtrl', RoundCtrl
