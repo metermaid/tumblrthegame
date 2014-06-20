@@ -24,6 +24,14 @@ roundsConfig = ($stateProvider) ->
         templateUrl: "rounds/round.tpl.html"
     data:
       pageTitle: "Round Start"
+  $stateProvider.state "end",
+    params: ["tag", "before"]
+    views:
+      main:
+        controller: "EndCtrl"
+        templateUrl: "rounds/end.tpl.html"
+    data:
+      pageTitle: "Congratulations"
 
 roundsConfig.$inject = ['$stateProvider']
 rounds.config roundsConfig
@@ -32,8 +40,9 @@ rounds.service "TagsService", ->
   service =
     all_tags: {
         'TV series': ["adventure time", "supernatural", "doctor who", "sherlock", "community", "parks and recreation", "the big bang theory"],
+        'Cartoons': ["my little pony", "adventure time", "gravity falls", "powerpuff girls", "the last airbender", "steven universe"]
         'characters': ["hannibal lecter", "mako mori", "katniss everdeen"],
-        'homestuck': ['dave strider', 'roxy lalonde', 'nepeta', 'john egert', 'vriska serket', 'tavros nitram', 'terezi', 'equius']
+        'homestuck': ['dave strider', 'roxy lalonde', 'nepeta', 'john egbert', 'vriska serket', 'tavros nitram', 'terezi', 'equius']
         'marvel': ["spiderman", "avengers", "iron man", "doctor strange", "hulk", "captain america", "fantastic four"],
         'dog breeds': ["corgis", "pomeranians", "beagles", "shiba inu", "greyhounds", "huskies", "Chihuahuas", "bulldogs"],
         'disney princesses': ["snow white", "jasmine", "cinderella", "aurora", "ariel", "belle", "pocahontas", "mulan", "tiana", "rapunzel", "merida"]
@@ -59,7 +68,7 @@ rounds.factory "RoundsRes", [
   ($resource) ->
     return $resource("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&before=:before&callback=JSON_CALLBACK", {},
       jsonp_query:
-        tag: @tag
+        cache: true
         method: "JSONP"
     )
 ]
@@ -94,7 +103,8 @@ class RoundCtrl
     $scope.correct = false
     $scope.guess = ""
     tag_regex = new RegExp('^#?'+tag+'$', "i")
-    RoundsRes.jsonp_query tag: tag, before: RandomDateService.fromPastMonths(12), (response) ->
+    before_date = RandomDateService.fromPastMonths(12) # past year
+    RoundsRes.jsonp_query tag: tag, before: before_date, (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 
@@ -105,7 +115,27 @@ class RoundCtrl
     $scope.$watch "correct", (correct) ->
       if correct
         gameStorage.increment('current_round', 1)
-        $state.transitionTo "select"
+        $state.transitionTo "end", tag: tag, before: before_date
 
 
 rounds.controller 'RoundCtrl', RoundCtrl
+
+class EndCtrl
+  @$inject: ['$scope', 'RoundsRes', 'gameStorage', '$filter', '$state', '$stateParams']
+
+  constructor: ($scope, RoundsRes, gameStorage, $filter, $state, $stateParams) ->
+    $scope.round = gameStorage.get('current_round')
+
+    RoundsRes.jsonp_query tag: 'yay-gif', before:$stateParams.before, (response) ->
+      yay_gifs = $filter('filter')(response.response, { type : 'photo' })
+      $scope.gif = yay_gifs[0].photos[0].original_size.url
+
+    RoundsRes.jsonp_query tag: $stateParams.tag, before: $stateParams.before, (response) ->
+      $scope.posts = response.response
+      
+    $scope.play = ->
+      $state.transitionTo "select"
+
+
+rounds.controller 'EndCtrl', EndCtrl
+
