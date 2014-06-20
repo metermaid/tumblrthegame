@@ -57,6 +57,7 @@ module.exports = function(config) {
      * the aesthetic advantage of not launching a browser every time you save.
      */
     browsers: [
+      'PhantomJS'
     ]
   });
 };
