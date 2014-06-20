@@ -50,7 +50,7 @@ class RoundsCtrl
     $scope.correct = false
     $scope.guess = ""
     tag_regex = new RegExp('^#'+tag+'$', "i")
-    RoundsRes.jsonp_query tag: "adventure time", before: (Date.now() - (Math.floor(Math.random() * 2678400 * 12))) / 1000, (response) ->
+    RoundsRes.jsonp_query tag: tag, before: (Date.now() - (Math.floor(Math.random() * 2678400 * 12))) / 1000, (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 
