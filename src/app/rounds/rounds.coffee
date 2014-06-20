@@ -76,7 +76,7 @@ class SelectCtrl
 
   constructor: ($scope, TagsService, gameStorage, $state) ->
     $scope.round = gameStorage.get('current_round')
-    $scope.categories = TagsService.random_categories(6)
+    $scope.categories = TagsService.random_categories(4)
 
     $scope.play = (category) ->
       $state.transitionTo "round", {type: category}
@@ -93,7 +93,7 @@ class RoundCtrl
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
-    tag_regex = new RegExp('^#'+tag+'$', "i")
+    tag_regex = new RegExp('^#?'+tag+'$', "i")
     RoundsRes.jsonp_query tag: tag, before: RandomDateService.fromPastMonths(12), (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
