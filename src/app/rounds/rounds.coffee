@@ -41,6 +41,9 @@ rounds.factory "RoundsRes", [
     )
 ]
 
+# gives a random timestamp from the last number of months
+randomTimeFromPastMonths = (months) => (Date.now() - (Math.floor(Math.random() * 2678400 * months))) / 1000
+
 class RoundsCtrl
   @$inject = ['$scope', 'TagsService', 'RoundsRes', '$state']
 
@@ -50,7 +53,7 @@ class RoundsCtrl
     $scope.correct = false
     $scope.guess = ""
     tag_regex = new RegExp('^#'+tag+'$', "i")
-    RoundsRes.jsonp_query tag: tag, before: (Date.now() - (Math.floor(Math.random() * 2678400 * 12))) / 1000, (response) ->
+    RoundsRes.jsonp_query tag: tag, before: randomTimeFromPastMonths(12), (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 
