@@ -2,6 +2,7 @@ modules = [
   'templates',
   
   'common.user_storage',
+  'common.tags',
 
   'tumblrGame.home',
   'tumblrGame.rounds',
