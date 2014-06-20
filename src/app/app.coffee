@@ -1,5 +1,8 @@
 modules = [
   'templates',
+  
+  'common.user_storage',
+
   'tumblrGame.home',
   'tumblrGame.rounds',
   'ui.router'
