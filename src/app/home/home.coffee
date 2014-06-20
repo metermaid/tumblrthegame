@@ -21,8 +21,8 @@ home.config homeConfig
 
 homeController = ($scope, $state) ->
   # nothing in the example
-  $scope.round = ->
-    $state.transitionTo "round", {type:'anime'}
+  $scope.play = ->
+    $state.transitionTo "select"
 
 
 homeController.$inject = ['$scope', '$state']

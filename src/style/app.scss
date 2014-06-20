@@ -65,6 +65,15 @@ button, .button {
 		font-size: 16px;
 		text-align: center;
 	}
+	&.category {
+		width: 250px;
+		height: 45px;
+		margin-bottom: 5px;
+		line-height: 45px;
+		font-size: 16px;
+		text-align: center;
+		text-transform: capitalize;
+	}
 	&:active, &:hover, &:visited {
 		color: $white;
 	}
