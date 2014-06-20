@@ -12,7 +12,6 @@ module.exports = function(config) {
       'src/**/*.coffee'
     ],
     exclude: [
-      'src/assets/**/*.js',
       'src/**/*.scenario.coffee'
     ],
     frameworks: [ 'jasmine' ],

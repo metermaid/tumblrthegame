@@ -41,19 +41,23 @@ rounds.factory "RoundsRes", [
 ]
 
 # gives a random timestamp from the last number of months
-randomTimeFromPastMonths = (months) => (Date.now() - (Math.floor(Math.random() * 2678400 * months))) / 1000
+rounds.service "RandomDateService", ->
+  service = 
+    oneMonth: 2678400
+    fromPastMonths: (months) ->
+      (Date.now() - (Math.floor(Math.random() * service.oneMonth * months))) / 1000
 
 class RoundsCtrl
-  @$inject = ['$scope', 'TagsService', 'RoundsRes', 'gameStorage', '$state']
+  @$inject: ['$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state']
 
-  constructor: ($scope, TagsService, RoundsRes, gameStorage, $state) ->
+  constructor: ($scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state) ->
     $scope.round = gameStorage.get('current_round')
     $scope.type = 'series'
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
     tag_regex = new RegExp('^#'+tag+'$', "i")
-    RoundsRes.jsonp_query tag: tag, before: randomTimeFromPastMonths(12), (response) ->
+    RoundsRes.jsonp_query tag: tag, before: RandomDateService.fromPastMonths(12), (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 

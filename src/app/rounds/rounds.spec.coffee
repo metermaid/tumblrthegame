@@ -6,6 +6,9 @@ describe 'game rounds', ->
 		$provide.value "TagsService",
 	   	random_tag: ->
 	      	'lotr'
+	   $provide.value "RandomDateService",
+	   	fromPastMonths: ->
+	      	'1391212800000'
 		return
 	)
 
@@ -27,7 +30,7 @@ describe 'game rounds', ->
 			  $scope: scope
 			  $state: scope.$state
 
-			scope.httpBackend.expectJSONP("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&callback=JSON_CALLBACK").respond {
+			scope.httpBackend.expectJSONP("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond {
 			  meta:
 			    status: 200
 			    msg: "OK"

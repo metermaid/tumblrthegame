@@ -5,10 +5,6 @@ plugins.sass = require('gulp-ruby-sass');
 
 var runSequence = require('run-sequence'); // needed for non-dependent ordered tasks
 
-var karma = require('gulp-karma')({
-    configFile: 'karma-unit.js'
-});
-
 var protractor = require('gulp-protractor');
 
 // Build Config
@@ -64,6 +60,10 @@ var index_paths = [
   destinations.js + "/templates.js",
   destinations.css + "/*.css"
 ];
+
+var karma = require('gulp-karma')({
+    configFile: 'karma-unit.js'
+});
 
 // Compilation Tasks
 
@@ -150,6 +150,11 @@ gulp.task('protractor', ['webdriver_update'], function () {
     }));
 });
 
+gulp.task('tests', function() {
+  runSequence('karma',
+    'protractor'); // having them print asynchronously is confusing
+});
+
 // Main Tasks
 
 gulp.task('watch', function() {
@@ -166,7 +171,7 @@ gulp.task('build', function() {
     'index');
 });
 
-gulp.task('default', ['templates'], function() { // TODO: figure out why karma otherwise fails to load templates...
+gulp.task('default', ['templates'], function() {
   runSequence('build',
     ['watch', 'karma-autowatch']);
 });
