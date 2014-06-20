@@ -36,6 +36,19 @@ body {
 		  		width: auto;
 		  		height: 100%;
 		  	}
+		  	&.rebloggable {
+		  		img {
+		  			opacity: 0.3;
+		  		}
+		  		.post_controls {
+		  			position: relative;
+		  			top: -65%;
+		  			font-size: 3em;
+		  			a {
+		  				color: $tumblrgrey;
+		  			}
+		  		}
+		  	}
 	  }
 	}
 }
