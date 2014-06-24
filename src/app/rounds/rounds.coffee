@@ -66,7 +66,7 @@ rounds.service "TagsService", ->
 rounds.factory "RoundsRes", [
   "$resource"
   ($resource) ->
-    return $resource("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&before=:before&callback=JSON_CALLBACK", {},
+    return $resource("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=:tag&before=:before&callback=JSON_CALLBACK", {},
       jsonp_query:
         cache: true
         method: "JSONP"
