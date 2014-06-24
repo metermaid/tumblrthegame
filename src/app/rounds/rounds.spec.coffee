@@ -2,21 +2,38 @@ describe 'game rounds', ->
 
 	scope = undefined
 	httpBackend = undefined
+	storage = undefined
+
 	beforeEach module("tumblrGame", ($provide) ->
 		$provide.value "TagsService",
-	   	random_tag: ->
-	      	'lotr'
-	   $provide.value "RandomDateService",
-	   	fromPastMonths: ->
-	      	'1391212800000'
+			random_tag: ->
+		   	'lotr'
+		$provide.value "RandomDateService",
+			fromPastMonths: ->
+		   	'1391212800000'
+
+		store = {
+			"current_round": 1,
+			"score": 0
+		}
+
+		$provide.constant "gameStorage",
+			get: (storageID) ->
+				store[storageID]
+			increment: (storageID, n) ->
+				store[storageID] = store[storageID] + n
+
 		return
 	)
-
 	# create the custom mocks on the root scope
 	beforeEach angular.mock.inject(($rootScope, _$httpBackend_, $state) ->
 		scope = $rootScope.$new()
 		scope.httpBackend = _$httpBackend_
 		scope.$state = $state
+	)
+
+	beforeEach inject((gameStorage) ->
+	  storage = gameStorage
 	)
 
 	afterEach ->
@@ -29,8 +46,9 @@ describe 'game rounds', ->
 			$controller "RoundCtrl",
 			  $scope: scope
 			  $state: scope.$state
+			  gameStorage: storage
 
-			scope.httpBackend.expectJSONP("http://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond {
+			scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond {
 			  meta:
 			    status: 200
 			    msg: "OK"
@@ -84,17 +102,36 @@ describe 'game rounds', ->
 				expect(scope.guess.length).toEqual 0
 			it "is not yet correct", ->
 				expect(scope.correct).toEqual false
+			it "reports no rounds won", ->
+				expect(scope.round).toEqual 1
 
 		describe "Guess has been entered", ->
 			it "updates correct variable when a guess is correct", ->
 				scope.guess = "#lotr"
 				scope.$apply()
 				expect(scope.correct).toEqual true
-			it "refreshes on a correct guess", ->
-				spyOn(scope.$state, "go").andCallThrough()
-				scope.guess = "#lotr"
-				expect(scope.$state.go).toHaveBeenCalled
-			it "does not refresh on an incorrect guess", ->
-				spyOn(scope.$state, "go").andCallThrough()
+			it "does not update correct variable when a guess is incorrect", ->
 				scope.guess = "#fart"
-				expect(scope.$state.go).not.toHaveBeenCalled
+				scope.$apply()
+				expect(scope.correct).toEqual false
+
+			it "redirects to the end state on a correct guess", ->
+				spyOn(scope.$state, "transitionTo").andCallThrough()
+				scope.guess = "#lotr"
+				scope.$apply()
+				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag: 'lotr', before: '1391212800000'
+			it "does not refresh on an incorrect guess", ->
+				spyOn(scope.$state, "transitionTo").andCallThrough()
+				scope.guess = "#fart"
+				expect(scope.$state.transitionTo).not.toHaveBeenCalled
+
+			it "increments rounds won on a correct guess", ->
+				spyOn(storage, "increment").andCallThrough()
+				scope.guess = "#lotr"
+				scope.$apply()
+				expect(storage.increment).toHaveBeenCalledWith 'current_round', 1
+			it "does not increment rounds won on an incorrect guess", ->
+				spyOn(storage, "increment").andCallThrough()
+				scope.guess = "#fart"
+				scope.$apply()
+				expect(storage.increment).not.toHaveBeenCalled
