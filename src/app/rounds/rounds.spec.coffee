@@ -51,6 +51,8 @@ describe 'game rounds', ->
 		$provide.value "TagsService",
 			random_tag: ->
 		   	'lotr'
+		   random_categories: ->
+		   	['series', 'anime', 'characters', 'dog breeds']
 		$provide.value "RandomDateService",
 			fromPastMonths: ->
 		   	'1391212800000'
@@ -82,6 +84,23 @@ describe 'game rounds', ->
 	afterEach ->
 		scope.httpBackend.verifyNoOutstandingExpectation()
 		scope.httpBackend.verifyNoOutstandingRequest()
+
+	describe "Select controller", ->
+
+		beforeEach angular.mock.inject(($controller) ->
+			$controller "SelectCtrl",
+			  $scope: scope
+			  $state: scope.$state
+			  gameStorage: storage
+		)
+
+		# tests start here
+		describe "Initial render", ->
+			it "reports no rounds won", ->
+				expect(scope.round).toEqual 1
+
+			it "displays four categories", ->
+				expect(scope.categories.length).toEqual 4
 
 	describe "Rounds controller", ->
 
