@@ -19,10 +19,13 @@ homeConfig.$inject = ['$stateProvider']
 home.config homeConfig
 
 
-homeController = ($scope) ->
+homeController = ($scope, $state) ->
   # nothing in the example
+  $scope.play = ->
+    $state.transitionTo "select"
 
-homeController.$inject = ['$scope']
+
+homeController.$inject = ['$scope', '$state']
 home.controller 'HomeCtrl', homeController
 
 

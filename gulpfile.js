@@ -167,11 +167,12 @@ gulp.task('watch', function() {
 
 gulp.task('build', function() {
   runSequence('clean',
-    ['styles', 'compile', 'templates', 'vendors', 'assets'],
+    'templates',
+    ['styles', 'compile', 'vendors', 'assets'],
     'index');
 });
 
-gulp.task('default', ['templates'], function() {
+gulp.task('default', function() {
   runSequence('build',
     ['watch', 'karma-autowatch']);
 });
