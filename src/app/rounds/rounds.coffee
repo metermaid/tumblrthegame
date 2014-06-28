@@ -11,6 +11,9 @@ roundsConfig = ($stateProvider) ->
   $stateProvider.state "select",
     url: "/play"
     views:
+      header:
+        controller: "HeaderCtrl"
+        templateUrl: "rounds/header.tpl.html"
       main:
         controller: "SelectCtrl"
         templateUrl: "rounds/select.tpl.html"
@@ -19,6 +22,9 @@ roundsConfig = ($stateProvider) ->
   $stateProvider.state "round",
     params: ["type"]
     views:
+      header:
+        controller: "HeaderCtrl"
+        templateUrl: "rounds/header.tpl.html"
       main:
         controller: "RoundCtrl"
         templateUrl: "rounds/round.tpl.html"
@@ -27,6 +33,9 @@ roundsConfig = ($stateProvider) ->
   $stateProvider.state "end",
     params: ["tag", "before"]
     views:
+      header:
+        controller: "HeaderCtrl"
+        templateUrl: "rounds/header.tpl.html"
       main:
         controller: "EndCtrl"
         templateUrl: "rounds/end.tpl.html"
@@ -79,6 +88,18 @@ rounds.service "RandomDateService", ->
     oneMonth: 2678400
     fromPastMonths: (months) ->
       (Date.now() - (Math.floor(Math.random() * service.oneMonth * months))) / 1000
+
+
+
+class HeaderCtrl
+  @$inject: ['$scope', 'gameStorage', '$state']
+
+  constructor: ($scope, gameStorage, $state) ->
+    $scope.round = gameStorage.get('current_round')
+    $scope.end = ($state.current.name == 'end')
+
+
+rounds.controller 'HeaderCtrl', HeaderCtrl
 
 class SelectCtrl
   @$inject: ['$scope', 'TagsService', 'gameStorage', '$state']
@@ -138,4 +159,3 @@ class EndCtrl
 
 
 rounds.controller 'EndCtrl', EndCtrl
-
