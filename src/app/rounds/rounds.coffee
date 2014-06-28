@@ -51,7 +51,9 @@ class RoundsCtrl
 
     $scope.$watch "guess", (guess) ->
       return 0  if not guess or guess.length is 0
-      $scope.correct = tag_regex.test(guess)
+      $scope.correct = TagsService.check_tag_aliases($scope.type, tag, guess.replace("#", "").toLowerCase())
+      console.log($scope.correct)
+      $scope.correct
 
     $scope.$watch "correct", (correct) ->
       if correct
