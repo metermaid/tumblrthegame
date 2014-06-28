@@ -12,7 +12,6 @@ module.exports = function(config) {
       'src/**/*.coffee'
     ],
     exclude: [
-      'src/assets/**/*.js',
       'src/**/*.scenario.coffee'
     ],
     frameworks: [ 'jasmine' ],
@@ -58,6 +57,7 @@ module.exports = function(config) {
      * the aesthetic advantage of not launching a browser every time you save.
      */
     browsers: [
+      'PhantomJS'
     ]
   });
 };

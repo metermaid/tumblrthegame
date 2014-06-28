@@ -36,6 +36,19 @@ body {
 		  		width: auto;
 		  		height: 100%;
 		  	}
+		  	&.rebloggable {
+		  		img {
+		  			opacity: 0.3;
+		  		}
+		  		.post_controls {
+		  			position: relative;
+		  			top: -65%;
+		  			font-size: 3em;
+		  			a {
+		  				color: $tumblrgrey;
+		  			}
+		  		}
+		  	}
 	  }
 	}
 }
@@ -43,11 +56,23 @@ body {
 #main-header {
 	padding: 0.5em;
 	color: white;
+	overflow: auto;
 	h1 {
+		float: left;
+		display: inline-block;
 		font-size: 2.75em;
+		line-height: 60px;
 		font-weight: bold;
 		letter-spacing: -0.0225em;
 		font-family: "Bookman Old Style", Bookman, Garamond, serif;
+	}
+	nav {
+		float: right;
+		h2 {
+			line-height: 60px;
+			padding-right: 10px;
+			display: inline-block;
+		}
 	}
 }
 
@@ -64,6 +89,15 @@ button, .button {
 		line-height: 45px;
 		font-size: 16px;
 		text-align: center;
+	}
+	&.category {
+		width: 250px;
+		height: 45px;
+		margin-bottom: 5px;
+		line-height: 45px;
+		font-size: 16px;
+		text-align: center;
+		text-transform: capitalize;
 	}
 	&:active, &:hover, &:visited {
 		color: $white;
