@@ -53,6 +53,8 @@ describe 'game rounds', ->
 		   	'lotr'
 		   random_categories: ->
 		   	['series', 'anime', 'characters', 'dog breeds']
+		   check_tag_aliases: (type, tag, guess) ->
+		   	guess == 'lotr'
 		$provide.value "RandomDateService",
 			fromPastMonths: ->
 		   	'1391212800000'
