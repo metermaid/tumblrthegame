@@ -6,6 +6,8 @@ TUMBLR. THE GAME.
 Try the demo:
 https://25181cda13b41642277242f7d284bfbf95a96a35.googledrive.com/host/0BwsylAI_CxHzcE1GSjk2QjZYc2c/
 
+This application uses the Tumblr application programming interface but is not endorsed or certified by Tumblr, Inc. All of the Tumblr logos and trademarks displayed on this application are the property of Tumblr, Inc.
+
 =============
 
 ## Quick Start
