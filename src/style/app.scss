@@ -64,7 +64,7 @@ body {
 		line-height: 60px;
 		font-weight: bold;
 		letter-spacing: -0.0225em;
-		font-family: "Bookman Old Style", Bookman, Garamond, serif;
+		font-family: "Bookman Old Style", "Garamond Premier Pro Caption", Palatino, Garamond, serif;
 	}
 	nav {
 		float: right;
@@ -75,7 +75,12 @@ body {
 		}
 	}
 }
-
+.storyline {
+	@include span-columns(12);
+	@include pad();
+	text-align: center;
+	font-family: 'Press Start 2P', monospace;
+}
 button, .button {
 	display: inline-block;
 	margin: 0 auto;
