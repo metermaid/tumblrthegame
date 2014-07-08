@@ -97,16 +97,15 @@ class RoundCtrl
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
-    tag_regex = new RegExp('^#?'+tag+'$', "i")
+    tag_regex = tag.regex
     before_date = RandomDateService.fromPastMonths(12) # past year
-    RoundsRes.jsonp_query tag: tag, before: before_date, (response) ->
+    RoundsRes.jsonp_query tag: tag.name, before: before_date, (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
 
     $scope.$watch "guess", (guess) ->
       return 0  if not guess or guess.length is 0
-      $scope.correct = TagsService.check_tag_aliases($scope.type, tag, guess.replace("#", "").toLowerCase())
-      console.log($scope.correct)
+      $scope.correct = guess.search(tag.regex) != -1
       $scope.correct
 
     $scope.$watch "correct", (correct) ->
