@@ -111,7 +111,7 @@ class RoundCtrl
     $scope.$watch "correct", (correct) ->
       if correct
         gameStorage.increment('current_round', 1)
-        $state.transitionTo "end", tag: tag, before: before_date
+        $state.transitionTo "end", tag: tag.name, before: before_date
 
 
 rounds.controller 'RoundCtrl', RoundCtrl
