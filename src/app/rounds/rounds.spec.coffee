@@ -50,7 +50,7 @@ describe 'game rounds', ->
 	beforeEach module("tumblrGame", ($provide) ->
 		$provide.value "TagsService",
 			random_tag: ->
-		   	{"name" : "lotr", "regex" : /^#?lotr$/i}
+		   	{"name" : "lotr", "regex" : /lotr/}
 		   random_categories: ->
 		   	['series', 'anime', 'characters', 'dog breeds']
 		   check_tag_aliases: (type, tag, guess) ->
