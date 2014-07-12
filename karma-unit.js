@@ -9,6 +9,7 @@ module.exports = function(config) {
       'vendor/angular-mocks/angular-mocks.js',
       'vendor/angular-resource/angular-resource.js',
       'build/src/templates.js',
+      'src/*/*/*.coffee', // include root modules before controller modules
       'src/**/*.coffee'
     ],
     exclude: [
