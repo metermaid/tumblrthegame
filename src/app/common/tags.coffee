@@ -4,27 +4,87 @@ class Alias
   name: -> @names[0]
   aliases: -> @names
 
-all_tags: {
-    'TV series': ["adventure time", "supernatural", "doctor who", "sherlock", "community", "parks and recreation", "the big bang theory"],
-    'Cartoons': ["my little pony", "adventure time", "gravity falls", "powerpuff girls", "the last airbender", "steven universe"]
-    'characters': ["hannibal lecter", "mako mori", "katniss everdeen"],
-    'homestuck': ['dave strider', 'roxy lalonde', 'nepeta', 'john egbert', 'vriska serket', 'tavros nitram', 'terezi', 'equius']
-    'marvel': ["spiderman", "avengers", "iron man", "doctor strange", "hulk", "captain america", "fantastic four"],
-    'dog breeds': ["corgis", "pomeranians", "beagles", "shiba inu", "greyhounds", "huskies", "Chihuahuas", "bulldogs"],
-    'disney princesses': ["snow white", "jasmine", "cinderella", "aurora", "ariel", "belle", "pocahontas", "mulan", "tiana", "rapunzel", "merida"]
-    'anime': ['cowboy bebop', 'space dandy', 'kill la kill', 'attack on titan']
-}
-
-all_aliases = {
-  'series': [new Alias(["adventure time", "adventuretime", "adventure time with finn and jake"]), new Alias(["supernatural"]), new Alias(["doctor who", "doctorwho", "dw", "timey wimey"]), new Alias(["lotr", "lord of the rings", "lordoftherings", "potatoes"]), new Alias(["harry potter", "harrypotter"])],
-  'characters': [new Alias(["hannibal lecter", "hanniballecter"]), new Alias(["mako mori", "makomori"]), new Alias(["katniss everdeen", "katnisseverdeen"])]
+# tags are represented as a set of regular expressions
+all_tags = {
+  'TV series': [
+    {"name": "adventure time", "regex" : /adventure ?time/},
+    {"name": "supernatural", "regex" : /supernatural/},
+    {"name": "doctor who", "regex" : /(doctor ?who)|(dw)|(timey ?wimey)/},
+    {"name": "sherlock", "regex" : /sherlock/},
+    {"name": "community", "regex" : /community/},
+    {"name": "parks and recreation", "regex" : /parks ?(and|&|\+) ? rec(reation)?/}],
+  'Film series': [
+    {"name" : "lord of the rings", "regex" : /(lotr)|(lord ?of ?the ?rings)|(potatoes)/},
+    {"name" : "hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
+    {"name" : "harry potter" , "regex" :/(harry ?potter)/} ],
+  'characters': [
+    {"name" : "hannibal lecter", "regex" : /hannibal ?(lecter)?/},
+    {"name" : "mako mori" , "regex" : /mako ?mori/},
+    {"name" : "katniss everdeen", "regex" : /katniss ?(everdeen)?/} ],
+  'marvel': [
+    {"name": "spiderman", "regex": /spiderman|(peter ?parker)/},
+    {"name": "avengers", "regex": /avengers/},
+    {"name": "iron man", "regex": /iron ?man/},
+    {"name": "doctor strange", "regex": /(doctor)|(dr) ?strange/},
+    {"name": "hulk", "regex": /hulk/},
+    {"name": "captain america", "regex": /captain ?(america)|(handsome)/},
+    {"name": "fantastic four", "regex": /fantastic ?four/}
+  ],
+  'cartoons': [
+    {"name": "adventure time", "regex" : /adventure ?time/},
+    {"name": "my little pony", "regex": /my ?little ?pony/},
+    {"name": "gravity falls", "regex": /gravity ?falls/},
+    {"name": "powerpuff girls", "regex": /powerpuff ?girls/},
+    {"name": "the last airbender", "regex": /(the ?last ?airbender)|avatar/},
+    {"name": "steven universe", "regex": /steven ?universe/}
+  ],
+  'homestuck': [
+    {"name": "dave strider", "regex": /dave ?strider/},
+    {"name": "roxy lalonde", "regex": /roxy ?lalonde/},
+    {"name": "nepeta", "regex": /nepeta/},
+    {"name": "john egbert", "regex": /john ?egbert/},
+    {"name": "vriska serket", "regex": /vriska/},
+    {"name": "tavros nitram", "regex": /tavros/},
+    {"name": "terezi", "regex": /terezi/},
+    {"name": "equius", "regex": /equius/}
+  ],
+  'disney princesses': [
+    {"name": "snow white", "regex": /snow ?white/},
+    {"name": "jasmine", "regex": /jasmine/},
+    {"name": "cinderella", "regex": /cinderella/},
+    {"name": "ariel", "regex": /ariel/},
+    {"name": "belle", "regex": /belle/},
+    {"name": "pocahontas", "regex": /pocahontas/},
+    {"name": "mulan", "regex": /mulan/},
+    {"name": "tiana", "regex": /tiana/},
+    {"name": "rapunzel", "regex": /rapunzel/},
+    {"name": "merida", "regex": /merida/}
+  ],
+  'dog breeds': [
+    {"name": "corgis", "regex": /corgi/},
+    {"name": "pomeranians", "regex": /pemeranian/},
+    {"name": "beagles", "regex": /beagle/},
+    {"name": "shiba inu", "regex": /shiba ?inu/},
+    {"name": "greyhounds", "regex": /greyhound/},
+    {"name": "huskies", "regex": /(huskies)|husky/},
+    {"name": "chihuahuas", "regex": /chihuahua/},
+    {"name": "bulldogs", "regex": /bulldog/}
+  ],
+  'anime': [
+    {"name": "cowboy bebop", "regex": /(cowboy ?bebop)/},
+    {"name": "space dandy", "regex": /space ?dandy/},
+    {"name": "kill la kill", "regex": /kill ?la ?kill/},
+    {"name": "sailor moon", "regex": /sailor ?moon/},
+    {"name": "attack on titan", "regex": /(attack ?on ?titan)|(snk)|(shinkegi ?no ?kyojin)/}
+  ]
+    # template: {"name": "", "regex": //}
 }
 
 tags = angular.module "common.tags", []
 
 tags.service "TagsService", ->
   random_categories: (length) ->
-    categories = Object.keys(all_aliases)
+    categories = Object.keys(all_tags)
     # From the end of the list to the beginning, pick element `i`.
     for i in [categories.length-1..1]
       # Choose random element `j` to the front of `i` to swap with.
@@ -33,16 +93,6 @@ tags.service "TagsService", ->
       [categories[i], categories[j]] = [categories[j], categories[i]]
     # Return the shuffled array.
     categories.slice(0,length)
-  check_tag_aliases: (type, tag, guess) ->
-    console.log("type:" + type + " tag:" + tag + " guess:" + guess)
-    aliases = all_aliases[type]
-    tagFound = false
-    alias = null
-    # we loop over aliases sets and find the one that mathes our tag
-    for a in aliases
-      if tag in a.names then alias = a
-      if alias then break
-    if guess in alias.aliases() then true else false
   random_tag: (type) ->
-    aliases = all_aliases[type]
-    return aliases[Math.floor(Math.random() * aliases.length)].name()
+    tags = all_tags[type]
+    return tags[Math.floor(Math.random() * tags.length)]

@@ -50,7 +50,7 @@ describe 'game rounds', ->
 	beforeEach module("tumblrGame", ($provide) ->
 		$provide.value "TagsService",
 			random_tag: ->
-		   	'lotr'
+		   	{"name" : "lotr", "regex" : /lotr/}
 		   random_categories: ->
 		   	['series', 'anime', 'characters', 'dog breeds']
 		   check_tag_aliases: (type, tag, guess) ->
@@ -143,7 +143,7 @@ describe 'game rounds', ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
 				scope.guess = "#lotr"
 				scope.$apply()
-				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag: 'lotr', before: '1391212800000'
+				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag : 'lotr', before: '1391212800000'
 			it "does not refresh on an incorrect guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
 				scope.guess = "#fart"

@@ -6,6 +6,9 @@ modules = [
 
   'tumblrGame.home',
   'tumblrGame.rounds',
+
+  'rounds.services',
+
   'ui.router'
 ]
 
