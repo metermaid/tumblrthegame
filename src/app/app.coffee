@@ -2,12 +2,15 @@ modules = [
   'templates',
   
   'common.user_storage',
+  'common.story',
   'common.tags',
 
   'tumblrGame.home',
   'tumblrGame.rounds',
 
   'rounds.services',
+  
+  'ngSanitize',
 
   'ui.router'
 ]

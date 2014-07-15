@@ -1,11 +1,13 @@
 
 modules = [
   'ui.router',
+
   'common.user_storage',
   'common.tags',
+  'common.story',
 
   'rounds.services',
-
+  'ngSanitize',
   'ngResource'
 ]
 

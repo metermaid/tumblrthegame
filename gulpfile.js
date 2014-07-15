@@ -40,6 +40,7 @@ var destinations = {
 var vendor_files = {
   js: [
     'vendor/angular/angular.js',
+    'vendor/angular-sanitize/angular-sanitize.js',
     'vendor/angular-ui-router/release/angular-ui-router.js',
     'vendor/angular-resource/angular-resource.js'
   ],
@@ -54,6 +55,7 @@ var vendor_files = {
 
 var index_paths = [
   destinations.libs + "/angular.js",
+  destinations.libs + "/angular-sanitize.js",
   destinations.libs + "/angular-ui-router.js",
   destinations.libs + "/angular-resource.js",
   destinations.js + "/**/*.js",
