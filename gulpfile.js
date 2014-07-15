@@ -40,11 +40,12 @@ var destinations = {
 var vendor_files = {
   js: [
     'vendor/angular/angular.js',
-    'vendor/angular-sanitize/angular-sanitize.js',
+    'vendor/ngDialog/js/ngDialog.js',
     'vendor/angular-ui-router/release/angular-ui-router.js',
     'vendor/angular-resource/angular-resource.js'
   ],
   css: [
+    'vendor/ngDialog/css/ngDialog.css'
   ],
   assets: [
   ]
@@ -55,7 +56,7 @@ var vendor_files = {
 
 var index_paths = [
   destinations.libs + "/angular.js",
-  destinations.libs + "/angular-sanitize.js",
+  destinations.libs + "/ngDialog.js",
   destinations.libs + "/angular-ui-router.js",
   destinations.libs + "/angular-resource.js",
   destinations.js + "/**/*.js",
@@ -101,7 +102,7 @@ gulp.task('templates', function () {
         .pipe(gulp.dest(destinations.js));
 });
 
-gulp.task('vendors', ['vendors-js']);
+gulp.task('vendors', ['vendors-js', 'vendors-css']);
 // dependencies can't be empty, so just js for now. see:
 // https://github.com/ck86/gulp-bower-files/issues/21
 

@@ -62,7 +62,7 @@ all_tags = {
   ],
   'dog breeds': [
     {"name": "corgis", "regex": /corgi/},
-    {"name": "pomeranians", "regex": /pemeranian/},
+    {"name": "pomeranians", "regex": /pomeranian/},
     {"name": "beagles", "regex": /beagle/},
     {"name": "shiba inu", "regex": /shiba ?inu/},
     {"name": "greyhounds", "regex": /greyhound/},

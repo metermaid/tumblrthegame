@@ -1,9 +1,9 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class EndCtrl
-  @$inject: ['$scope', '$sce', 'RoundsRes', 'StoryService', 'gameStorage', '$filter', '$state', '$stateParams']
+  @$inject: ['$scope', 'ngDialog', '$templateCache', 'RoundsRes', 'StoryService', 'gameStorage', '$filter', '$state', '$stateParams']
 
-  constructor: ($scope, $sce, RoundsRes, StoryService, gameStorage, $filter, $state, $stateParams) ->
+  constructor: ($scope, ngDialog, $templateCache, RoundsRes, StoryService, gameStorage, $filter, $state, $stateParams) ->
     $scope.round = gameStorage.get('current_round')
 
     RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
@@ -14,6 +14,14 @@ class EndCtrl
       $scope.posts = response.response
 
     $scope.storyline = StoryService.get_story($scope.round, 'end')
+
+    ngDialog.open
+      template: $templateCache.get('storyline/story.tpl.html')
+      controller: "StoryCtrl"
+      plain: true
+      scope: $scope
+
+    ngDialog.close
 
     $scope.play = ->
       $state.transitionTo "select"

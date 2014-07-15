@@ -1,0 +1,6 @@
+<div ng-if="current_story.type == 'text'" class="storyline">
+   {{current_story.text}}
+   <button ng-click="next(); closeThisDialog()" type="button" class="button start">
+       <i class="icon-play"></i>Next
+   </button>
+</div>

@@ -4,10 +4,11 @@ modules = [
 
   'common.user_storage',
   'common.tags',
-  'common.story',
+
+  'tumblrGame.storyline',
 
   'rounds.services',
-  'ngSanitize',
+  'ngDialog',
   'ngResource'
 ]
 
