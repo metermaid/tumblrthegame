@@ -45,7 +45,6 @@ var vendor_files = {
     'vendor/angular-resource/angular-resource.js'
   ],
   css: [
-    'vendor/ngDialog/css/ngDialog.css'
   ],
   assets: [
   ]
@@ -102,7 +101,7 @@ gulp.task('templates', function () {
         .pipe(gulp.dest(destinations.js));
 });
 
-gulp.task('vendors', ['vendors-js', 'vendors-css']);
+gulp.task('vendors', ['vendors-js']);
 // dependencies can't be empty, so just js for now. see:
 // https://github.com/ck86/gulp-bower-files/issues/21
 

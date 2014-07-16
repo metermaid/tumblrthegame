@@ -13,15 +13,13 @@ class EndCtrl
     RoundsRes.jsonp_query tag: $stateParams.tag, before: $stateParams.before, (response) ->
       $scope.posts = response.response
 
-    $scope.storyline = StoryService.get_story($scope.round, 'end')
+    $scope.storyline = StoryService.get_story(($scope.round - 1), 'end')
 
     ngDialog.open
       template: $templateCache.get('storyline/story.tpl.html')
       controller: "StoryCtrl"
       plain: true
       scope: $scope
-
-    ngDialog.close
 
     $scope.play = ->
       $state.transitionTo "select"

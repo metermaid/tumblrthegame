@@ -1,6 +1,7 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 @import "bitters/bitters";
+@import "dialog";
 @import "colors";
 @import "icons";
 
@@ -75,12 +76,6 @@ body {
 		}
 	}
 }
-.storyline {
-	@include span-columns(12);
-	@include pad();
-	text-align: center;
-	font-family: 'Press Start 2P', monospace;
-}
 button, .button {
 	display: inline-block;
 	margin: 0 auto;
@@ -107,6 +102,13 @@ button, .button {
 	&:active, &:hover, &:visited {
 		color: $white;
 	}
+}
+
+.intro {
+   @include span-columns(12);
+   @include pad();
+   text-align: center;
+   font-family: 'Press Start 2P', monospace;
 }
 
 footer {
@@ -136,7 +138,4 @@ a {
 	color: #ffa144;
 	font-weight: bold;
 	text-decoration: none;
-}
-.ngdialog .storyline {
-	color: #000;
 }
