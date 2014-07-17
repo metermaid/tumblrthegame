@@ -2,6 +2,7 @@
 modules = [
   'ui.router',
   'common.user_storage',
+  'common.directives',
   'common.tags',
 
   'rounds.services',

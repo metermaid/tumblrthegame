@@ -1,6 +1,7 @@
 modules = [
   'templates',
   
+  'common.directives',
   'common.user_storage',
   'common.tags',
 

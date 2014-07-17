@@ -1,5 +1,5 @@
 <h2>What tag is this?</h2>
-<input type="text" id="guess" ng-model="guess">
+<input type="text" id="guess" ng-model="guess" focus="true">
 <h1 ng-show="correct">Correct?!</h1>
 <div class="post" ng-repeat="post in posts  | filter:{ type : 'photo' } | limitTo: 6">
 	<img src="{{post.photos[0].original_size.url}}" />
