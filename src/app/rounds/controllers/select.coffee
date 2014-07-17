@@ -10,12 +10,14 @@ class SelectCtrl
       $scope.play = (category) ->
          $state.transitionTo "round", {type: category}
 
-      for category, index in $scope.categories
+      makeHotKey = (category, index) ->
          hotkeys.bindTo($scope).add
             combo: "ctrl+#{index+1}"
             description: "Go to #{category} Stage"
             callback: ->
                $scope.play category
 
+      for category, index in $scope.categories
+         makeHotKey(category, index)
 
 rounds.controller 'SelectCtrl', SelectCtrl
