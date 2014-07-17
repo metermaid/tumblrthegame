@@ -1,9 +1,9 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class EndCtrl
-  @$inject: ['$scope', 'RoundsRes', 'gameStorage', '$filter', '$state', '$stateParams']
+  @$inject: ['$scope', 'RoundsRes', 'gameStorage', '$filter', '$state', '$stateParams', 'hotkeys']
 
-  constructor: ($scope, RoundsRes, gameStorage, $filter, $state, $stateParams) ->
+  constructor: ($scope, RoundsRes, gameStorage, $filter, $state, $stateParams, hotkeys) ->
     $scope.round = gameStorage.get('current_round')
 
     RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
@@ -15,5 +15,10 @@ class EndCtrl
 
     $scope.play = ->
       $state.transitionTo "select"
+
+    hotkeys.bindTo($scope).add
+      combo: "enter"
+      description: "Next Stage"
+      callback: $scope.play
 
 rounds.controller 'EndCtrl', EndCtrl

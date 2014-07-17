@@ -7,7 +7,8 @@ modules = [
 
   'rounds.services',
 
-  'ngResource'
+  'ngResource',
+  'cfp.hotkeys'
 ]
 
 rounds = angular.module 'tumblrGame.rounds', modules

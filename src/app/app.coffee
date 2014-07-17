@@ -10,11 +10,11 @@ modules = [
 
   'rounds.services',
 
-  'ui.router'
+  'ui.router',
+  'cfp.hotkeys'
 ]
 
 appModule = angular.module('tumblrGame', modules)
-
 
 appConfig = ($stateProvider, $urlRouterProvider) ->
   $urlRouterProvider.otherwise '/home'
