@@ -20,6 +20,7 @@ class EndCtrl
       controller: "StoryCtrl"
       plain: true
       scope: $scope
+      showClose: false
 
     $scope.play = ->
       $state.transitionTo "select"

@@ -1,9 +1,9 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class RoundCtrl
-  @$inject: ['$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams']
+  @$inject: ['$scope', 'ngDialog', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'StoryService', 'gameStorage', '$state', '$stateParams']
 
-  constructor: ($scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams) ->
+  constructor: ($scope, ngDialog, $templateCache, TagsService, RandomDateService, RoundsRes, StoryService, gameStorage, $state, $stateParams) ->
     $scope.round = gameStorage.get('current_round')
     $scope.type = $stateParams.type || 'series'
     tag = TagsService.random_tag($scope.type)
@@ -14,6 +14,15 @@ class RoundCtrl
     RoundsRes.jsonp_query tag: tag.name, before: before_date, (response) ->
       $scope.message = response.meta
       $scope.posts = response.response
+
+    $scope.storyline = StoryService.get_story(($scope.round), 'start')
+
+    ngDialog.open
+      template: $templateCache.get('storyline/story.tpl.html')
+      controller: "StoryCtrl"
+      plain: true
+      scope: $scope
+      showClose: false
 
     $scope.$watch "guess", (guess) ->
       return 0  if not guess or guess.length is 0

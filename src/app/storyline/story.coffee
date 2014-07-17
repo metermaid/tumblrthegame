@@ -20,6 +20,7 @@ class StoryCtrl
           controller: "StoryCtrl"
           plain: true
           scope: $scope
+          showClose: false
     $scope.closeAll = ->
       ngDialog.close()
 
@@ -32,14 +33,14 @@ storyline.service "StoryService", ->
 
   check_points = {
     "1_start": [new StoryScreen("text", "round_start", "You're nervous as you boot up the test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")],
-    "1_end": [new StoryScreen("text", "round_end", "You sigh with relief as you successfully complete your first level. You've taken the first step towards Earth.")]
+    "1_end": [new StoryScreen("gif", "round_end", "You sigh with relief as you successfully complete your first level. You've taken the first step towards Earth.")]
   }
   random_chapters = {
     "start": [
       [new StoryScreen("text", "round_start", "Your mentor offers you words of encouragement: \"Even if you fail the test, maybe you can just be a very stupid human.\" You do not find this encouraging.")]
     ],
     "end": [
-      [new StoryScreen("text", "round_end", "One more level down! You did it!")]
+      [new StoryScreen("gif", "round_end", "One more level down! You did it!")]
     ]
   }
   service = {
