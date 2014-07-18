@@ -20,6 +20,7 @@ class RoundCtrl
     ngDialog.open
       template: $templateCache.get('storyline/story.tpl.html')
       controller: "StoryCtrl"
+      className: "story #{$scope.storyline[0].type}"
       plain: true
       scope: $scope
       showClose: false

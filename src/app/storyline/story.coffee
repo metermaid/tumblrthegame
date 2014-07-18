@@ -18,6 +18,7 @@ class StoryCtrl
         ngDialog.open
           template: $templateCache.get('storyline/story.tpl.html')
           controller: "StoryCtrl"
+          className: "story #{$scope.storyline[0].type}"
           plain: true
           scope: $scope
           showClose: false
@@ -32,7 +33,7 @@ class StoryScreen
 storyline.service "StoryService", ->
 
   check_points = {
-    "1_start": [new StoryScreen("text", "round_start", "You're nervous as you boot up the test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")],
+    "1_start": [new StoryScreen("modal", "round_start", "You're nervous as you boot up the test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")],
     "1_end": [new StoryScreen("gif", "round_end", "You sigh with relief as you successfully complete your first level. You've taken the first step towards Earth.")]
   }
   random_chapters = {

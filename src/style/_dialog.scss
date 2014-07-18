@@ -1,7 +1,10 @@
 @import "colors";
 
+.story.plain {
+  background: $tumblrblue;
+}
 
-.plain {
+.story.plain .container {
    @include span-columns(12);
    @include pad();
    text-align: center;
@@ -9,7 +12,11 @@
    float: none;
 }
 
-.popup {
+.story.modal {
+  background: $tumblrmodal;
+}
+
+.story.modal .container {
    text-align: center;
    font-family: 'Press Start 2P', monospace;
    float: none;
@@ -17,12 +24,16 @@
    background: white;
    border-radius: 15px;
    width: 50%;
-   padding: 10px 20px 20px 20px;
-   min-width: 200px;
+   padding: 10px 20px 20px;
+   min-width: 250px;
    margin: 20px auto 0;
 }
 
-.button.story {
+.story.modal .container p:last-child {
+  margin-bottom: 0;
+}
+
+.story button, .story .button {
    width: 250px;
    display: block;
    height: 45px;
@@ -102,7 +113,6 @@
 
 .ngdialog-overlay {
   position: fixed;
-  background: $tumblrblue;
   top: 0;
   right: 0;
   bottom: 0;
