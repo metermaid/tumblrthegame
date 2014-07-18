@@ -1,10 +1,10 @@
 @import "colors";
 
-.story.plain {
+.story.plain, .story.gif {
   background: $tumblrblue;
 }
 
-.story.plain .container {
+.story.plain .container, .story.gif .container {
    @include span-columns(12);
    @include pad();
    text-align: center;

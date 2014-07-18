@@ -28,20 +28,24 @@ class StoryCtrl
 storyline.controller 'StoryCtrl', StoryCtrl
 
 class StoryScreen
-  constructor: (@type, @stage, @text) ->
+  constructor: (@type, @stage, @text, @options) ->
 
 storyline.service "StoryService", ->
 
   check_points = {
     "1_start": [new StoryScreen("modal", "round_start", "You're nervous as you boot up the test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")],
-    "1_end": [new StoryScreen("gif", "round_end", "You sigh with relief as you successfully complete your first level. You've taken the first step towards Earth.")]
+    "1_end": [new StoryScreen("modal", "round_end", "You sigh with relief as you successfully complete your first level. You've taken the first step towards Earth.")]
   }
   random_chapters = {
     "start": [
-      [new StoryScreen("text", "round_start", "Your mentor offers you words of encouragement: \"Even if you fail the test, maybe you can just be a very stupid human.\" You do not find this encouraging.")]
+      [new StoryScreen("modal", "round_start", "Your mentor offers you words of encouragement: \"Even if you fail the test, maybe you can still be part of the mission to join the earth. You can just be a very stupid human.\" You do not find this encouraging.")],
+      [new StoryScreen("modal", "round_start", "You think your mentor is acting especially awkward around you. You suspect that they have read your smutty fanfics.")]
     ],
     "end": [
-      [new StoryScreen("gif", "round_end", "One more level down! You did it!")]
+      [new StoryScreen("modal", "round_end", "One more level down! You did it!", {gif: true})],
+      [new StoryScreen("modal", "round_end", "After your victory, your best friend sends you a message."),
+      new StoryScreen("modal", "round_end", "You're not sure how to feel about this gif.", {gif: true})],
+
     ]
   }
   service = {
