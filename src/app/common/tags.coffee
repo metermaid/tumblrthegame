@@ -44,7 +44,7 @@ all_tags = {
     {"name": "the royal tenenbaums", "regex" : /(the)? ?royal ?tenenbaums/},
     {"name": "the hunger games", "regex" : /(the)? ?hunger ?games/},
     {"name": "pitch perfect", "regex" : /pitch ? perfect/},
-    {"name": "the dark knight", "regex" : /(the)? ?dark ?knight)/}
+    {"name": "the dark knight", "regex" : /(the)? ?dark ?knight/}
   ],
   'video games' : [
     {"name": "harvest moon", "regex" : /harvest ?moon/},
