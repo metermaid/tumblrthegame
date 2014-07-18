@@ -143,7 +143,7 @@ describe 'game rounds', ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
 				scope.guess = "#lotr"
 				scope.$apply()
-				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag : 'lotr', before: '1391212800000'
+				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag : 'lotr', before: '1391212800000', win: true
 			it "does not refresh on an incorrect guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
 				scope.guess = "#fart"

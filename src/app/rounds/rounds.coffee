@@ -37,7 +37,7 @@ roundsConfig = ($stateProvider) ->
     data:
       pageTitle: "Round Start"
   $stateProvider.state "end",
-    params: ["tag", "before"]
+    params: ["tag", "before", "win"]
     views:
       header:
         controller: "HeaderCtrl"
