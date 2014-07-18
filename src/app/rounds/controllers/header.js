@@ -1,0 +1,1 @@
+(function(){var n,e;e=angular.module("tumblrGame.rounds"),n=function(){function n(n,e,r){n.round=e.get("current_round"),n.end="end"===r.current.name}return n.$inject=["$scope","gameStorage","$state"],n}(),e.controller("HeaderCtrl",n)}).call(this);
