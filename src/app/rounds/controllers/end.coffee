@@ -1,10 +1,17 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class EndCtrl
-  @$inject: ['$scope', 'ngDialog', '$templateCache', 'RoundsRes', 'StoryService', 'gameStorage', '$filter', '$state', '$stateParams']
+  @$inject: ['$scope', 'ngDialog', '$templateCache', 'RoundsRes', 'StoryService', 'gameStorage', '$filter', '$state', '$stateParams', 'hotkeys']
 
-  constructor: ($scope, ngDialog, $templateCache, RoundsRes, StoryService, gameStorage, $filter, $state, $stateParams) ->
+  constructor: ($scope, ngDialog, $templateCache, RoundsRes, StoryService, gameStorage, $filter, $state, $stateParams, hotkeys) ->
     $scope.round = gameStorage.get('current_round')
+
+    console.log("PARM: " + $stateParams.win)
+
+    if ($stateParams.win == "true")
+      $scope.winMessage = "Correct! You win!"
+    else
+      $scope.winMessage = "Out of time! You didn't win."
 
     RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
       yay_gifs = $filter('filter')(response.response, { type : 'photo' })
@@ -25,5 +32,10 @@ class EndCtrl
 
     $scope.play = ->
       $state.transitionTo "select"
+
+    hotkeys.bindTo($scope).add
+      combo: "enter"
+      description: "Next Stage"
+      callback: $scope.play
 
 rounds.controller 'EndCtrl', EndCtrl

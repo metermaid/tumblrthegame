@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="tumblrGame" ng-controller="AppCtrl">
+  <head>
+    <title ng-bind="pageTitle"></title>
+
+    <!-- social media tags -->
+    <meta property="og:title" content="tumblrGame" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="style/app.css">
+    <link rel="stylesheet" href="style/hotkeys.css">
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/hotkeys.js"></script>
+    <script src="vendor/angular-ui-router.js"></script>
+    <script src="vendor/angular-resource.js"></script>
+    <script src="src/templates.js"></script>
+    <script src="src/app/app.js"></script>
+    <script src="src/app/common/directives.js"></script>
+    <script src="src/app/common/tags.js"></script>
+    <script src="src/app/common/user.js"></script>
+    <script src="src/app/home/home.js"></script>
+    <script src="src/app/rounds/rounds.js"></script>
+    <script src="src/app/rounds/services.js"></script>
+    <script src="src/app/rounds/controllers/end.js"></script>
+    <script src="src/app/rounds/controllers/header.js"></script>
+    <script src="src/app/rounds/controllers/round.js"></script>
+    <script src="src/app/rounds/controllers/select.js"></script>
+    <!-- endinject -->
+
+    <script type="text/javascript" src="//use.typekit.net/lfy2bjd.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  </head>
+  <body>
+    <div id="container">
+      <header class="bg-navy" id="main-header" ui-view="header">
+        <h1>tumblr. the game.</h1>
+      </header>
+      <section id="main" ui-view="main"></section>
+      <footer>
+        Copyright &copy; 2014 Daniel Savage and Rita Cheng
+      </footer>
+    </div>
+  </body>
+</html>

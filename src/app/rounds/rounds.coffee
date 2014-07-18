@@ -3,13 +3,16 @@ modules = [
   'ui.router',
 
   'common.user_storage',
+  'common.directives',
   'common.tags',
 
   'tumblrGame.storyline',
 
+  'ngResource',
+
   'rounds.services',
   'ngDialog',
-  'ngResource'
+  'cfp.hotkeys'
 ]
 
 rounds = angular.module 'tumblrGame.rounds', modules
@@ -38,7 +41,7 @@ roundsConfig = ($stateProvider) ->
     data:
       pageTitle: "Round Start"
   $stateProvider.state "end",
-    params: ["tag", "before"]
+    params: ["tag", "before", "win"]
     views:
       header:
         controller: "HeaderCtrl"

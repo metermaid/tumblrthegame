@@ -38,6 +38,35 @@ all_tags = {
     {"name": "the last airbender", "regex": /(the ?last ?airbender)|avatar/},
     {"name": "steven universe", "regex": /steven ?universe/}
   ],
+  'movies' : [
+    {"name": "pacific rim", "regex" : /pacfic ?rim/},
+    {"name": "rushmore", "regex" : /rushmore/},
+    {"name": "the royal tenenbaums", "regex" : /(the)? ?royal ?tenenbaums/},
+    {"name": "the hunger games", "regex" : /(the)? ?hunger ?games/},
+    {"name": "pitch perfect", "regex" : /pitch ? perfect/},
+    {"name": "the dark knight", "regex" : /(the)? ?dark ?knight/}
+  ],
+  'video games' : [
+    {"name": "harvest moon", "regex" : /harvest ?moon/},
+    {"name": "street fighter", "regex" : /street ?fighter/},
+    {"name": "final fantasy vii", "regex" : /final ?fantasy ?((vii)|(7))/},
+    {"name": "final fantasy vi", "regex" : /final ?fantasy ?((vi)|(6))/},
+    {"name": "final fantasy iv", "regex" : /final ?fantasy ?((iv)|(4))/},
+    {"name": "chrono trigger", "regex" : /chrono ?trigger/},
+    {"name": "super smash bros", "regex" : /(super)? ?smash ?bros/},
+    {"name": "super mario", "regex" : /(super)? ?mario/},
+    {"name": "fire emblem", "regex" : /fire ?emblem/},
+    {"name": "legend of zelda", "regex" : /(the)? ?(legend ?of)? ?zelda/},
+    {"name": "galaga", "regex" : /galaga/},
+    {"name": "persona", "regex" : /persona|(shin ?megami ?tensei)/},
+    {"name": "fire emblem", "regex" : /fire ?emblem/},
+    {"name": "metal gear solid", "regex" : /metal ?gear ?solid/},
+    {"name": "tomodachi life", "regex" : /tomodachi ?life/},
+    {"name": "mario kart", "regex" : /mario ?kart/},
+    # {"name": "love plus", "regex" : /love ?plus/},
+    {"name": "flappy bird", "regex" : /flappy ?bird/},
+    {"name": "halo", "regex" : /halo/}
+  ],
   'homestuck': [
     {"name": "dave strider", "regex": /dave ?strider/},
     {"name": "roxy lalonde", "regex": /roxy ?lalonde/},
@@ -75,6 +104,8 @@ all_tags = {
     {"name": "space dandy", "regex": /space ?dandy/},
     {"name": "kill la kill", "regex": /kill ?la ?kill/},
     {"name": "sailor moon", "regex": /sailor ?moon/},
+    {"name": "naruto", "regex": /naruto/},
+    {"name": "one piece", "regex": /one ?piece/},
     {"name": "attack on titan", "regex": /(attack ?on ?titan)|(snk)|(shinkegi ?no ?kyojin)/}
   ]
     # template: {"name": "", "regex": //}

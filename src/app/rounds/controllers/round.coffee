@@ -1,11 +1,13 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class RoundCtrl
-  @$inject: ['$scope', 'ngDialog', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'StoryService', 'gameStorage', '$state', '$stateParams']
+  @$inject: ['$scope', 'ngDialog', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'StoryService', 'gameStorage', '$state', '$stateParams', '$timeout']
 
-  constructor: ($scope, ngDialog, $templateCache, TagsService, RandomDateService, RoundsRes, StoryService, gameStorage, $state, $stateParams) ->
+  constructor: ($scope, ngDialog, $templateCache, TagsService, RandomDateService, RoundsRes, StoryService, gameStorage, $state, $stateParams, $timeout) ->
     $scope.round = gameStorage.get('current_round')
     $scope.type = $stateParams.type || 'series'
+    $scope.roundStartTime = Date.now()
+    $scope.secondsLeft = 10 # eventually put this in a file that's more more settings-y
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
@@ -33,7 +35,20 @@ class RoundCtrl
     $scope.$watch "correct", (correct) ->
       if correct
         gameStorage.increment('current_round', 1)
-        $state.transitionTo "end", tag: tag.name, before: before_date
+        $scope.stop()
+        $state.transitionTo "end", tag: tag.name, before: before_date, win: true
+
+    timeout = null
+    $scope.onTimeout = () ->
+      $scope.secondsLeft--
+      if $scope.secondsLeft >= 1
+        timeout = $timeout($scope.onTimeout, 1000)
+      else
+        $scope.stop()
+        $state.transitionTo "end", tag: tag.name, before: before_date, win: false
+    timeout = $timeout($scope.onTimeout, 1000)
+
+    $scope.stop = () -> $timeout.cancel(timeout)
 
 
 rounds.controller 'RoundCtrl', RoundCtrl

@@ -1,6 +1,7 @@
 modules = [
   'templates',
   
+  'common.directives',
   'common.user_storage',
   'common.tags',
 
@@ -11,12 +12,12 @@ modules = [
   'rounds.services',
 
   'ngDialog',
-
+  'cfp.hotkeys',
+  
   'ui.router'
 ]
 
 appModule = angular.module('tumblrGame', modules)
-
 
 appConfig = ($stateProvider, $urlRouterProvider) ->
   $urlRouterProvider.otherwise '/home'

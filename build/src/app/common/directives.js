@@ -1,0 +1,1 @@
+(function(){var n;n=angular.module("common.directives",[]),n.directive("focus",function(){return{link:function(n,c,u){return n.$watch(u.focus,function(o){return o===!0?(c[0].focus(),n[u.focus]=!1):void 0})}}})}).call(this);
