@@ -7,7 +7,7 @@ class RoundCtrl
     $scope.round = gameStorage.get('current_round')
     $scope.type = $stateParams.type || 'series'
     $scope.roundStartTime = Date.now()
-    $scope.secondsLeft = 3 # eventually put this in a file that's more more settings-y
+    $scope.secondsLeft = 10 # eventually put this in a file that's more more settings-y
     tag = TagsService.random_tag($scope.type)
     $scope.correct = false
     $scope.guess = ""
