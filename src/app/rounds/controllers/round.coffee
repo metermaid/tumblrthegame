@@ -25,15 +25,18 @@ class RoundCtrl
     $scope.$watch "correct", (correct) ->
       if correct
         gameStorage.increment('current_round', 1)
+        $scope.stop()
         $state.transitionTo "end", tag: tag.name, before: before_date
 
     timeout = null
     $scope.onTimeout = () ->
       $scope.secondsLeft--
       if $scope.secondsLeft >= 1
+        console.log("A")
         timeout = $timeout($scope.onTimeout, 1000)
       else
-        console.log("time out")
+        console.log("B")
+        $scope.stop()
         $state.transitionTo "end", tag: tag.name, before: before_date
     timeout = $timeout($scope.onTimeout, 1000)
 
