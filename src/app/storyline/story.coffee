@@ -27,14 +27,30 @@ class StoryCtrl
 
 storyline.controller 'StoryCtrl', StoryCtrl
 
-class StoryScreen
-  constructor: (@type, @stage, @text, @options) ->
+class CutScene
+  constructor: (@stage, @screens) ->
+
+class Screen
+  constructor: (@style, @dialogs, @options) ->
+  add_dialog: (@dialog) ->
+    @content.push @dialog
+
+class Dialog
+  constructor: (@type, @content, @options) ->
 
 storyline.service "StoryService", ->
 
   check_points = {
-    "1_start": [new StoryScreen("modal", "round_start", "You're nervous as you boot up the test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")],
-    "1_end": [new StoryScreen("modal", "round_end", "You sigh with relief as you successfully complete your first level. You've taken the first step towards Earth.")]
+    "1_start": new CutScene("round_start", [
+      new Screen("modal", [
+        new Dialog("text", "You're nervous as you boot up the test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")
+        ])
+      ]),
+    "1_end": new CutScene("round_end", [
+      new Screen("modal", [
+        new Dialog("text", "You sigh with relief as you successfully complete your first level. You've taken the first step towards Earth.")
+        ])
+      ])
   }
   random_chapters = {
     "start": [
