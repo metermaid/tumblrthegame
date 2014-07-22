@@ -11,7 +11,7 @@ class EndCtrl
     if ($stateParams.win == "true")
       $scope.winMessage = "Correct! You win!"
     else
-      $scope.winMessage = "Out of time! You didn't win."
+      $scope.winMessage = "Out of time! The answer was \"#{$stateParams.tag}\""
 
     RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
       yay_gifs = $filter('filter')(response.response, { type : 'photo' })
@@ -19,6 +19,7 @@ class EndCtrl
 
     RoundsRes.jsonp_query tag: $stateParams.tag, before: $stateParams.before, (response) ->
       $scope.posts = response.response
+
 
     $scope.play = ->
       $state.transitionTo "select"

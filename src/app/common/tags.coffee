@@ -13,13 +13,14 @@ all_tags = {
     {"name": "sherlock", "regex" : /sherlock/},
     {"name": "nbc community", "regex" : /community/},
     {"name": "parks and recreation", "regex" : /parks ?(and|&|\+) ? rec(reation)?/}],
-  'Film series': [
-    {"name" : "lord of the rings", "regex" : /(lotr)|(lord ?of ?the ?rings)|(potatoes)/},
-    {"name" : "hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
-    {"name" : "harry potter" , "regex" :/(harry ?potter)/} ],
-  'characters': [
-    {"name" : "hannibal lecter", "regex" : /hannibal ?(lecter)?/},
+  'female protagonists': [
+    {"name" : "Lisbeth Salander", "regex" : /(Lisbeth ?Salander)|((the)? ?girl ?with ?the ?dragon ?tattoo)/},
+    {"name" : "ellen ripley" , "regex" : /(ellen ?ripley)|ripley/},
     {"name" : "mako mori" , "regex" : /mako ?mori/},
+    {"name" : "dorothy gale" , "regex" : /dorothy/},
+    {"name" : "princess leia" , "regex" : /(princess ?leia)|leia/},
+    {"name" : "mary poppins" , "regex" : /mary ?poppins/},
+    {"name" : "sarah connor" , "regex" : /sarah ?connor/},
     {"name" : "katniss everdeen", "regex" : /katniss ?(everdeen)?/} ],
   'marvel': [
     {"name": "spiderman", "regex": /spiderman|(peter ?parker)/},
@@ -39,10 +40,13 @@ all_tags = {
     {"name": "steven universe", "regex": /steven ?universe/}
   ],
   'movies' : [
+    {"name" : "lord of the rings", "regex" : /(lotr)|(lord ?of ?the ?rings)|(potatoes)/},
+    {"name" : "hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
+    {"name" : "harry potter" , "regex" :/(harry ?potter)/},
     {"name": "pacific rim", "regex" : /pacfic ?rim/},
     {"name": "rushmore", "regex" : /rushmore/},
     {"name": "the royal tenenbaums", "regex" : /(the)? ?royal ?tenenbaums/},
-    {"name": "the hunger games", "regex" : /(the)? ?hunger ?games/},
+    {"name": "the hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
     {"name": "pitch perfect", "regex" : /pitch ? perfect/},
     {"name": "the dark knight", "regex" : /(the)? ?dark ?knight/}
   ],
@@ -68,14 +72,26 @@ all_tags = {
     {"name": "halo", "regex" : /halo/}
   ],
   'homestuck': [
-    {"name": "dave strider", "regex": /dave ?strider/},
-    {"name": "roxy lalonde", "regex": /roxy ?lalonde/},
-    {"name": "nepeta", "regex": /nepeta/},
     {"name": "john egbert", "regex": /john ?egbert/},
-    {"name": "vriska serket", "regex": /vriska/},
-    {"name": "tavros nitram", "regex": /tavros/},
+    {"name": "dave strider", "regex": /dave ?strider/},
+    {"name": "rose lalonde", "regex": /rose ?lalonde/},
+    {"name": "jade harley", "regex": /jade ?harley/},
+    {"name": "jane crocker", "regex": /jane ?crocker/},
+    {"name": "roxy lalonde", "regex": /roxy ?lalonde/},
+    {"name": "dirk strider", "regex": /dirk ?strider/},
+    {"name": "jake english", "regex": /jake ?english/},
+    {"name": "karkat", "regex": /karkat/},
+    {"name": "gamzee", "regex": /gamzee/},
     {"name": "terezi", "regex": /terezi/},
-    {"name": "equius", "regex": /equius/}
+    {"name": "sollux", "regex": /nepeta/},
+    {"name": "tavros nitram", "regex": /tavros/},
+    {"name": "aradia", "regex": /aradia/},
+    {"name": "nepeta", "regex": /nepeta/},
+    {"name": "vriska serket", "regex": /vriska/},
+    {"name": "equius", "regex": /equius/},
+    {"name": "kanaya", "regex": /kanaya/},
+    {"name": "eridan", "regex": /eridan/},
+    {"name": "feferi", "regex": /feferi/}
   ],
   'disney princesses': [
     {"name": "snow white", "regex": /snow ?white/},
