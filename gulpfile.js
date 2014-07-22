@@ -84,7 +84,7 @@ gulp.task('styles', function() {
 gulp.task('compile', function () {
     return gulp.src(app_files.coffee)
         .pipe(plugins.coffee({emitError: false}))
-        .pipe(plugins.uglify())
+      //  .pipe(plugins.uglify())
         .pipe(gulp.dest(destinations.js));
 });
 

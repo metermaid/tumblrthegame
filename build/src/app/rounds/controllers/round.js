@@ -1,1 +1,103 @@
-(function(){var e,n;n=angular.module("tumblrGame.rounds"),e=function(){function e(e,n,o,t,r,s,c,a,u){var i,l,d,f,g,m;e.isLoading=!0,e.isSuccessful=!1,e.percentLoaded=0,e.round=r.get("current_round"),e.type=c.type||"series",g=n.random_tag(e.type),m=new RegExp("^#?"+g.regex.source+"$","i"),i=o.fromPastMonths(12),t.jsonp_query({tag:g.name,before:i},function(n){var o,t,r,s,c;for(e.message=n.meta,e.posts=[],c=n.response,r=0,s=c.length;s>r&&(t=c[r],!("photo"===t.type&&(e.posts.push(t),e.posts.length>=6)));r++);return o=e.posts.map(function(e){return e.photos[0].original_size.url})}),e.correct=!1,e.guess="",u.preloadImages(images).then(f=function(){var n;return e.isLoading=!1,e.isSuccessful=!0,console.info("Preload Successful"),e.roundStartTime=Date.now(),e.secondsLeft=20,e.$watch("guess",function(n){return n&&0!==n.length?(e.correct=-1!==n.search(m),e.correct):0}),e.$watch("correct",function(n){return n?(r.increment("current_round",1),e.stop(),s.transitionTo("end",{tag:g.name,before:i,win:!0})):void 0}),n=null,e.onTimeout=function(){return e.secondsLeft--,e.secondsLeft>=1?n=a(e.onTimeout,1e3):(e.stop(),s.transitionTo("end",{tag:g.name,before:i,win:!1}))},n=a(e.onTimeout,1e3),e.stop=function(){return a.cancel(n)}},d=function(n){return e.isLoading=!1,e.isSuccessful=!1,console.error("Image Failed",n),console.info("Preload Failure")},l=function(n){return e.percentLoaded=n.percent,console.info("Percent loaded:",n.percent)})}return e.$inject=["$scope","TagsService","RandomDateService","RoundsRes","gameStorage","$state","$stateParams","$timeout","ImagePreloader"],e}(),n.controller("RoundCtrl",e)}).call(this);
+(function() {
+  var RoundCtrl, rounds;
+
+  rounds = angular.module('tumblrGame.rounds');
+
+  RoundCtrl = (function() {
+    RoundCtrl.$inject = ['$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader'];
+
+    function RoundCtrl($scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) {
+      var before_date, tag, tag_regex, timeout;
+      $scope.isLoading = true;
+      $scope.isSuccessful = false;
+      $scope.percentLoaded = 0;
+      $scope.round = gameStorage.get('current_round');
+      $scope.type = $stateParams.type || 'series';
+      tag = TagsService.random_tag($scope.type);
+      tag_regex = new RegExp("^#?" + tag.regex.source + "$", "i");
+      before_date = RandomDateService.fromPastMonths(12);
+      $scope.posts = [];
+      RoundsRes.jsonp_query({
+        tag: tag.name,
+        before: before_date
+      }, function(response) {
+        var images, post, _i, _len, _ref;
+        $scope.message = response.meta;
+        _ref = response.response;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          post = _ref[_i];
+          if (post.type === "photo") {
+            $scope.posts.push(post);
+            if ($scope.posts.length >= 6) {
+              break;
+            }
+          }
+        }
+        images = $scope.posts.map(function(post) {
+          return post.photos[0].original_size.url;
+        });
+        return imagePreloader.preloadImages(images).then((function(images) {
+          var timeout;
+          $scope.isLoading = false;
+          $scope.isSuccessful = true;
+          console.info("Preload Successful");
+          return timeout = $timeout($scope.onTimeout, 1000);
+        }), (function(image) {
+          var timeout;
+          $scope.isLoading = false;
+          $scope.isSuccessful = false;
+          console.error("Image Failed", image);
+          console.info("Preload Failure");
+          return timeout = $timeout($scope.onTimeout, 1000);
+        }), function(event) {
+          $scope.percentLoaded = event.percent;
+          return console.info("Percent loaded:", event.percent);
+        });
+      });
+      $scope.secondsLeft = 10;
+      timeout = null;
+      $scope.onTimeout = function() {
+        $scope.secondsLeft--;
+        if ($scope.secondsLeft >= 1) {
+          return timeout = $timeout($scope.onTimeout, 1000);
+        } else {
+          $scope.stop();
+          return $state.transitionTo("end", {
+            tag: tag.name,
+            before: before_date,
+            win: false
+          });
+        }
+      };
+      $scope.stop = function() {
+        return $timeout.cancel(timeout);
+      };
+      $scope.correct = false;
+      $scope.guess = "";
+      $scope.updateGuess = function(guess) {
+        if (!guess || guess.length === 0) {
+          return 0;
+        }
+        $scope.correct = guess.search(tag_regex) !== -1;
+        return $scope.correct;
+      };
+      $scope.$watch("correct", function(correct) {
+        if (correct) {
+          gameStorage.increment('current_round', 1);
+          $scope.stop();
+          return $state.transitionTo("end", {
+            tag: tag.name,
+            before: before_date,
+            win: true
+          });
+        }
+      });
+    }
+
+    return RoundCtrl;
+
+  })();
+
+  rounds.controller('RoundCtrl', RoundCtrl);
+
+}).call(this);
