@@ -106,7 +106,7 @@ all_tags = {
     {"name": "sailor moon", "regex": /sailor ?moon/},
     {"name": "naruto", "regex": /naruto/},
     {"name": "one piece", "regex": /one ?piece/},
-    {"name": "attack on titan", "regex": /(attack ?on ?titan)|(snk)|(shinkegi ?no ?kyojin)/}
+    {"name": "attack on titan", "regex": /(attack ?on ?titan)|(snk)|(shingeki ?no ?kyojin)/}
   ]
     # template: {"name": "", "regex": //}
 }
