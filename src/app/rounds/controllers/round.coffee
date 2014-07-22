@@ -69,15 +69,10 @@ class RoundCtrl
 
     $scope.updateGuess = (guess) ->
       return 0 if not guess or guess.length is 0
-      $scope.correct = guess.search(tag_regex) != -1
-      $scope.correct
-
-    $scope.$watch "correct", (correct) ->
-      if correct
+      if guess.search(tag_regex) != -1
+        $scope.correct = true # if the redirect doesn't work, still want to respond
         gameStorage.increment('current_round', 1)
         $scope.stop()
         $state.transitionTo "end", tag: tag.name, before: before_date, win: true
-
-    
 
 rounds.controller 'RoundCtrl', RoundCtrl

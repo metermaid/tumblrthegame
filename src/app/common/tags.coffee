@@ -11,7 +11,7 @@ all_tags = {
     {"name": "supernatural", "regex" : /supernatural/},
     {"name": "doctor who", "regex" : /(doctor ?who)|(dw)|(timey ?wimey)/},
     {"name": "sherlock", "regex" : /sherlock/},
-    {"name": "community", "regex" : /community/},
+    {"name": "nbc community", "regex" : /community/},
     {"name": "parks and recreation", "regex" : /parks ?(and|&|\+) ? rec(reation)?/}],
   'Film series': [
     {"name" : "lord of the rings", "regex" : /(lotr)|(lord ?of ?the ?rings)|(potatoes)/},

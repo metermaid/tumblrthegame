@@ -48,7 +48,7 @@ roundsConfig = ($stateProvider) ->
         controller: "EndCtrl"
         templateUrl: "rounds/views/end.tpl.html"
     data:
-      pageTitle: "Congratulations"
+      pageTitle: "Round Over"
 
 roundsConfig.$inject = ['$stateProvider']
 rounds.config roundsConfig
