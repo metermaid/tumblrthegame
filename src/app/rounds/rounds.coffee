@@ -1,9 +1,11 @@
 
 modules = [
   'ui.router',
-  'common.user_storage',
+
   'common.directives',
+  'common.preloader',
   'common.tags',
+  'common.user_storage',
 
   'rounds.services',
 
@@ -46,7 +48,7 @@ roundsConfig = ($stateProvider) ->
         controller: "EndCtrl"
         templateUrl: "rounds/views/end.tpl.html"
     data:
-      pageTitle: "Congratulations"
+      pageTitle: "Round Over"
 
 roundsConfig.$inject = ['$stateProvider']
 rounds.config roundsConfig

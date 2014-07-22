@@ -1,7 +1,7 @@
 (function() {
   var appConfig, appController, appModule, modules;
 
-  modules = ['templates', 'common.directives', 'common.user_storage', 'common.tags', 'tumblrGame.home', 'tumblrGame.rounds', 'rounds.services', 'ui.router', 'cfp.hotkeys'];
+  modules = ['templates', 'common.directives', 'common.preloader', 'common.tags', 'common.user_storage', 'tumblrGame.home', 'tumblrGame.rounds', 'rounds.services', 'ui.router', 'cfp.hotkeys'];
 
   appModule = angular.module('tumblrGame', modules);
 

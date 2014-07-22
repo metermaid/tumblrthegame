@@ -33,7 +33,7 @@
         "name": "sherlock",
         "regex": /sherlock/
       }, {
-        "name": "community",
+        "name": "nbc community",
         "regex": /community/
       }, {
         "name": "parks and recreation",

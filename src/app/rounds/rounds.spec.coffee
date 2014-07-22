@@ -131,33 +131,28 @@ describe 'game rounds', ->
 
 		describe "Guess has been entered", ->
 			it "updates correct variable when a guess is correct", ->
-				scope.guess = "#lotr"
-				scope.$apply()
+				scope.updateGuess("#lotr")
 				expect(scope.correct).toEqual true
 			it "does not update correct variable when a guess is incorrect", ->
-				scope.guess = "#fart"
-				scope.$apply()
+				scope.updateGuess("#fart")
 				expect(scope.correct).toEqual false
 
 			it "redirects to the end state on a correct guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
-				scope.guess = "#lotr"
-				scope.$apply()
+				scope.updateGuess("#lotr")
 				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag : 'lotr', before: '1391212800000', win: true
 			it "does not refresh on an incorrect guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
-				scope.guess = "#fart"
+				scope.updateGuess("#fart")
 				expect(scope.$state.transitionTo).not.toHaveBeenCalled
 
 			it "increments rounds won on a correct guess", ->
 				spyOn(storage, "increment").andCallThrough()
-				scope.guess = "#lotr"
-				scope.$apply()
+				scope.updateGuess("#lotr")
 				expect(storage.increment).toHaveBeenCalledWith 'current_round', 1
 			it "does not increment rounds won on an incorrect guess", ->
 				spyOn(storage, "increment").andCallThrough()
-				scope.guess = "#fart"
-				scope.$apply()
+				scope.updateGuess("#fart")
 				expect(storage.increment).not.toHaveBeenCalled
 
 

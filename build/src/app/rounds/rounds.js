@@ -1,7 +1,7 @@
 (function() {
   var modules, rounds, roundsConfig, tumblrPost;
 
-  modules = ['ui.router', 'common.user_storage', 'common.directives', 'common.tags', 'rounds.services', 'ngResource', 'cfp.hotkeys'];
+  modules = ['ui.router', 'common.directives', 'common.preloader', 'common.tags', 'common.user_storage', 'rounds.services', 'ngResource', 'cfp.hotkeys'];
 
   rounds = angular.module('tumblrGame.rounds', modules);
 
@@ -51,7 +51,7 @@
         }
       },
       data: {
-        pageTitle: "Congratulations"
+        pageTitle: "Round Over"
       }
     });
   };
