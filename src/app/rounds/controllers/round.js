@@ -78,11 +78,8 @@
         if (!guess || guess.length === 0) {
           return 0;
         }
-        $scope.correct = guess.search(tag_regex) !== -1;
-        return $scope.correct;
-      };
-      $scope.$watch("correct", function(correct) {
-        if (correct) {
+        if (guess.search(tag_regex) !== -1) {
+          $scope.correct = true;
           gameStorage.increment('current_round', 1);
           $scope.stop();
           return $state.transitionTo("end", {
@@ -91,7 +88,7 @@
             win: true
           });
         }
-      });
+      };
     }
 
     return RoundCtrl;

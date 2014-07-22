@@ -51,7 +51,7 @@
         }
       },
       data: {
-        pageTitle: "Congratulations"
+        pageTitle: "Round Over"
       }
     });
   };
