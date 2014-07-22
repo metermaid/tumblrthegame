@@ -1,1 +1,28 @@
-(function(){var e,t,r,o;o=["templates","common.directives","common.user_storage","common.tags","tumblrGame.home","tumblrGame.rounds","rounds.services","ui.router","cfp.hotkeys"],r=angular.module("tumblrGame",o),e=function(e,t){return t.otherwise("/home")},e.$inject=["$stateProvider","$urlRouterProvider"],r.config(e),t=function(e){return e.$on("$stateChangeSuccess",function(t,r){return angular.isDefined(r.data.pageTitle)?e.pageTitle=r.data.pageTitle+" | Tumblr: THE GAME":void 0})},t.$inject=["$scope","$location"],r.controller("AppCtrl",t)}).call(this);
+(function() {
+  var appConfig, appController, appModule, modules;
+
+  modules = ['templates', 'common.directives', 'common.user_storage', 'common.tags', 'tumblrGame.home', 'tumblrGame.rounds', 'rounds.services', 'ui.router', 'cfp.hotkeys'];
+
+  appModule = angular.module('tumblrGame', modules);
+
+  appConfig = function($stateProvider, $urlRouterProvider) {
+    return $urlRouterProvider.otherwise('/home');
+  };
+
+  appConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+  appModule.config(appConfig);
+
+  appController = function($scope, $location) {
+    return $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      if (angular.isDefined(toState.data.pageTitle)) {
+        return $scope.pageTitle = toState.data.pageTitle + ' | Tumblr: THE GAME';
+      }
+    });
+  };
+
+  appController.$inject = ['$scope', '$location'];
+
+  appModule.controller('AppCtrl', appController);
+
+}).call(this);

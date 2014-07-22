@@ -1,1 +1,71 @@
-(function(){var e,t;t=angular.module("tumblrGame.rounds"),e=function(){function e(e,t,n,r,o,s,u,a){var c,i,m,d;e.round=o.get("current_round"),e.type=u.type||"series",e.roundStartTime=Date.now(),e.secondsLeft=10,i=t.random_tag(e.type),e.correct=!1,e.guess="",m=new RegExp("^#?"+i.regex.source+"$","i"),c=n.fromPastMonths(12),r.jsonp_query({tag:i.name,before:c},function(t){return e.message=t.meta,e.posts=t.response}),e.$watch("guess",function(t){return t&&0!==t.length?(e.correct=-1!==t.search(m),e.correct):0}),e.$watch("correct",function(t){return t?(o.increment("current_round",1),e.stop(),s.transitionTo("end",{tag:i.name,before:c,win:!0})):void 0}),d=null,e.onTimeout=function(){return e.secondsLeft--,e.secondsLeft>=1?d=a(e.onTimeout,1e3):(e.stop(),s.transitionTo("end",{tag:i.name,before:c,win:!1}))},d=a(e.onTimeout,1e3),e.stop=function(){return a.cancel(d)}}return e.$inject=["$scope","TagsService","RandomDateService","RoundsRes","gameStorage","$state","$stateParams","$timeout"],e}(),t.controller("RoundCtrl",e)}).call(this);
+(function() {
+  var RoundCtrl, rounds;
+
+  rounds = angular.module('tumblrGame.rounds');
+
+  RoundCtrl = (function() {
+    RoundCtrl.$inject = ['$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout'];
+
+    function RoundCtrl($scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout) {
+      var before_date, tag, tag_regex, timeout;
+      $scope.round = gameStorage.get('current_round');
+      $scope.type = $stateParams.type || 'series';
+      $scope.roundStartTime = Date.now();
+      $scope.secondsLeft = 10;
+      tag = TagsService.random_tag($scope.type);
+      $scope.correct = false;
+      $scope.guess = "";
+      tag_regex = new RegExp("^#?" + tag.regex.source + "$", "i");
+      before_date = RandomDateService.fromPastMonths(12);
+      RoundsRes.jsonp_query({
+        tag: tag.name,
+        before: before_date
+      }, function(response) {
+        $scope.message = response.meta;
+        return $scope.posts = response.response;
+      });
+      $scope.$watch("guess", function(guess) {
+        if (!guess || guess.length === 0) {
+          return 0;
+        }
+        $scope.correct = guess.search(tag_regex) !== -1;
+        return $scope.correct;
+      });
+      $scope.$watch("correct", function(correct) {
+        if (correct) {
+          gameStorage.increment('current_round', 1);
+          $scope.stop();
+          return $state.transitionTo("end", {
+            tag: tag.name,
+            before: before_date,
+            win: true
+          });
+        }
+      });
+      timeout = null;
+      $scope.onTimeout = function() {
+        $scope.secondsLeft--;
+        if ($scope.secondsLeft >= 1) {
+          return timeout = $timeout($scope.onTimeout, 1000);
+        } else {
+          $scope.stop();
+          return $state.transitionTo("end", {
+            tag: tag.name,
+            before: before_date,
+            win: false
+          });
+        }
+      };
+      timeout = $timeout($scope.onTimeout, 1000);
+      $scope.stop = function() {
+        return $timeout.cancel(timeout);
+      };
+    }
+
+    return RoundCtrl;
+
+  })();
+
+  rounds.controller('RoundCtrl', RoundCtrl);
+
+}).call(this);

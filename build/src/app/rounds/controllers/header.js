@@ -1,1 +1,20 @@
-(function(){var n,e;e=angular.module("tumblrGame.rounds"),n=function(){function n(n,e,r){n.round=e.get("current_round"),n.end="end"===r.current.name}return n.$inject=["$scope","gameStorage","$state"],n}(),e.controller("HeaderCtrl",n)}).call(this);
+(function() {
+  var HeaderCtrl, rounds;
+
+  rounds = angular.module('tumblrGame.rounds');
+
+  HeaderCtrl = (function() {
+    HeaderCtrl.$inject = ['$scope', 'gameStorage', '$state'];
+
+    function HeaderCtrl($scope, gameStorage, $state) {
+      $scope.round = gameStorage.get('current_round');
+      $scope.end = $state.current.name === 'end';
+    }
+
+    return HeaderCtrl;
+
+  })();
+
+  rounds.controller('HeaderCtrl', HeaderCtrl);
+
+}).call(this);
