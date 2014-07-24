@@ -17,7 +17,7 @@
       <h1 ng-show="correct">Correct?!</h1>
 
       <div class="post" ng-repeat="post in posts">
-         <img src="{{post.photos[0].original_size.url}}" />
+         <img src="{{post.photos[0].alt_sizes[1].url}}" />
       </div>
 
    </div>

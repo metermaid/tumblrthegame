@@ -37,6 +37,11 @@ describe 'game rounds', ->
 						width: 75
 						height: 75
 						url: "https://i.imgur.com/n87W4yl.jpg"
+					},
+					{
+						width: 75
+						height: 75
+						url: "https://i.imgur.com/n87W4yl.jpg"
 					}
 				]
 				original_size:

@@ -26,7 +26,7 @@ class RoundCtrl
           $scope.posts.push post
           break if $scope.posts.length >= 6
 
-      images = $scope.posts.map (post) -> post.photos[0].original_size.url
+      images = $scope.posts.map (post) -> post.photos[0].alt_sizes[1].url
 
       # Preload the images; then, update display when returned.
       imagePreloader.preloadImages(images).then ( (images) ->
