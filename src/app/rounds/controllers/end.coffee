@@ -11,14 +11,20 @@ class EndCtrl
     if ($stateParams.win == "true")
       $scope.winMessage = "Correct! You win!"
     else
-      $scope.winMessage = "Out of time! You didn't win."
+      $scope.winMessage = "Out of time! The answer was \"#{$stateParams.tag}\""
 
     RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
       yay_gifs = $filter('filter')(response.response, { type : 'photo' })
       $scope.gif = yay_gifs[0].photos[0].original_size.url
 
+    $scope.posts = []
+    
     RoundsRes.jsonp_query tag: $stateParams.tag, before: $stateParams.before, (response) ->
-      $scope.posts = response.response
+      for post in response.response
+        if post.type is "photo"
+          $scope.posts.push post
+          break if $scope.posts.length >= 6
+
 
     $scope.storyline = StoryService.get_story(($scope.round - 1), 'end')
 
