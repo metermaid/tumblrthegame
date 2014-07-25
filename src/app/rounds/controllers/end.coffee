@@ -8,14 +8,14 @@ class EndCtrl
 
     console.log("PARM: " + $stateParams.win)
 
+    RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
+      yay_gifs = $filter('filter')(response.response, { type : 'photo' })
+      $scope.gif = yay_gifs[0].photos[0].original_size.url
+
     if ($stateParams.win == "true")
       $scope.winMessage = "Correct! You win!"
     else
       $scope.winMessage = "Out of time! The answer was \"#{$stateParams.tag}\""
-
-    RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
-      yay_gifs = $filter('filter')(response.response, { type : 'photo' })
-      $scope.gif = yay_gifs[0].photos[0].original_size.url
 
     $scope.posts = []
     
@@ -31,7 +31,7 @@ class EndCtrl
     ngDialog.open
       template: $templateCache.get('storyline/story.tpl.html')
       controller: "StoryCtrl"
-      className: "story #{$scope.storyline[0].type}"
+      className: "story #{$scope.storyline.dialogs[0].type}"
       plain: true
       scope: $scope
       showClose: false
