@@ -60,6 +60,7 @@ class RoundCtrl
         timeout = $timeout($scope.onTimeout, 1000)
       else
         $scope.stop()
+        gameStorage.increment('lives', -1)
         $state.transitionTo "end", tag: tag.name, before: before_date, win: false
 
     $scope.stop = -> $timeout.cancel(timeout)

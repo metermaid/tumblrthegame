@@ -24,6 +24,7 @@ homeController = ($scope, $state, hotkeys, gameStorage) ->
   # nothing in the example
   $scope.play = ->
     gameStorage.put('score', 0)
+    gameStorage.put('lives', 5)
     $state.transitionTo "select"
 
   hotkeys.bindTo($scope).add
