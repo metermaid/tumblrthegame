@@ -1,1 +1,1 @@
-(function(){var e,r;r=angular.module("tumblrGame.rounds"),e=function(){function e(e,r,n){e.round=r.get("current_round"),e.score=r.get("score"),e.end="end"===n.current.name}return e.$inject=["$scope","gameStorage","$state"],e}(),r.controller("HeaderCtrl",e)}).call(this);
+(function(){var e,r;r=angular.module("tumblrGame.rounds"),e=function(){function e(e,r,n){e.round=r.get("current_round"),e.score=r.get("score"),e.lives=r.get("lives"),e.end="end"===n.current.name}return e.$inject=["$scope","gameStorage","$state"],e}(),r.controller("HeaderCtrl",e)}).call(this);
