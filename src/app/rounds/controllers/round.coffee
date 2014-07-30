@@ -30,7 +30,7 @@ class RoundCtrl
 
       # Preload the images; then, update display when returned.
       imagePreloader.preloadImages(images).then ( (images) ->
-        
+
         # Loading was successful.
         $scope.isLoading = false
         $scope.isSuccessful = true
@@ -38,7 +38,7 @@ class RoundCtrl
         timeout = $timeout($scope.onTimeout, 1000)
 
       ), ( (image) ->
-        
+
         # Loading failed on at least one image, but that's ok
         $scope.isLoading = false
         $scope.isSuccessful = false
@@ -49,7 +49,7 @@ class RoundCtrl
       ), (event) ->
         $scope.percentLoaded = event.percent
         console.info "Percent loaded:", event.percent
-    
+
     $scope.secondsLeft = 10 # eventually put this in a file that's more more settings-y
 
     timeout = null
@@ -67,11 +67,16 @@ class RoundCtrl
     $scope.correct = false
     $scope.guess = ""
 
+    # scoring
+    $scope.computePoints = (baseAmount, secondsLeft, secondsAlotted) ->
+      return Math.floor(baseAmount + (baseAmount * (secondsLeft / secondsAlotted)))
+
     $scope.updateGuess = (guess) ->
       return 0 if not guess or guess.length is 0
       if guess.search(tag_regex) != -1
         $scope.correct = true # if the redirect doesn't work, still want to respond
         gameStorage.increment('current_round', 1)
+        gameStorage.increment('score', $scope.computePoints(10, $scope.secondsLeft, 10))
         $scope.stop()
         $state.transitionTo "end", tag: tag.name, before: before_date, win: true
 
