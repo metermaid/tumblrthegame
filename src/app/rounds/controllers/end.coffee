@@ -17,8 +17,13 @@ class EndCtrl
       yay_gifs = $filter('filter')(response.response, { type : 'photo' })
       $scope.gif = yay_gifs[0].photos[0].original_size.url
 
+    $scope.posts = []
+    
     RoundsRes.jsonp_query tag: $stateParams.tag, before: $stateParams.before, (response) ->
-      $scope.posts = response.response
+      for post in response.response
+        if post.type is "photo"
+          $scope.posts.push post
+          break if $scope.posts.length >= 6
 
 
     $scope.play = ->
