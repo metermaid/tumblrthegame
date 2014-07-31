@@ -10,12 +10,18 @@ class SelectCtrl
 
       $scope.play = (category) ->
          for i in [0..num_categories] by 1 # todo: remove all these magic numbers
-            hotkeys.del("ctrl+#{i+1}")
+            hotkeys.del("option+#{i+1}")
+            hotkeys.del("alt+#{i+1}")
          $state.transitionTo "round", {type: category}
 
       makeHotKey = (category, index) ->
          hotkeys.add
-            combo: "ctrl+#{index+1}"
+            combo: "option+#{index+1}"
+            description: "Go to #{category} Stage"
+            callback: ->
+               $scope.play category
+         hotkeys.add
+            combo: "alt+#{index+1}"
             description: "Go to #{category} Stage"
             callback: ->
                $scope.play category
