@@ -14,8 +14,10 @@ class EndCtrl
 
     if ($stateParams.win == "true")
       $scope.winMessage = "Correct! You win!"
+      $scope.storyline = StoryService.get_story(($scope.round - 1), 'win')
     else
       $scope.winMessage = "Out of time! The answer was \"#{$stateParams.tag}\""
+      $scope.storyline = StoryService.get_story(($scope.round - 1), 'loss')
 
     $scope.posts = []
     
@@ -26,12 +28,11 @@ class EndCtrl
           break if $scope.posts.length >= 6
 
 
-    $scope.storyline = StoryService.get_story(($scope.round - 1), 'end')
 
     ngDialog.open
       template: $templateCache.get('storyline/story.tpl.html')
       controller: "StoryCtrl"
-      className: "story #{$scope.storyline.dialogs[0].type}"
+      className: "story #{$scope.storyline[0].type}"
       plain: true
       scope: $scope
       showClose: false
