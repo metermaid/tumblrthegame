@@ -12,7 +12,7 @@ all_tags = {
     {"name": "doctor who", "regex" : /(doctor|dr.?) ?who|dw|timey ?wimey/},
     {"name": "sherlock", "regex" : /sherlock/},
     {"name": "nbc community", "regex" : /community/},
-    {"name": "parks and recreation", "regex" : /parks ?(and|&|\+) ? rec(reation)?/}],
+    {"name": "parks and recreation", "regex" : /parks ?(and|&|\+) ?rec(reation)?/}],
   'female protagonists': [
     {"name" : "Lisbeth Salander", "regex" : /Lisbeth ?Salander|(the)? ?girl ?with ?the ?dragon ?tattoo/},
     {"name" : "ellen ripley" , "regex" : /(ellen ?ripley)|ripley/},
@@ -29,7 +29,7 @@ all_tags = {
     {"name": "doctor strange", "regex": /(doctor|dr) ?strange/},
     {"name": "hulk", "regex": /hulk/},
     {"name": "captain america", "regex": /captain ?(america|handsome)/},
-    {"name": "fantastic four", "regex": /fantastic ?four/}
+    {"name": "fantastic four", "regex": /fantastic ?(four|4)|f4|ff/}
   ],
   'cartoons': [
     {"name": "adventure time", "regex" : /adventure ?time/},
@@ -89,14 +89,14 @@ all_tags = {
     {"name": "halo", "regex" : /halo/}
   ],
   'homestuck': [
-    {"name": "john egbert", "regex": /john ?egbert/},
-    {"name": "dave strider", "regex": /dave ?strider/},
-    {"name": "rose lalonde", "regex": /rose ?lalonde/},
-    {"name": "jade harley", "regex": /jade ?harley/},
-    {"name": "jane crocker", "regex": /jane ?crocker/},
-    {"name": "roxy lalonde", "regex": /roxy ?lalonde/},
-    {"name": "dirk strider", "regex": /dirk ?strider/},
-    {"name": "jake english", "regex": /jake ?english/},
+    {"name": "john egbert", "regex": /john/},
+    {"name": "dave strider", "regex": /dave/},
+    {"name": "rose lalonde", "regex": /rose/},
+    {"name": "jade harley", "regex": /jade/},
+    {"name": "jane crocker", "regex": /jane/},
+    {"name": "roxy lalonde", "regex": /roxy/},
+    {"name": "dirk strider", "regex": /dirk/},
+    {"name": "jake english", "regex": /jake/},
     {"name": "karkat", "regex": /karkat/},
     {"name": "gamzee", "regex": /gamzee/},
     {"name": "terezi", "regex": /terezi/},
