@@ -11,7 +11,7 @@ class RoundCtrl
 
     $scope.round = gameStorage.get('current_round')
 
-    $scope.type = $stateParams.type || 'series'
+    $scope.type = $stateParams.type || 'tv series'
     tag = TagsService.random_tag($scope.type)
     tag_regex = new RegExp("^#?" + tag.regex.source + "$", "i")
     before_date = RandomDateService.fromPastMonths(12) # past year

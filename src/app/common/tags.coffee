@@ -140,6 +140,87 @@ all_tags = {
     {"name": "naruto", "regex": /naruto/},
     {"name": "one piece", "regex": /one ?piece/},
     {"name": "attack on titan", "regex": /(attack ?on ?titan)|(snk)|(shingeki ?no ?kyojin)/}
+  ],
+  'Famous Landmarks': [
+    {"name": "big ben", "regex": /big ?ben|clock ?tower|elizabeth ?tower/},
+    {"name": "eiffel tower", "regex": /eiffel ?tower/},
+    {"name": "empire state building", "regex": /empire ?state ?building/},
+    {"name": "washington memorial", "regex": /washington ?memorial/},
+    {"name": "great pyramids", "regex": /great ?pyramids/},
+    {"name": "taj mahal", "regex": /taj ?mahal/},
+    {"name": "stonehenge", "regex": /stonehenge/},
+    {"name": "great wall", "regex": /great ?wall/},
+    {"name": "angkor wat", "regex": /angkor ?wat/},
+    {"name": "acropolis", "regex": /acropolis/},
+    {"name": "statue of liberty", "regex": /statue ?of ?liberty/}
+  ],
+  'Food Porn': [
+    {"name": "spaghetti", "regex": /spaghetti/},
+    {"name": "burger", "regex": /burger/},
+    {"name": "fries", "regex": /(french ?)?fries/},
+    {"name": "ramen", "regex": /ramen/},
+    {"name": "sushi", "regex": /sushi/},
+    {"name": "salad", "regex": /salad/}, # IS THIS EVEN FOOD PORN? I DON'T THINK SO.
+    {"name": "pizza", "regex": /pizza/},
+    {"name": "steak", "regex": /steak/},
+    {"name": "bacon", "regex": /bacon/},
+    {"name": "taco", "regex": /taco/},
+    {"name": "dim sum", "regex": /dim ?sum|yum ?cha/},
+    {"name": "fried rice", "regex": /fried ?rice/},
+    {"name": "paella", "regex": /paella/},
+    {"name": "crepes", "regex": /crepes?/},
+    {"name": "tempura", "regex": /tempura/},
+    {"name": "falafel", "regex": /falafel/}
+  ],
+  'Pop Stars': [
+    {"name": "lady gaga", "regex": /lady ?gaga/},
+    {"name": "britney spears", "regex": /britney/},
+    {"name": "michael jackson", "regex": /michael ?jackson/},
+    {"name": "prince", "regex": /prince/},
+    {"name": "the bee gees", "regex": /(the ?)?bee ?gees/},
+    {"name": "abba", "regex": /abba/},
+    {"name": "the beach boys", "regex": /(the ?)?beach ?boys/},
+    {"name": "stevie wonder", "regex": /stevie ?wonder/},
+    {"name": "mariah carey", "regex": /mariah ?carey/},
+    {"name": "elton john", "regex": /elton ?john/},
+    {"name": "beyonce", "regex": /beyonce/},
+    {"name": "rihanna", "regex": /rihanna/},
+    {"name": "spice girls", "regex": /spice ?girls/},
+    {"name": "whitney houston", "regex": /whitney ?houston/}
+  ],
+  'NHL Teams': [
+    {"name": "chicago blackhawks", "regex": /(chicago ?)?blackhawks?/},
+    {"name": "montreal canadiens", "regex": /(montreal ?)?canadiens?/},
+    {"name": "la kings", "regex": /(l.?a.?|los ?angeles) ?kings?/},
+    {"name": "anaheim ducks", "regex": /(anaheim ?)?ducks?|(the ?)?mighty ?ducks/},
+    {"name": "boston bruins", "regex": /(boston ?)?bruins?/},
+    {"name": "vancouver canucks", "regex": /(vancouver ?)?canucks?/},
+    {"name": "pittsburgh penguins", "regex": /(pittsburgh ?)?penguins?/},
+    {"name": "new york rangers", "regex": /(new ?york ?)?rangers?/}
+  ],
+  'Wild Cats': [
+    {"name": "lions", "regex": /lion/},
+    {"name": "tigers", "regex": /tiger/},
+    {"name": "ocelots", "regex": /ocelot/},
+    {"name": "panthers", "regex": /panther/},
+    {"name": "leopards", "regex": /leopard/},
+    {"name": "snow leopards", "regex": /snow leopard/},
+    {"name": "cheetahs", "regex": /cheetah/},
+    {"name": "cougars", "regex": /cougar/},
+    {"name": "lynx", "regex": /lynx/}
+  ],
+  'Rappers': [
+    {"name": "nicki minaj", "regex": /nicki ?minaj/},
+    {"name": "kanye west", "regex": /kanye/},
+    {"name": "drake", "regex": /drake/},
+    {"name": "kendrick lamar", "regex": /kendrick ?lamar/},
+    {"name": "eminem", "regex": /eminem/},
+    {"name": "lil wayne", "regex": /lil ?wayne/},
+    {"name": "jay z", "regex": /jay ?z/},
+    {"name": "rick ross", "regex": /rick ?ross/},
+    {"name": "tupac", "regex": /tupac|2pac/},
+    {"name": "chief keef", "regex": /chief keef/},
+    {"name": "snoop dogg", "regex": /snoop ?(dogg|lion)/}
   ]
     # template: {"name": "", "regex": //}
 }
