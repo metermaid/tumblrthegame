@@ -50,7 +50,7 @@ class RoundCtrl
         $scope.percentLoaded = event.percent
         console.info "Percent loaded:", event.percent
 
-    $scope.secondsLeft = 10 # eventually put this in a file that's more more settings-y
+    $scope.secondsLeft = 15 # eventually put this in a file that's more more settings-y
 
     timeout = null
 

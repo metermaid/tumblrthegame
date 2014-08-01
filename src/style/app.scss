@@ -49,6 +49,15 @@ body {
 		  			}
 		  		}
 		  	}
+		  	@media screen and (max-width: 650px) {
+		  		max-width: 150px;
+		  		height: 150px;
+			  	&.rebloggable {
+			  		.post_controls {
+			  			font-size: 1em;
+			  		}
+			  	}
+		  	}
 	  }
 	}
 }
@@ -83,6 +92,7 @@ button, .button {
 	border-radius: 2px;
 	font-weight: bold;
 	color: $white;
+	cursor: pointer;
 	&.start {
 		width: 250px;
 		height: 45px;
