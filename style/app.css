@@ -381,6 +381,12 @@ body {
         font-size: 3em; }
         #container #main .post.rebloggable .post_controls a {
           color: #444444; }
+      @media screen and (max-width: 650px) {
+        #container #main .post {
+          max-width: 150px;
+          height: 150px; }
+          #container #main .post.rebloggable .post_controls {
+            font-size: 1em; } }
 
 #main-header {
   padding: 0.5em;
@@ -407,7 +413,8 @@ button, .button {
   background: #529ecc;
   border-radius: 2px;
   font-weight: bold;
-  color: white; }
+  color: white;
+  cursor: pointer; }
   button.start, .button.start {
     width: 250px;
     height: 45px;
