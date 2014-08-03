@@ -191,7 +191,7 @@ all_tags = {
   'NHL Teams': [
     {"name": "chicago blackhawks", "regex": /(chicago ?)?blackhawks?/},
     {"name": "montreal canadiens", "regex": /(montreal ?)?canadiens?/},
-    {"name": "la kings", "regex": /(l.?a.?|los ?angeles) ?kings?/},
+    {"name": "la kings", "regex": /(l.?a.?|los ?angeles)? ?kings?/},
     {"name": "anaheim ducks", "regex": /(anaheim ?)?ducks?|(the ?)?mighty ?ducks/},
     {"name": "boston bruins", "regex": /(boston ?)?bruins?/},
     {"name": "vancouver canucks", "regex": /(vancouver ?)?canucks?/},

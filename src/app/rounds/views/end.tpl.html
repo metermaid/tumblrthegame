@@ -1,4 +1,4 @@
-<h2>{{winMessage}}</h2>
+<h2>{{message}}</h2>
 <p>
    <img ng-src="{{gif}}"><br />
    <a ng-click="play()" class="button start">
@@ -9,5 +9,6 @@
 	<img ng-src="{{post.photos[0].alt_sizes[1].url}}" width="50%" />
    <div class="post_controls">
       <a href="http://www.tumblr.com/reblog/{{post.id}}/{{post.reblog_key}}" target="_blank"><i class="icon-retweet"></i>Reblog</a>
+      <a href="{{post.post_url}}" target="_blank"><i class="icon-link"></i>View</a>
    </div>
 </div>

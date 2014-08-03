@@ -9,9 +9,9 @@ class EndCtrl
     console.log("PARM: " + $stateParams.win)
 
     if ($stateParams.win == "true")
-      $scope.winMessage = "Correct! You win!"
+      $scope.message = "Correct! You win!"
     else
-      $scope.winMessage = "Out of time! The answer was \"#{$stateParams.tag}\""
+      $scope.message = "Out of time! The answer was \"#{$stateParams.tag}\""
 
     RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
       yay_gifs = $filter('filter')(response.response, { type : 'photo' })
