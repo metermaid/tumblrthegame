@@ -373,20 +373,28 @@ body {
       #container #main .post img {
         width: auto;
         height: 100%; }
-      #container #main .post.rebloggable img {
-        opacity: 0.3; }
-      #container #main .post.rebloggable .post_controls {
-        position: relative;
-        top: -65%;
-        font-size: 3em; }
-        #container #main .post.rebloggable .post_controls a {
-          color: #444444; }
+      #container #main .post.rebloggable {
+        height: auto; }
+        #container #main .post.rebloggable img {
+          height: 290px; }
+        #container #main .post.rebloggable .post_controls {
+          line-height: 1.05em; }
+          #container #main .post.rebloggable .post_controls a {
+            font-size: 13px;
+            float: right;
+            color: #9da6af;
+            margin-left: 7px; }
+            #container #main .post.rebloggable .post_controls a i {
+              font-size: 15px;
+              margin-right: 2px; }
+          #container #main .post.rebloggable .post_controls a:last-child {
+            margin-left: 0; }
       @media screen and (max-width: 650px) {
         #container #main .post {
           max-width: 150px;
           height: 150px; }
-          #container #main .post.rebloggable .post_controls {
-            font-size: 1em; } }
+          #container #main .post.rebloggable img {
+            height: 150px; } }
 
 #main-header {
   padding: 0.5em;
@@ -400,12 +408,22 @@ body {
     font-weight: bold;
     letter-spacing: -0.0225em;
     font-family: "Bookman Old Style", Bookman, Garamond, serif; }
+    @media screen and (max-width: 650px) {
+      #main-header h1 {
+        line-height: 0.8em; } }
   #main-header nav {
     float: right; }
     #main-header nav h2 {
       line-height: 60px;
       padding-right: 10px;
       display: inline-block; }
+      @media screen and (max-width: 650px) {
+        #main-header nav h2 {
+          text-align: left;
+          line-height: 0.9em; } }
+    @media screen and (max-width: 650px) {
+      #main-header nav {
+        padding-top: 15px; } }
 
 button, .button {
   display: inline-block;
