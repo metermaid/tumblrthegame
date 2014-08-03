@@ -26,7 +26,7 @@ all_tags = {
     {"name": "spiderman", "regex": /spiderman|(peter ?parker)/},
     {"name": "avengers", "regex": /avengers/},
     {"name": "iron man", "regex": /iron ?man/},
-    {"name": "doctor strange", "regex": /(doctor|dr) ?strange/},
+    {"name": "doctor strange", "regex": /(doctor|dr.?) ?strange/},
     {"name": "hulk", "regex": /hulk/},
     {"name": "captain america", "regex": /captain ?(america|handsome)/},
     {"name": "fantastic four", "regex": /fantastic ?(four|4)|f4|ff/}
