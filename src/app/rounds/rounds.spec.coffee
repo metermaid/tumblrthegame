@@ -54,7 +54,11 @@ describe 'game rounds', ->
 
 	beforeEach module("tumblrGame", ($provide) ->
 		$provide.value "TagsService",
+			random_tag_index: ->
+				0
 			random_tag: ->
+		   	{"name" : "lotr", "regex" : /lotr/}
+		   tag: ->
 		   	{"name" : "lotr", "regex" : /lotr/}
 		   random_categories: ->
 		   	['series', 'anime', 'characters', 'dog breeds']
@@ -109,13 +113,15 @@ describe 'game rounds', ->
 			it "displays four categories", ->
 				expect(scope.categories.length).toEqual 4
 
-	describe "Rounds controller", ->
+	describe "Round controller", ->
+		params = { category: 'books', tag: {name: 'lotr', regex: /lotr/}, before: '1391212800000' }
 
 		beforeEach angular.mock.inject(($controller) ->
 			$controller "RoundCtrl",
 			  $scope: scope
 			  $state: scope.$state
 			  gameStorage: storage
+			  $stateParams: params
 
 			scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond lotrPosts
 

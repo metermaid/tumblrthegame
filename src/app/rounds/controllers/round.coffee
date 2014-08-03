@@ -11,13 +11,15 @@ class RoundCtrl
 
     $scope.round = gameStorage.get('current_round')
 
-    $scope.type = $stateParams.type || 'tv series'
-    tag = TagsService.random_tag($scope.type)
+    $scope.category = $stateParams.category
+
+    before_date = $stateParams.before
+    tag = TagsService.tag($scope.category, $stateParams.index)
     tag_regex = new RegExp("^#?" + tag.regex.source + "$", "i")
-    before_date = RandomDateService.fromPastMonths(12) # past year
 
     $scope.posts = []
 
+    # just in case the preloading from before didn't work...
     RoundsRes.jsonp_query tag: tag.name, before: before_date, (response) ->
       $scope.message = response.meta
 

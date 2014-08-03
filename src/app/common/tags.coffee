@@ -238,6 +238,12 @@ tags.service "TagsService", ->
       [categories[i], categories[j]] = [categories[j], categories[i]]
     # Return the shuffled array.
     categories.slice(0,length)
+  random_tag_index: (type) ->
+    tags = all_tags[type]
+    return Math.floor(Math.random() * tags.length)
+  tag: (type, index) ->
+    tags = all_tags[type]
+    return tags[index]
   random_tag: (type) ->
     tags = all_tags[type]
     return tags[Math.floor(Math.random() * tags.length)]

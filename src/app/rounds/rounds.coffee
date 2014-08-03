@@ -30,7 +30,7 @@ roundsConfig = ($stateProvider) ->
     data:
       pageTitle: "Select a Category"
   $stateProvider.state "round",
-    params: ["type", "tag", "before", "win"]
+    params: ["category", "index", "before"]
     views:
       header:
         controller: "HeaderCtrl"

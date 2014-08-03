@@ -11,7 +11,7 @@
    <!-- BEGIN: Results View. -->
    <div
       ng-switch-when="false">
-      <h2>What {{type}} tag is this?</h2>
+      <h2>What {{category}} tag is this?</h2>
       <h3>{{secondsLeft}} seconds left to guess!</h3>
       <input type="text" id="guess" ng-model="guess" focus="true" ng-change="updateGuess(guess)">
       <h1 ng-show="correct">Correct?!</h1>
