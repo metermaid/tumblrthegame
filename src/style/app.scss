@@ -38,17 +38,35 @@ body {
 		  		height: 100%;
 		  	}
 		  	&.rebloggable {
+		  		height: auto;
 		  		img {
-		  			opacity: 0.3;
+		  			height: 290px;
 		  		}
 		  		.post_controls {
-		  			position: relative;
-		  			top: -65%;
-		  			font-size: 3em;
+		  			line-height: 1.05em;
 		  			a {
-		  				color: $tumblrgrey;
+	  					font-size: 13px;
+		  				float: right;
+		  				color: $tumblrlightgrey;
+		  				margin-left: 7px;
+		  				i {
+		  					font-size: 15px;
+		  					margin-right: 2px;
+		  				}
+		  			}
+		  			a:last-child {
+		  				margin-left: 0;
 		  			}
 		  		}
+		  	}
+		  	@media screen and (max-width: 650px) {
+		  		max-width: 150px;
+		  		height: 150px;
+			  	&.rebloggable {
+			  		img {
+			  			height: 150px;
+			  		}
+			  	}
 		  	}
 	  }
 	}
@@ -66,6 +84,9 @@ body {
 		font-weight: bold;
 		letter-spacing: -0.0225em;
 		font-family: "Bookman Old Style", "Garamond Premier Pro Caption", Palatino, Garamond, serif;
+	  	@media screen and (max-width: 650px) {
+			line-height: 0.8em;
+		}		
 	}
 	nav {
 		float: right;
@@ -73,7 +94,14 @@ body {
 			line-height: 60px;
 			padding-right: 10px;
 			display: inline-block;
+		  	@media screen and (max-width: 650px) {
+		  		text-align: left;
+				line-height: 0.9em;
+			}		
 		}
+	  	@media screen and (max-width: 650px) {
+	  		padding-top: 15px;
+		}		
 	}
 }
 button, .button {
@@ -83,6 +111,7 @@ button, .button {
 	border-radius: 2px;
 	font-weight: bold;
 	color: $white;
+	cursor: pointer;
 	&.start {
 		width: 250px;
 		height: 45px;

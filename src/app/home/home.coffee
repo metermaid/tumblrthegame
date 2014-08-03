@@ -20,9 +20,13 @@ homeConfig.$inject = ['$stateProvider']
 home.config homeConfig
 
 
-homeController = ($scope, $state, hotkeys) ->
+homeController = ($scope, $state, hotkeys, gameStorage) ->
   # nothing in the example
   $scope.play = ->
+    if gameStorage.get('lives') == "0"
+      gameStorage.put('score', 0)
+      gameStorage.put('round', 1)
+      gameStorage.put('lives', 5)
     $state.transitionTo "select"
 
   hotkeys.bindTo($scope).add
@@ -31,7 +35,5 @@ homeController = ($scope, $state, hotkeys) ->
     callback: $scope.play
 
 
-homeController.$inject = ['$scope', '$state', 'hotkeys']
+homeController.$inject = ['$scope', '$state', 'hotkeys', 'gameStorage']
 home.controller 'HomeCtrl', homeController
-
-

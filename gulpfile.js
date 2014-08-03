@@ -26,6 +26,8 @@ var app_files = {
 
   html: [ 'src/index.html' ],
 
+  cname: [ 'src/CNAME' ],
+
   assets: [ 'src/assets/**/*.*' ]
 };
 
@@ -33,6 +35,7 @@ var destinations = {
   css: build_dir + "/style",
   js: build_dir + "/src",
   libs: build_dir + "/vendor",
+  cname: build_dir,
   html: build_dir,
   assets: build_dir + "/assets",
 };
@@ -128,6 +131,11 @@ gulp.task('assets', function () {
         .pipe(gulp.dest(destinations.assets));
 });
 
+gulp.task('cname', function () {
+    return gulp.src(app_files.cname)
+        .pipe(gulp.dest(destinations.cname));
+});
+
 gulp.task('index', function () {
     return gulp.src(app_files.html)
         .pipe(plugins.inject(gulp.src(index_paths, {read: false})
@@ -173,7 +181,7 @@ gulp.task('watch', function() {
 gulp.task('build', function() {
   runSequence('clean',
     'templates',
-    ['styles', 'compile', 'vendors', 'assets'],
+    ['styles', 'compile', 'vendors', 'assets', 'cname'],
     'index');
 });
 

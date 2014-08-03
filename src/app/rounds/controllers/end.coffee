@@ -8,16 +8,16 @@ class EndCtrl
 
     console.log("PARM: " + $stateParams.win)
 
+    if ($stateParams.win == "true")
+      $scope.message = "Correct! You win!"
+      $scope.storyline = StoryService.get_story(($scope.round - 1), 'win')
+    else
+      $scope.message = "Out of time! The answer was \"#{$stateParams.tag}\""
+      $scope.storyline = StoryService.get_story(($scope.round - 1), 'loss')
+
     RoundsRes.jsonp_query tag: 'reaction-gif', before:$stateParams.before, (response) ->
       yay_gifs = $filter('filter')(response.response, { type : 'photo' })
       $scope.gif = yay_gifs[0].photos[0].original_size.url
-
-    if ($stateParams.win == "true")
-      $scope.winMessage = "Correct! You win!"
-      $scope.storyline = StoryService.get_story(($scope.round - 1), 'win')
-    else
-      $scope.winMessage = "Out of time! The answer was \"#{$stateParams.tag}\""
-      $scope.storyline = StoryService.get_story(($scope.round - 1), 'loss')
 
     $scope.posts = []
     

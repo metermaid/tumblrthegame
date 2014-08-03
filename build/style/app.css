@@ -239,124 +239,6 @@ dl {
   dl dd {
     margin: 0; }
 
-.story.plain, .story.gif {
-  background: #2c4762; }
-
-.story.plain .container, .story.gif .container {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 100%;
-  padding: 2.35765%;
-  text-align: center;
-  font-family: 'Press Start 2P', monospace;
-  float: none; }
-  .story.plain .container:last-child, .story.gif .container:last-child {
-    margin-right: 0; }
-
-.story.modal {
-  background: rgba(26, 46, 69, 0.89); }
-
-.story.modal .container {
-  text-align: center;
-  font-family: 'Press Start 2P', monospace;
-  float: none;
-  color: #444444;
-  background: white;
-  border-radius: 15px;
-  width: 50%;
-  padding: 10px 20px 20px;
-  min-width: 250px;
-  margin: 20px auto 0; }
-
-.story.modal .container p:last-child {
-  margin-bottom: 0; }
-
-.story button, .story .button {
-  width: 250px;
-  display: block;
-  height: 45px;
-  line-height: 45px;
-  font-size: 16px;
-  text-align: center;
-  margin: 15px auto 0; }
-
-@-webkit-keyframes ngdialog-fadeout {
-  0% {
-    opacity: 1; }
-
-  100% {
-    opacity: 0; } }
-@keyframes ngdialog-fadeout {
-  0% {
-    opacity: 1; }
-
-  100% {
-    opacity: 0; } }
-@-webkit-keyframes ngdialog-fadein {
-  0% {
-    opacity: 0; }
-
-  100% {
-    opacity: 1; } }
-@keyframes ngdialog-fadein {
-  0% {
-    opacity: 0; }
-
-  100% {
-    opacity: 1; } }
-.ngdialog,
-.ngdialog *,
-.ngdialog *:before,
-.ngdialog *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-.ngdialog {
-  position: fixed;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  z-index: 10000;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0; }
-
-.ngdialog-content {
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadein 0.5s;
-  animation: ngdialog-fadein 0.5s; }
-
-.ngdialog-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 20000px;
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadein 0.5s;
-  animation: ngdialog-fadein 0.5s; }
-
-.ngdialog.ngdialog-closing .ngdialog-overlay {
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadeout 0.5s;
-  animation: ngdialog-fadeout 0.5s; }
-
-.ngdialog.ngdialog-closing .ngdialog-content {
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadeout 0.5s;
-  animation: ngdialog-fadeout 0.5s; }
-
-.ngdialog-close:before {
-  font-family: 'Helvetica', Arial, sans-serif;
-  content: '\00D7';
-  cursor: pointer; }
-
-body.ngdialog-open {
-  overflow: hidden; }
-
 @font-face {
   font-family: "tumblr";
   src: url("../assets/icons/fonts/tumblr.eot");
@@ -491,14 +373,28 @@ body {
       #container #main .post img {
         width: auto;
         height: 100%; }
-      #container #main .post.rebloggable img {
-        opacity: 0.3; }
-      #container #main .post.rebloggable .post_controls {
-        position: relative;
-        top: -65%;
-        font-size: 3em; }
-        #container #main .post.rebloggable .post_controls a {
-          color: #444444; }
+      #container #main .post.rebloggable {
+        height: auto; }
+        #container #main .post.rebloggable img {
+          height: 290px; }
+        #container #main .post.rebloggable .post_controls {
+          line-height: 1.05em; }
+          #container #main .post.rebloggable .post_controls a {
+            font-size: 13px;
+            float: right;
+            color: #9da6af;
+            margin-left: 7px; }
+            #container #main .post.rebloggable .post_controls a i {
+              font-size: 15px;
+              margin-right: 2px; }
+          #container #main .post.rebloggable .post_controls a:last-child {
+            margin-left: 0; }
+      @media screen and (max-width: 650px) {
+        #container #main .post {
+          max-width: 150px;
+          height: 150px; }
+          #container #main .post.rebloggable img {
+            height: 150px; } }
 
 #main-header {
   padding: 0.5em;
@@ -511,13 +407,23 @@ body {
     line-height: 60px;
     font-weight: bold;
     letter-spacing: -0.0225em;
-    font-family: "Bookman Old Style", "Garamond Premier Pro Caption", Palatino, Garamond, serif; }
+    font-family: "Bookman Old Style", Bookman, Garamond, serif; }
+    @media screen and (max-width: 650px) {
+      #main-header h1 {
+        line-height: 0.8em; } }
   #main-header nav {
     float: right; }
     #main-header nav h2 {
       line-height: 60px;
       padding-right: 10px;
       display: inline-block; }
+      @media screen and (max-width: 650px) {
+        #main-header nav h2 {
+          text-align: left;
+          line-height: 0.9em; } }
+    @media screen and (max-width: 650px) {
+      #main-header nav {
+        padding-top: 15px; } }
 
 button, .button {
   display: inline-block;
@@ -525,7 +431,8 @@ button, .button {
   background: #529ecc;
   border-radius: 2px;
   font-weight: bold;
-  color: white; }
+  color: white;
+  cursor: pointer; }
   button.start, .button.start {
     width: 250px;
     height: 45px;
@@ -542,17 +449,6 @@ button, .button {
     text-transform: capitalize; }
   button:active, button:hover, button:visited, .button:active, .button:hover, .button:visited {
     color: white; }
-
-.intro {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 100%;
-  padding: 2.35765%;
-  text-align: center;
-  font-family: 'Press Start 2P', monospace; }
-  .intro:last-child {
-    margin-right: 0; }
 
 footer {
   position: fixed;
