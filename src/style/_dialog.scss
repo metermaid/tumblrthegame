@@ -12,13 +12,18 @@
     background-size: 100%;
     border-radius: 6px;
     margin-right: 20px;
+    margin-bottom: 20px;
     float: left;
     &.U {
-      background-image: url('https://31.media.tumblr.com/avatar_a18a226e8e0f_128.png');
+      background-image: url('../assets/avatars/you.png');
+    }
+    &.B {
+      background-image: url('../assets/avatars/becky.png');
     }
     &.K {
-      background-image: url('https://31.media.tumblr.com/avatar_bcab785a4aa9_96.png')
+      background-image: url('../assets/avatars/mentor.png');
     }
+
   }
 
   div.dialog {
@@ -60,6 +65,15 @@
         border-right-color: #ffffff;
         border-width: 8px;
         margin-top: -8px;
+        @media screen and (max-width: 650px) {
+          right: auto;
+          top: auto;
+          bottom: 100%;
+          border-bottom-color: #ffffff;
+          border-right-color: rgba(255, 255, 255, 0);
+          left: 18px;
+          margin-left: -8px;
+        }
       }
     }
   }

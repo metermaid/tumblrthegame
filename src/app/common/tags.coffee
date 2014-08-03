@@ -100,7 +100,7 @@ all_tags = {
     {"name": "karkat", "regex": /karkat/},
     {"name": "gamzee", "regex": /gamzee/},
     {"name": "terezi", "regex": /terezi/},
-    {"name": "sollux", "regex": /nepeta/},
+    {"name": "sollux", "regex": /sollux/},
     {"name": "tavros nitram", "regex": /tavros/},
     {"name": "aradia", "regex": /aradia/},
     {"name": "nepeta", "regex": /nepeta/},
@@ -206,8 +206,7 @@ all_tags = {
     {"name": "leopards", "regex": /leopard/},
     {"name": "snow leopards", "regex": /snow leopard/},
     {"name": "cheetahs", "regex": /cheetah/},
-    {"name": "cougars", "regex": /cougar/},
-    {"name": "lynx", "regex": /lynx/}
+    {"name": "cougars", "regex": /cougar/}
   ],
   'Rappers': [
     {"name": "nicki minaj", "regex": /nicki ?minaj/},

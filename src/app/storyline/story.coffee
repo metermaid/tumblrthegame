@@ -97,15 +97,42 @@ storyline.service "StoryService", ->
         new Dialog("Kcklqkla, if this test is pulling the latest posts from Tumblr, what guarantee is there that the posts would make sense in the context of the test? Humans sometimes tag things incorrectly.", "message U", "you"),
         new Dialog("Oh, there's no guarantee. Sometimes it's gibberish. Sometimes it's human pornography. Have fun.", "message K", "kcklqkla"),
         new Dialog("That was discouraging. The High Council is a cruel organization.")
-      ]
+      ],
+    "2_start": [
+      new Dialog("Your friend Becky messages you before this round."),
+      new Dialog("omg, i bet you cant beat my hi score of 250!! ur such a loser", "message B", "becky"),
+      new Dialog("She's kinda mean. Why are you friends with Becky again?")
+    ],
+    "3_start": [
+      new Dialog("You receive a message from Kcklqkla before this latest round."),
+      new Dialog("Hey, did you know that you can use keyboard shortcuts in this game? Just hit enter at most screens, and then in the round selection page you can use alt/option + (1,2,3,4).", "message K", "kcklqkla"),
+      new Dialog("Ugh, why didn't she tell you this sooner?")
+    ]
   }
   random_chapters = {
     "start": [
       [
-        new Dialog("Your mentor offers you words of encouragement: \"Even if you fail your studies, maybe you can still be part of the mission to join the earth. You can just be a very stupid human.\" You do not find this encouraging.")
+        new Dialog("Your mentor offers you words of encouragement."),
+        new Dialog("Even if you fail your studies, maybe you can still be part of the mission to join the earth. You can just be a very stupid human.", "message K", "kcklqkla"),
+        new Dialog("You do not find this encouraging.")
+      ],
+      [
+        new Dialog("Your mentor offers you words of encouragement."),
+        new Dialog("Hey, if you're lazy, you can always study to be a Juggalo!", "message K", "kcklqkla"),
+        new Dialog("You do not find this encouraging.")
+      ],
+      [
+        new Dialog("Hey, what do you want your human persona to be? The High Council is asking.", "message K", "kcklqkla"),
+        new Dialog("I think I want to identify as a cartoon pony named Pinkie Pie.", "message U", "you"),
+        new Dialog("... I'm going to put you down as a teenager then.", "message K", "kcklqkla")
       ],
       [
         new Dialog("You think your mentor, Kcklqkla, is acting especially awkward around you. You suspect that they have read your smutty fanfics.")
+      ],
+      [
+        new Dialog("You receive another message from your friend Becky."),
+        new Dialog("at this rate you'll never get to earth... #earthlings... #thatcouldbeusbutuplayin", "message B", "becky"),
+        new Dialog("I don't think Becky understands hashtags.")
       ],
       [
         new Dialog("You feel extremely nervous about this test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")

@@ -250,11 +250,14 @@ dl {
   background-size: 100%;
   border-radius: 6px;
   margin-right: 20px;
+  margin-bottom: 20px;
   float: left; }
   .story .icon.U {
-    background-image: url("https://31.media.tumblr.com/avatar_a18a226e8e0f_128.png"); }
+    background-image: url("../assets/avatars/you.png"); }
+  .story .icon.B {
+    background-image: url("../assets/avatars/becky.png"); }
   .story .icon.K {
-    background-image: url("https://31.media.tumblr.com/avatar_bcab785a4aa9_96.png"); }
+    background-image: url("../assets/avatars/mentor.png"); }
 .story div.dialog {
   text-align: left;
   font-size: 14px;
@@ -290,6 +293,15 @@ dl {
       border-right-color: #ffffff;
       border-width: 8px;
       margin-top: -8px; }
+      @media screen and (max-width: 650px) {
+        .story div.dialog.message :after {
+          right: auto;
+          top: auto;
+          bottom: 100%;
+          border-bottom-color: #ffffff;
+          border-right-color: rgba(255, 255, 255, 0);
+          left: 18px;
+          margin-left: -8px; } }
 .story button, .story .button {
   width: 250px;
   clear: both;
