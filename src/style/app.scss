@@ -38,20 +38,26 @@ body {
 		  	}
 		  	&.rebloggable {
 		  		height: auto;
+		  		padding-bottom: 0;
 		  		img {
 		  			height: 290px;
 		  		}
 		  		.post_controls {
-		  			line-height: 1.05em;
 		  			a {
 	  					font-size: 13px;
 		  				float: right;
 		  				color: $tumblrlightgrey;
-		  				margin-left: 7px;
+		  				margin: 0 0 5px 7px;
 		  				i {
 		  					font-size: 15px;
+		  					line-height: 10px;
 		  					margin-right: 2px;
+		  					&.icon-link {
+		  						font-size: 12px;
+		  						margin-right: 4px;
+		  					}
 		  				}
+
 		  			}
 		  			a:last-child {
 		  				margin-left: 0;

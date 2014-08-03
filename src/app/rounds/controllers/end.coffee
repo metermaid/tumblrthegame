@@ -9,7 +9,7 @@ class EndCtrl
     console.log("PARM: " + $stateParams.win)
 
     if ($stateParams.win == "true")
-      $scope.message = "Correct! You win!"
+      $scope.message = "Correct! Now reblog some posts!"
     else
       $scope.message = "Out of time! The answer was \"#{$stateParams.tag}\""
 
