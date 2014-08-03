@@ -12,7 +12,6 @@ modules = [
 
   'rounds.services',
 
-  'ngDialog',
   'cfp.hotkeys',
   
   'ui.router'

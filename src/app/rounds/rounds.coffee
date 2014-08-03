@@ -12,7 +12,6 @@ modules = [
   'ngResource',
 
   'rounds.services',
-  'ngDialog',
   'cfp.hotkeys'
 ]
 
@@ -31,7 +30,7 @@ roundsConfig = ($stateProvider) ->
     data:
       pageTitle: "Select a Category"
   $stateProvider.state "round",
-    params: ["type"]
+    params: ["type", "tag", "before", "win"]
     views:
       header:
         controller: "HeaderCtrl"

@@ -15,4 +15,9 @@ class LoseCtrl
       $scope.shareScore = () ->
         # fill me in later
 
+      hotkeys.bindTo($scope).add
+        combo: "enter"
+        description: "Return to Home"
+        callback: $scope.returnToHome
+
 rounds.controller 'LoseCtrl', LoseCtrl

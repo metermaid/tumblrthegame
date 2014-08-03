@@ -12,7 +12,7 @@ class SelectCtrl
          for i in [0..num_categories] by 1 # todo: remove all these magic numbers
             hotkeys.del("option+#{i+1}")
             hotkeys.del("alt+#{i+1}")
-         $state.transitionTo "round", {type: category}
+         $state.transitionTo "story", {category: category, type: "start"}
 
       makeHotKey = (category, index) ->
          hotkeys.add

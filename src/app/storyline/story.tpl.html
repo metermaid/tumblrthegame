@@ -1,14 +1,17 @@
-<div class="container">
-   <p>
-      {{current_dialog.content}}
-   </p>
-  <p ng-if="current_dialog.type.gif" class="plain">
-        <img src="{{gif}}">
-  </p>
+<div class="story">
+   <div class="container" ng-repeat="dialog in storyline" ng-show="dialogID==$index">
+      <div class="icon" ng-class="dialog.type" ng-show="dialog.type.lastIndexOf('message', 0) === 0"></div>
+      <div class="dialog" ng-class="dialog.type">
+
+        <div class="credit" ng-show="dialog.speaker != ''">
+          {{dialog.speaker}}
+        </div>
+         <div>
+            {{dialog.content}}
+         </div>
+      </div>
+   </div>
+   <a ng-click="next()" type="button" class="button">
+       <i class="icon-play"></i>Next
+   </a>
 </div>
-<a ng-click="next()" type="button" class="button" ng-if="storyline.length > 0">
-    <i class="icon-play"></i>Next
-</a>
-<a ng-click="closeAll()" type="button" class="button" ng-if="storyline.length == 0">
-    <i class="icon-play"></i>Continue
-</a>

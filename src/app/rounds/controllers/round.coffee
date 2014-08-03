@@ -1,9 +1,9 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class RoundCtrl
-  @$inject: ['$scope', 'ngDialog', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'StoryService', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
+  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
 
-  constructor: ($scope, ngDialog, $templateCache, TagsService, RandomDateService, RoundsRes, StoryService, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
+  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
     # preloader stuff
     $scope.isLoading = true
     $scope.isSuccessful = false
@@ -84,15 +84,4 @@ class RoundCtrl
         $scope.stop()
         $state.transitionTo "end", tag: tag.name, before: before_date, win: true
 
-    $scope.storyline = StoryService.get_story(($scope.round), 'start')
-
-    ngDialog.open
-      template: $templateCache.get('storyline/story.tpl.html')
-      controller: "StoryCtrl"
-      className: "story #{$scope.storyline[0].type}"
-      plain: true
-      scope: $scope
-      showClose: false
-
-    $scope.cutsceneOn = false
 rounds.controller 'RoundCtrl', RoundCtrl

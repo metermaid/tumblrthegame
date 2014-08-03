@@ -1,145 +1,77 @@
 @import "colors";
-
-.story.plain, .story.gif {
-  background: $tumblrblue;
-}
-
-.story.plain .container, .story.gif .container {
-   @include span-columns(12);
-   @include pad();
-   text-align: center;
-   font-family: 'Press Start 2P', monospace;
-   float: none;
-}
-
-.story.modal {
-  background: $tumblrmodal;
-}
-
-.story.modal .container {
-   text-align: center;
-   font-family: 'Press Start 2P', monospace;
-   float: none;
-   color: $tumblrgrey;
-   background: white;
-   border-radius: 15px;
-   width: 50%;
-   padding: 10px 20px 20px;
-   min-width: 250px;
-   margin: 20px auto 0;
-}
-
-.story.modal .container p:last-child {
-  margin-bottom: 0;
-}
-
-.story button, .story .button {
-   width: 250px;
-   display: block;
-   height: 45px;
-   line-height: 45px;
-   font-size: 16px;
-   text-align: center;
-   margin: 15px auto 0;
-}
-
-// ngDialog's styles
-
-@-webkit-keyframes ngdialog-fadeout {
-  0% {
-    opacity: 1;
+.story {
+  .container {
+    margin: 0 auto;
+    max-width: 625px;
+  }
+  .icon {
+    width: 64px;
+    height: 64px;
+    background-color: $red;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 6px;
+    margin-right: 20px;
+    float: left;
+    &.U {
+      background-image: url('https://31.media.tumblr.com/avatar_a18a226e8e0f_128.png');
+    }
+    &.K {
+      background-image: url('https://31.media.tumblr.com/avatar_bcab785a4aa9_96.png')
+    }
   }
 
-  100% {
-    opacity: 0;
+  div.dialog {
+    text-align: left;
+    font-size: 14px;
+    line-height: 20px;
+
+    max-width: 550px;
+    min-width: 250px;
+    padding: 20px;
+
+    margin: 0 auto 20px;
+    border-radius: 6px;
+
+    color: $tumblrgrey;
+    background: white;
+    &.message {
+      float: left;
+      max-width: 500px;
+      min-width: 200px;
+      position: relative;
+      padding-top: 10px;
+      .credit {
+        color: $tumblrlightgrey;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 13px;
+      }
+      :after {
+        right: 100%;
+        top: 18px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(255, 255, 255, 0);
+        border-right-color: #ffffff;
+        border-width: 8px;
+        margin-top: -8px;
+      }
+    }
   }
-}
 
-@keyframes ngdialog-fadeout {
-  0% {
-    opacity: 1;
+  button, .button {
+     width: 250px;
+     clear: both;
+     display: block;
+     height: 45px;
+     line-height: 45px;
+     font-size: 16px;
+     text-align: center;
+     margin: 15px auto 0;
   }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes ngdialog-fadein {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes ngdialog-fadein {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.ngdialog,
-.ngdialog *,
-.ngdialog *:before,
-.ngdialog *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.ngdialog {
-  position: fixed;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  z-index: 10000;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.ngdialog-content {
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadein 0.5s;
-  animation: ngdialog-fadein 0.5s;
-}
-
-.ngdialog-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 20000px;
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadein 0.5s;
-  animation: ngdialog-fadein 0.5s;
-}
-
-.ngdialog.ngdialog-closing .ngdialog-overlay {
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadeout 0.5s;
-  animation: ngdialog-fadeout 0.5s;
-}
-.ngdialog.ngdialog-closing .ngdialog-content {
-  -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadeout 0.5s;
-  animation: ngdialog-fadeout 0.5s;
-}
-
-.ngdialog-close:before {
-  font-family: 'Helvetica', Arial, sans-serif;
-  content: '\00D7';
-  cursor: pointer;
-}
-
-body.ngdialog-open {
-  overflow: hidden;
 }
