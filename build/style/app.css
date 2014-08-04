@@ -245,7 +245,7 @@ dl {
 .story .icon {
   width: 64px;
   height: 64px;
-  background-color: #ff4136;
+  background-color: white;
   background-repeat: no-repeat;
   background-size: 100%;
   border-radius: 6px;
@@ -487,6 +487,9 @@ body {
     @media screen and (max-width: 650px) {
       #main-header h1 {
         line-height: 0.8em; } }
+    #main-header h1 a.info {
+      font-size: 13px;
+      font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
   #main-header nav {
     float: right; }
     #main-header nav h2 {
@@ -500,6 +503,40 @@ body {
     @media screen and (max-width: 650px) {
       #main-header nav {
         padding-top: 15px; } }
+  #main-header .info.tooltip {
+    width: 50%;
+    min-width: 300px;
+    position: absolute;
+    top: 75px;
+    background: #ffffff;
+    color: #444444;
+    text-align: left;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 20px;
+    border-radius: 6px; }
+    #main-header .info.tooltip button, #main-header .info.tooltip .button {
+      display: block;
+      margin: 0 auto; }
+    @media screen and (max-width: 650px) {
+      #main-header .info.tooltip {
+        top: 60px; } }
+    @media screen and (max-width: 425px) {
+      #main-header .info.tooltip {
+        top: 90px; } }
+  #main-header .info.tooltip:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #ffffff;
+    border-width: 8px;
+    margin-left: -8px; }
 
 button, .button {
   display: inline-block;

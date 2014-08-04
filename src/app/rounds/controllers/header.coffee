@@ -8,5 +8,7 @@ class HeaderCtrl
     $scope.score = gameStorage.get('score')
     $scope.lives = gameStorage.get('lives')
 
+    $scope.info = false
+
 
 rounds.controller 'HeaderCtrl', HeaderCtrl
