@@ -514,6 +514,7 @@ body {
     font-size: 14px;
     line-height: 20px;
     padding: 20px;
+    z-index: 1000;
     border-radius: 6px; }
     #main-header .info.tooltip button, #main-header .info.tooltip .button {
       display: block;
