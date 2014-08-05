@@ -107,6 +107,12 @@ storyline.service "StoryService", ->
       new Dialog("You receive a message from Kcklqkla before this latest round."),
       new Dialog("Hey, did you know that you can use keyboard shortcuts in this game? Just hit enter at most screens, and then in the round selection page you can use alt/option + (1,2,3,4).", "message K", "kcklqkla"),
       new Dialog("Ugh, why didn't she tell you this sooner?")
+    ],
+    "7_start": [
+      new Dialog("hey loser have u gotten 250 yet, i bet u havent", "message B", "becky")
+    ],
+    "12_start": [
+      new Dialog("r u still not at 250 looool", "message B", "becky")
     ]
   }
   random_chapters = {
@@ -123,8 +129,13 @@ storyline.service "StoryService", ->
       ],
       [
         new Dialog("Hey, what do you want your human persona to be? The High Council is asking.", "message K", "kcklqkla"),
-        new Dialog("I think I want to identify as a cartoon pony named Pinkie Pie.", "message U", "you"),
-        new Dialog("... I'm going to put you down as a teenager then.", "message K", "kcklqkla")
+        new Dialog("Whatever I am, I'm pretty sure my soul will be that of a majestic but modest stallion in a deep and committed relationship with a filly named Pinkie Pie.", "message U", "you"),
+        new Dialog("... I'm going to put you down as a 20-something male then.", "message K", "kcklqkla")
+      ],
+      [
+        new Dialog("hey what will ur human persona be", "message B", "becky"),
+        new Dialog("Whatever I am, I'm pretty sure my soul will be that of a majestic but modest stallion in a deep and committed relationship with a filly named Pinkie Pie.", "message U", "you"),
+        new Dialog("YOUR DELUSIONAL. EVERYBODY KNOWS YOU CANT TIE DOWN PINKIE PIE LIKE THAT.", "message B", "becky")
       ],
       [
         new Dialog("You think your mentor, Kcklqkla, is acting especially awkward around you. You suspect that they have read your smutty fanfics.")
@@ -136,6 +147,39 @@ storyline.service "StoryService", ->
       ],
       [
         new Dialog("You feel extremely nervous about this test. What if you confuse Teen Wolf for Supernatural? You'd be mortified.")
+      ],
+      [
+        new Dialog("hey loser i just got into this band u prolly never heard of em", "message B", "becky"),
+        new Dialog("Uh, what band?", "message U", "you"),
+        new Dialog("their called one direction they are sooooooo cuteee", "message B", "becky"),
+        new Dialog("Becky always has impeccable taste. You're jealous.")
+      ],
+      [
+        new Dialog("Try practicing your best impression of a cool human to me.", "message K", "kcklqkla"),
+        new Dialog("Oh, well, I just started listening to the COOLEST podcast--", "message U", "you"),
+        new Dialog("You must be mistaken. I said cool. Cool in the Humanese English language doesn't mean loser.", "message K", "kcklqkla")
+      ],
+      [
+        new Dialog("I think I'm going to be one of those food bloggers when I'm undercover as a human. But I mean, never making anything though. Just one of those humans that just reblogs photos of pizza.", "message U", "you"),
+      ],
+      [
+        new Dialog("What will your human persona's aspirations be?", "message K", "kcklqkla"),
+        new Dialog("I think I wanna be a really famous gifset maker.", "message U", "you"),
+        new Dialog("I meant career goals.", "message K", "kcklqkla"),
+        new Dialog("Career? In this economy?", "message U", "you"),
+        new Dialog("Kcklqkla seems impressed by your ad-lib. Just like a real human!")
+      ],
+      [
+        new Dialog("Oh man, Becky, did you see the latest--", "message U", "you"),
+        new Dialog("STOP! SPOILERS!", "message B", "becky"),
+        new Dialog("I didn't even finish!", "message U", "you"),
+        new Dialog("UGH JUST SAYING THE TITLE OF WHATEVER U WERE GONNA SAY IS A SPOILER", "message B", "becky")
+      ],
+      [
+        new Dialog("Becky and you are practicing talking about video games under the watchful eye of Kcklqkla.")
+        new Dialog("ugh i hate her she's the worst", "message B", "becky"),
+        new Dialog("Becky, I'm pretty sure that your interpretation is based purely on the popularized fanon version of the character. i'm sure you'd feel differently if you go back to the original Japanese version.", "message U", "you"),
+        new Dialog("That was a pretty impressive ad-lib. Well done.")
       ]
     ]
   }

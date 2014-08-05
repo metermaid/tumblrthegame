@@ -2,7 +2,7 @@
 .story {
   .container {
     margin: 0 auto;
-    max-width: 625px;
+    max-width: 725px;
   }
   .icon {
     width: 64px;
@@ -31,6 +31,7 @@
     font-size: 14px;
     line-height: 20px;
 
+    width: 100%;
     max-width: 550px;
     min-width: 250px;
     padding: 20px;
@@ -42,7 +43,7 @@
     background: white;
     &.message {
       float: left;
-      max-width: 500px;
+      max-width: 450px;
       min-width: 200px;
       position: relative;
       padding-top: 10px;
