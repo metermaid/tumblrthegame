@@ -275,6 +275,9 @@ dl {
     min-width: 200px;
     position: relative;
     padding-top: 10px; }
+    @media screen and (max-width: 650px) {
+      .story div.dialog.message {
+        clear: both; } }
     .story div.dialog.message .credit {
       color: #9da6af;
       margin-bottom: 8px;
