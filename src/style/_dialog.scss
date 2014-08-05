@@ -46,6 +46,9 @@
       min-width: 200px;
       position: relative;
       padding-top: 10px;
+      @media screen and (max-width: 650px) {
+        clear: both;
+      }
       .credit {
         color: $tumblrlightgrey;
         margin-bottom: 8px;
