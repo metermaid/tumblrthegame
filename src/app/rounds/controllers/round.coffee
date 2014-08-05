@@ -9,6 +9,16 @@ class RoundCtrl
     $scope.isSuccessful = false
     $scope.percentLoaded = 0
 
+    # Prevent the backspace key from navigating back.
+    Mousetrap.unbind("backspace").bind "backspace", (event) ->
+      d = event.srcElement or event.target
+      if d.tagName.toUpperCase() is "INPUT" and d.type.toUpperCase() is "TEXT"
+        doPrevent = d.readOnly or d.disabled
+      else
+        doPrevent = true
+      event.preventDefault()  if doPrevent
+
+
     $scope.round = gameStorage.get('current_round')
 
     $scope.category = $stateParams.category

@@ -210,16 +210,16 @@ all_tags = {
   ],
   'Rappers': [
     {"name": "nicki minaj", "regex": /nicki ?minaj/},
-    {"name": "kanye west", "regex": /kanye/},
+    {"name": "kanye west", "regex": /kanye|yeezy/},
     {"name": "drake", "regex": /drake/},
     {"name": "kendrick lamar", "regex": /kendrick ?lamar/},
     {"name": "eminem", "regex": /eminem/},
-    {"name": "lil wayne", "regex": /lil ?wayne/},
-    {"name": "jay z", "regex": /jay ?z/},
+    {"name": "lil wayne", "regex": /lil ?wayne|weezy/},
+    {"name": "jay z", "regex": /jay ?z|hova/},
     {"name": "rick ross", "regex": /rick ?ross/},
     {"name": "tupac", "regex": /tupac|2pac/},
     {"name": "chief keef", "regex": /chief keef/},
-    {"name": "snoop dogg", "regex": /snoop ?(dogg|lion)/}
+    {"name": "snoop dogg", "regex": /snoop/}
   ]
     # template: {"name": "", "regex": //}
 }
