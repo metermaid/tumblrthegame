@@ -241,7 +241,7 @@ dl {
 
 .story .container {
   margin: 0 auto;
-  max-width: 625px; }
+  max-width: 725px; }
 .story .icon {
   width: 64px;
   height: 64px;
@@ -262,6 +262,7 @@ dl {
   text-align: left;
   font-size: 14px;
   line-height: 20px;
+  width: 100%;
   max-width: 550px;
   min-width: 250px;
   padding: 20px;
@@ -271,7 +272,7 @@ dl {
   background: white; }
   .story div.dialog.message {
     float: left;
-    max-width: 500px;
+    max-width: 450px;
     min-width: 200px;
     position: relative;
     padding-top: 10px; }
