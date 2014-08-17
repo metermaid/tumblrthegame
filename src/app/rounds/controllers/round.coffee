@@ -1,9 +1,9 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class RoundCtrl
-  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
+  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader', 'hotkeys']
 
-  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
+  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader, hotkeys) ->
     # preloader stuff
     $scope.isLoading = true
     $scope.isSuccessful = false
@@ -18,6 +18,9 @@ class RoundCtrl
         doPrevent = true
       event.preventDefault()  if doPrevent
 
+    Mousetrap.unbind("enter").bind "enter", (event) ->
+      event.preventDefault()
+      alert("You don't need to hit enter to submit!")
 
     $scope.round = gameStorage.get('current_round')
 
@@ -73,6 +76,7 @@ class RoundCtrl
       else
         $scope.stop()
         gameStorage.increment('lives', -1)
+        alert("out of time!")
         if gameStorage.get('lives') > 0
           $state.transitionTo "end", tag: tag.name, before: before_date, win: false
         else
@@ -93,6 +97,7 @@ class RoundCtrl
         $scope.correct = true # if the redirect doesn't work, still want to respond
         gameStorage.increment('current_round', 1)
         gameStorage.increment('score', $scope.computePoints(10, $scope.secondsLeft, 10))
+        alert("correct!")
         $scope.stop()
         $state.transitionTo "end", tag: tag.name, before: before_date, win: true
 
