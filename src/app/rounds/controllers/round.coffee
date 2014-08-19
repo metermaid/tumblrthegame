@@ -20,10 +20,21 @@ modalService = ($timeout) ->
       self = @
       @content = content
       @timeout = $timeout((->
-        self.close()), 2000000)
-
+        self.close()), 2000)
 
 rounds.factory('Modal', ['$timeout', modalService])
+
+rounds.directive "shaker", [
+  "$animate"
+  ($animate) ->
+     link: (scope, element, attrs) ->
+        element.bind "keydown keypress", (event) ->
+          if event.which == 13
+            scope.$apply ->
+              $animate.addClass element, "shake",
+                $animate.removeClass element, "shake"
+            
+]
 
 class RoundCtrl
   @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader', 'Modal']
@@ -37,19 +48,13 @@ class RoundCtrl
     $scope.modal = Modal
 
     # Prevent the backspace key from navigating back.
-    Mousetrap.unbind("backspace").bind "backspace", (event) ->
+    Mousetrap.bind "backspace", (event) ->
       d = event.srcElement or event.target
       if d.tagName.toUpperCase() is "INPUT" and d.type.toUpperCase() is "TEXT"
         doPrevent = d.readOnly or d.disabled
       else
         doPrevent = true
       event.preventDefault()  if doPrevent
-
-    Mousetrap.bind "enter", (event) ->
-      event.preventDefault()
-      Modal.open("Wrong")
-
-    
 
     $scope.round = gameStorage.get('current_round')
 
@@ -94,7 +99,7 @@ class RoundCtrl
         $scope.percentLoaded = event.percent
         console.info "Percent loaded:", event.percent
 
-    $scope.secondsLeft = 150000 # eventually put this in a file that's more more settings-y
+    $scope.secondsLeft = 15 # eventually put this in a file that's more more settings-y
 
     timeout = null
 
@@ -105,17 +110,18 @@ class RoundCtrl
       else
         $scope.stop()
         gameStorage.increment('lives', -1)
-        Modal.open("out of time!")
+        $scope.status = "lost"
+
         $timeout((->
           if gameStorage.get('lives') > 0
             $state.transitionTo "end", tag: tag.name, before: before_date, win: false
           else
             $state.transitionTo "lose"
-          ), 1000)
+          ), 500)
     $scope.stop = -> $timeout.cancel(timeout)
 
 
-    $scope.correct = false
+    $scope.status = "playing"
     $scope.guess = ""
 
     # scoring
@@ -125,13 +131,12 @@ class RoundCtrl
     $scope.updateGuess = (guess) ->
       return 0 if not guess or guess.length is 0
       if guess.search(tag_regex) != -1
-        $scope.correct = true # if the redirect doesn't work, still want to respond
+        $scope.status = "won" # if the redirect doesn't work, still want to respond
         gameStorage.increment('current_round', 1)
         gameStorage.increment('score', $scope.computePoints(10, $scope.secondsLeft, 10))
         $scope.stop()
-        Modal.open("correct!")
         $timeout((->
-          $state.transitionTo "end", tag: tag.name, before: before_date, win: true), 1000)
+          $state.transitionTo "end", tag: tag.name, before: before_date, win: true), 500)
         
 
 rounds.controller 'RoundCtrl', RoundCtrl

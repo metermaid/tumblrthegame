@@ -16,10 +16,24 @@
 
 .feedback {
   @include fade(1);
-  @include slide(0, -100%);
+  @include slide(0, -50%);
   @include transition(0.3s ease-out all);
-  position: relative;
-  font-weight: bold;
-  color: red;
   font-size: 32px;
+  height: 50px;
+}
+
+@include keyframes(shake) {
+  0% {@include transform(translateX(0))}
+  12.5% {@include transform(translateX(-6px) rotateY(-5deg))}
+  37.5% {@include transform(translateX(5px) rotateY(4deg))}
+  62.5% {@include transform(translateX(-3px) rotateY(-2deg))}
+  87.5% {@include transform(translateX(2px) rotateY(1deg))}
+  100% {@include transform(translateX(0))}
+}
+
+input[type=text].shake {
+  @include animation(shake 400ms ease-in-out);
+
+  box-shadow: 0 0 10px $red;
+  border: 1px solid $red;
 }

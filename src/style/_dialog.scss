@@ -92,11 +92,13 @@
      text-align: center;
      margin: 15px auto 0;
   }
-  div.caption {
-    display: inline;
-    float: none;
-    font-size: 12px;
-    text-align: center;
-    margin: 0 auto;
-  }
+}
+
+div.caption {
+  display: block;
+  float: none;
+  font-size: 12px;
+  text-align: center;
+  padding: 0;
+  margin: 0 auto 10px;
 }

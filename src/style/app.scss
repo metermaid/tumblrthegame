@@ -25,6 +25,9 @@ body {
 	  input[type="text"] {
 	  		text-align: center;
 	  }
+	  .posts {
+	  	clear: both;
+	  }
 	  .post {
 		  	background: $white;
 		  	border-radius: 6px;
@@ -173,7 +176,6 @@ button, .button {
 	&.category {
 		width: 250px;
 		height: 45px;
-		margin-bottom: 5px;
 		line-height: 45px;
 		font-size: 16px;
 		text-align: center;

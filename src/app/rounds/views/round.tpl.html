@@ -11,15 +11,24 @@
    <!-- BEGIN: Results View. -->
    <div
       ng-switch-when="false">
-      <h3>What {{category}} tag is this?</h3>
-      <h2>Round ends in {{secondsLeft}}s</h2>
-      <input type="text" id="guess" ng-model="guess" focus="true" ng-change="updateGuess(guess)">
-      <modal-view modal-show="modal.isOpen()" modal-content="modal.content"></modal-view>
-
+      <div ng-switch="status">
+         <h3>What {{category}} tag is this?</h3>
+         <div ng-switch-when="won">
+            <h2>Correct!</h2>
+         </div>
+         <div ng-switch-when="lost">
+            <h2>Time's Up!</h2>
+         </div>
+         <div ng-switch-default>
+            <h2>Round ends in {{secondsLeft}}s</h2>
+         </div>
+         <input type="text" class="mousetrap" shaker id="guess" ng-model="guess" focus="true" ng-change="updateGuess(guess)">
+      </div>
+      <div class="posts">
       <div class="post" ng-repeat="post in posts">
          <img ng-src="{{post.photos[0].alt_sizes[1].url}}" />
       </div>
-
+   </div>
    </div>
    <!-- END: Results View. -->
 </div>

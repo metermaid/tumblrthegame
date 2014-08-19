@@ -60,16 +60,12 @@ class StoryCtrl
         # Loading was successful.
         $scope.isLoading = false
         $scope.isSuccessful = true
-        console.info "Preload Successful"
       ), ( (image) ->
         # Loading failed on at least one image, but that's ok
         $scope.isLoading = false
         $scope.isSuccessful = false
-        console.error "Image Failed", image
-        console.info "Preload Failure"
       ), (event) ->
         $scope.percentLoaded = event.percent
-        console.info "Percent loaded:", event.percent
 
     $scope.dialogID = 0
 
