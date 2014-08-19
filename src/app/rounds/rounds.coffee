@@ -10,6 +10,7 @@ modules = [
   'tumblrGame.storyline',
 
   'ngResource',
+  'ngAnimate',
 
   'rounds.services',
   'cfp.hotkeys'

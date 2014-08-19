@@ -77,12 +77,20 @@ class StoryCtrl
       if $scope.dialogID < ($scope.storyline.length - 1)
         $scope.dialogID = $scope.dialogID + 1
       else
-        $state.transitionTo "round", category: $stateParams.category, index: tag_index, before: before_date # can't pass objects yet with ui-router, so work around
+        $scope.start()
+
+    $scope.start = ->
+      $state.transitionTo "round", category: $stateParams.category, index: tag_index, before: before_date # can't pass objects yet with ui-router, so work around
+
+    hotkeys.bindTo($scope).add
+      combo: "space"
+      description: "Next"
+      callback: $scope.next
 
     hotkeys.bindTo($scope).add
       combo: "enter"
-      description: "Next"
-      callback: $scope.next
+      description: "Skip"
+      callback: $scope.start
 
 storyline.controller 'StoryCtrl', StoryCtrl
 

@@ -30,7 +30,7 @@ homeController = ($scope, $state, hotkeys, gameStorage) ->
     $state.transitionTo "select"
 
   hotkeys.bindTo($scope).add
-    combo: "enter"
+    combo: "space"
     description: "Next Stage"
     callback: $scope.play
 

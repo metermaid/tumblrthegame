@@ -13,6 +13,7 @@ modules = [
   'rounds.services',
 
   'cfp.hotkeys',
+  'ngAnimate'
   
   'ui.router'
 ]

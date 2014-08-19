@@ -1,13 +1,40 @@
 rounds = angular.module 'tumblrGame.rounds'
 
-class RoundCtrl
-  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader', 'hotkeys']
+modalView = ($templateCache) ->
+  restrict: 'E'
 
-  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader, hotkeys) ->
+  scope:
+    _modalShow: '&modalShow'
+    _modalContent: '&modalContent'
+
+  template: $templateCache.get('rounds/views/modal.tpl.html')
+
+rounds.directive('modalView', ['$templateCache', modalView])
+
+modalService = ($timeout) ->
+  new class Modal
+    isOpen: => !!@content
+    content: ''
+    close: => @content = ''
+    open: (content) =>
+      self = @
+      @content = content
+      @timeout = $timeout((->
+        self.close()), 2000000)
+
+
+rounds.factory('Modal', ['$timeout', modalService])
+
+class RoundCtrl
+  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader', 'Modal']
+
+  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader, Modal) ->
     # preloader stuff
     $scope.isLoading = true
     $scope.isSuccessful = false
     $scope.percentLoaded = 0
+
+    $scope.modal = Modal
 
     # Prevent the backspace key from navigating back.
     Mousetrap.unbind("backspace").bind "backspace", (event) ->
@@ -18,9 +45,11 @@ class RoundCtrl
         doPrevent = true
       event.preventDefault()  if doPrevent
 
-    Mousetrap.unbind("enter").bind "enter", (event) ->
+    Mousetrap.bind "enter", (event) ->
       event.preventDefault()
-      alert("You don't need to hit enter to submit!")
+      Modal.open("Wrong")
+
+    
 
     $scope.round = gameStorage.get('current_round')
 
@@ -65,7 +94,7 @@ class RoundCtrl
         $scope.percentLoaded = event.percent
         console.info "Percent loaded:", event.percent
 
-    $scope.secondsLeft = 15 # eventually put this in a file that's more more settings-y
+    $scope.secondsLeft = 150000 # eventually put this in a file that's more more settings-y
 
     timeout = null
 
@@ -76,13 +105,15 @@ class RoundCtrl
       else
         $scope.stop()
         gameStorage.increment('lives', -1)
-        alert("out of time!")
-        if gameStorage.get('lives') > 0
-          $state.transitionTo "end", tag: tag.name, before: before_date, win: false
-        else
-          $state.transitionTo "lose"
-
+        Modal.open("out of time!")
+        $timeout((->
+          if gameStorage.get('lives') > 0
+            $state.transitionTo "end", tag: tag.name, before: before_date, win: false
+          else
+            $state.transitionTo "lose"
+          ), 1000)
     $scope.stop = -> $timeout.cancel(timeout)
+
 
     $scope.correct = false
     $scope.guess = ""
@@ -97,8 +128,10 @@ class RoundCtrl
         $scope.correct = true # if the redirect doesn't work, still want to respond
         gameStorage.increment('current_round', 1)
         gameStorage.increment('score', $scope.computePoints(10, $scope.secondsLeft, 10))
-        alert("correct!")
         $scope.stop()
-        $state.transitionTo "end", tag: tag.name, before: before_date, win: true
+        Modal.open("correct!")
+        $timeout((->
+          $state.transitionTo "end", tag: tag.name, before: before_date, win: true), 1000)
+        
 
 rounds.controller 'RoundCtrl', RoundCtrl

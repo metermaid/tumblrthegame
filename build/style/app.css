@@ -315,6 +315,35 @@ dl {
   font-size: 16px;
   text-align: center;
   margin: 15px auto 0; }
+.story div.caption {
+  display: inline;
+  float: none;
+  font-size: 12px;
+  text-align: center;
+  margin: 0 auto; }
+
+.feedback {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-transition: 0.3s ease-out all;
+  -moz-transition: 0.3s ease-out all;
+  transition: 0.3s ease-out all;
+  position: relative;
+  font-weight: bold;
+  color: red;
+  font-size: 32px; }
+  .feedback.ng-enter, .feedback.ng-leave.ng-leave-active {
+    opacity: 0; }
+  .feedback.ng-enter, .feedback.ng-leave.ng-leave-active {
+    -webkit-transform: translate(0, -100%);
+    -moz-transform: translate(0, -100%);
+    -ms-transform: translate(0, -100%);
+    -o-transform: translate(0, -100%);
+    transform: translate(0, -100%); }
 
 @font-face {
   font-family: "tumblr";

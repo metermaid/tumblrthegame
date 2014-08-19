@@ -1,0 +1,25 @@
+@mixin fade($opacity) {
+  opacity: $opacity;
+
+  &.ng-enter, &.ng-leave.ng-leave-active {
+    opacity: 0;
+  }
+}
+
+@mixin slide($x, $y) {
+  @include transform(translate(0, 0));
+
+  &.ng-enter, &.ng-leave.ng-leave-active {
+    @include transform(translate($x, $y));
+  }
+}
+
+.feedback {
+  @include fade(1);
+  @include slide(0, -100%);
+  @include transition(0.3s ease-out all);
+  position: relative;
+  font-weight: bold;
+  color: red;
+  font-size: 32px;
+}

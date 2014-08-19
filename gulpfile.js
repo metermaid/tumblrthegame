@@ -45,6 +45,7 @@ var vendor_files = {
     'vendor/angular/angular.js',
     'vendor/angular-ui-router/release/angular-ui-router.js',
     'vendor/angular-resource/angular-resource.js',
+    'vendor/angular-animate/angular-animate.js',
     'vendor/angular-hotkeys/build/hotkeys.js'
   ],
   css: [
@@ -60,6 +61,7 @@ var vendor_files = {
 var index_paths = [
   destinations.libs + "/angular.js",
   destinations.libs + "/angular-ui-router.js",
+  destinations.libs + "/angular-animate.js",
   destinations.libs + "/angular-resource.js",
   destinations.libs + "/hotkeys.js",
   destinations.js + "/**/*.js",
