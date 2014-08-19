@@ -315,12 +315,14 @@ dl {
   font-size: 16px;
   text-align: center;
   margin: 15px auto 0; }
-.story div.caption {
-  display: inline;
+
+div.caption {
+  display: block;
   float: none;
   font-size: 12px;
   text-align: center;
-  margin: 0 auto; }
+  padding: 0;
+  margin: 0 auto 10px; }
 
 .feedback {
   opacity: 1;
@@ -332,18 +334,101 @@ dl {
   -webkit-transition: 0.3s ease-out all;
   -moz-transition: 0.3s ease-out all;
   transition: 0.3s ease-out all;
-  position: relative;
-  font-weight: bold;
-  color: red;
-  font-size: 32px; }
+  font-size: 32px;
+  height: 50px; }
   .feedback.ng-enter, .feedback.ng-leave.ng-leave-active {
     opacity: 0; }
   .feedback.ng-enter, .feedback.ng-leave.ng-leave-active {
-    -webkit-transform: translate(0, -100%);
-    -moz-transform: translate(0, -100%);
-    -ms-transform: translate(0, -100%);
-    -o-transform: translate(0, -100%);
-    transform: translate(0, -100%); }
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%); }
+
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translateX(0); }
+
+  12.5% {
+    -webkit-transform: translateX(-6px) rotateY(-5deg); }
+
+  37.5% {
+    -webkit-transform: translateX(5px) rotateY(4deg); }
+
+  62.5% {
+    -webkit-transform: translateX(-3px) rotateY(-2deg); }
+
+  87.5% {
+    -webkit-transform: translateX(2px) rotateY(1deg); }
+
+  100% {
+    -webkit-transform: translateX(0); } }
+@-moz-keyframes shake {
+  0% {
+    -moz-transform: translateX(0); }
+
+  12.5% {
+    -moz-transform: translateX(-6px) rotateY(-5deg); }
+
+  37.5% {
+    -moz-transform: translateX(5px) rotateY(4deg); }
+
+  62.5% {
+    -moz-transform: translateX(-3px) rotateY(-2deg); }
+
+  87.5% {
+    -moz-transform: translateX(2px) rotateY(1deg); }
+
+  100% {
+    -moz-transform: translateX(0); } }
+@keyframes shake {
+  0% {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0); }
+
+  12.5% {
+    -webkit-transform: translateX(-6px) rotateY(-5deg);
+    -moz-transform: translateX(-6px) rotateY(-5deg);
+    -ms-transform: translateX(-6px) rotateY(-5deg);
+    -o-transform: translateX(-6px) rotateY(-5deg);
+    transform: translateX(-6px) rotateY(-5deg); }
+
+  37.5% {
+    -webkit-transform: translateX(5px) rotateY(4deg);
+    -moz-transform: translateX(5px) rotateY(4deg);
+    -ms-transform: translateX(5px) rotateY(4deg);
+    -o-transform: translateX(5px) rotateY(4deg);
+    transform: translateX(5px) rotateY(4deg); }
+
+  62.5% {
+    -webkit-transform: translateX(-3px) rotateY(-2deg);
+    -moz-transform: translateX(-3px) rotateY(-2deg);
+    -ms-transform: translateX(-3px) rotateY(-2deg);
+    -o-transform: translateX(-3px) rotateY(-2deg);
+    transform: translateX(-3px) rotateY(-2deg); }
+
+  87.5% {
+    -webkit-transform: translateX(2px) rotateY(1deg);
+    -moz-transform: translateX(2px) rotateY(1deg);
+    -ms-transform: translateX(2px) rotateY(1deg);
+    -o-transform: translateX(2px) rotateY(1deg);
+    transform: translateX(2px) rotateY(1deg); }
+
+  100% {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0); } }
+input[type=text].shake {
+  -webkit-animation: shake 400ms ease-in-out;
+  -moz-animation: shake 400ms ease-in-out;
+  animation: shake 400ms ease-in-out;
+  box-shadow: 0 0 10px #ff4136;
+  border: 1px solid #ff4136; }
 
 @font-face {
   font-family: "tumblr";
@@ -467,6 +552,8 @@ body {
         margin-right: 0; }
     #container #main input[type="text"] {
       text-align: center; }
+    #container #main .posts {
+      clear: both; }
     #container #main .post {
       background: white;
       border-radius: 6px;
@@ -589,7 +676,6 @@ button, .button {
   button.category, .button.category {
     width: 250px;
     height: 45px;
-    margin-bottom: 5px;
     line-height: 45px;
     font-size: 16px;
     text-align: center;
