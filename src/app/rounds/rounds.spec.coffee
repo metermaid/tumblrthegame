@@ -135,22 +135,23 @@ describe 'game rounds', ->
 				expect(scope.posts.length).toEqual 1
 			it "has an empty guess", ->
 				expect(scope.guess.length).toEqual 0
-			it "is not yet correct", ->
-				expect(scope.correct).toEqual false
+			it "is has a playing status", ->
+				expect(scope.status).toEqual 'playing'
 			it "reports no rounds won", ->
 				expect(scope.round).toEqual 1
 
 		describe "Guess has been entered", ->
-			it "updates correct variable when a guess is correct", ->
+			it "updates status variable when a guess is correct", ->
 				scope.updateGuess("#lotr")
-				expect(scope.correct).toEqual true
-			it "does not update correct variable when a guess is incorrect", ->
+				expect(scope.status).toEqual 'won'
+			it "does not update status variable when a guess is incorrect", ->
 				scope.updateGuess("#fart")
-				expect(scope.correct).toEqual false
+				expect(scope.status).toEqual 'playing'
 
 			it "redirects to the end state on a correct guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
 				scope.updateGuess("#lotr")
+				$timeout.flush()
 				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag : 'lotr', before: '1391212800000', win: true
 			it "does not refresh on an incorrect guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
