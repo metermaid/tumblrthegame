@@ -430,6 +430,24 @@ input[type=text].shake {
   box-shadow: 0 0 10px #ff4136;
   border: 1px solid #ff4136; }
 
+input[type=text] {
+  box-shadow: 0;
+  -webkit-transition: box-shadow 1s ease-in;
+  -moz-transition: box-shadow 1s ease-in;
+  transition: box-shadow 1s ease-in;
+  -webkit-transition: border 1s ease-in;
+  -moz-transition: border 1s ease-in;
+  transition: border 1s ease-in; }
+
+input[type=text].won {
+  box-shadow: 0 0 20px #2ecc40;
+  border: 1px solid #2ecc40; }
+
+input[type=text].lost {
+  box-shadow: 0;
+  border: 1px solid #444444;
+  background-color: #9da6af; }
+
 @font-face {
   font-family: "tumblr";
   src: url("../assets/icons/fonts/tumblr.eot");

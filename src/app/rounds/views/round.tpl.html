@@ -22,7 +22,7 @@
          <div ng-switch-default>
             <h2>Round ends in {{secondsLeft}}s</h2>
          </div>
-         <input type="text" class="mousetrap" shaker id="guess" ng-model="guess" focus="true" ng-change="updateGuess(guess)">
+         <input type="text" class="mousetrap" ng-class="status" shaker id="guess" ng-model="guess" focus="true" ng-disabled="status == 'won' || status == 'lost'" ng-change="updateGuess(guess)">
       </div>
       <div class="posts">
       <div class="post" ng-repeat="post in posts">

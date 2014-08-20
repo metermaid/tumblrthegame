@@ -37,3 +37,19 @@ input[type=text].shake {
   box-shadow: 0 0 10px $red;
   border: 1px solid $red;
 }
+
+input[type=text] {
+  box-shadow: 0;
+  @include transition(box-shadow 1s ease-in);
+  @include transition(border 1s ease-in);
+}
+input[type=text].won {
+  box-shadow: 0 0 20px $green;
+  border: 1px solid $green;
+}
+
+input[type=text].lost {
+  box-shadow: 0;
+  border: 1px solid $tumblrgrey;
+  background-color: $tumblrlightgrey;
+}
