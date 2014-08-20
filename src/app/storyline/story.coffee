@@ -109,7 +109,7 @@ storyline.service "StoryService", ->
     ],
     "3_start": [
       new Dialog("You receive a message from Kcklqkla before this latest round."),
-      new Dialog("Hey, did you know that you can use keyboard shortcuts in this game? Just hit enter at most screens, and then in the round selection page you can use alt/option + (1,2,3,4).", "message K", "kcklqkla"),
+      new Dialog("Hey, did you know that you can use keyboard shortcuts in this game? Just hit space at most screens, and then in the round selection page you can use alt + # to select the category.", "message K", "kcklqkla"),
       new Dialog("Ugh, why didn't she tell you this sooner?")
     ],
     "7_start": [
