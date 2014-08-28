@@ -151,6 +151,16 @@ describe 'game rounds', ->
 				scope.updateGuess("#fart")
 				expect(scope.status).toEqual 'playing'
 
+
+			it "increments points with appropriate number of points when a guess is correct", ->
+				spyOn(storage, "increment").andCallThrough()
+				scope.updateGuess("#lotr")
+				expect(storage.increment).toHaveBeenCalledWith 'score', 25
+			it "does not increment points  when a guess is incorrect", ->
+				spyOn(storage, "increment").andCallThrough()
+				scope.updateGuess("#fart")
+				expect(storage.increment).not.toHaveBeenCalled
+
 			it "redirects to the end state on a correct guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
 				scope.updateGuess("#lotr")
