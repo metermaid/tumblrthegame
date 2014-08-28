@@ -71,7 +71,8 @@ describe 'game rounds', ->
 
 		store = {
 			"current_round": 1,
-			"score": 0
+			"score": 0,
+			"lives": 3
 		}
 
 		$provide.constant "gameStorage",
@@ -168,6 +169,32 @@ describe 'game rounds', ->
 				spyOn(storage, "increment").andCallThrough()
 				scope.updateGuess("#fart")
 				expect(storage.increment).not.toHaveBeenCalled
+
+
+		describe "Timer runs out without a correct guess", ->
+			it "decrements lives", ->
+				spyOn(storage, "increment").andCallThrough()
+				scope.secondsLeft = 1
+				scope.onTimeout()
+				expect(storage.increment).toHaveBeenCalledWith 'lives', -1
+			it "updates status variable", ->
+				scope.secondsLeft = 1
+				scope.onTimeout()
+				expect(scope.status).toEqual 'lost'
+			it "redirects to end state if there are lives left", ->
+				spyOn(scope.$state, "transitionTo").andCallThrough()
+				scope.secondsLeft = 1
+				scope.onTimeout()
+				timeout.flush()
+				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag : 'lotr', before: '1391212800000', win: false
+			it "redirects to lose state if there are no lives left", ->
+				spyOn(scope.$state, "transitionTo").andCallThrough()
+				storage.increment('lives',-2)
+				scope.secondsLeft = 1
+				scope.onTimeout()
+				timeout.flush()
+				expect(scope.$state.transitionTo).toHaveBeenCalledWith "lose"
+
 
 
 	describe "End controller", ->
