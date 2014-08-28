@@ -1,6 +1,7 @@
 describe 'game rounds', ->
 
 	scope = undefined
+	timeout = undefined
 	httpBackend = undefined
 	storage = undefined
 
@@ -82,10 +83,11 @@ describe 'game rounds', ->
 		return
 	)
 	# create the custom mocks on the root scope
-	beforeEach angular.mock.inject(($rootScope, _$httpBackend_, $state) ->
+	beforeEach angular.mock.inject(($rootScope, _$httpBackend_, _$timeout_, $state) ->
 		scope = $rootScope.$new()
 		scope.httpBackend = _$httpBackend_
 		scope.$state = $state
+		timeout = _$timeout_
 	)
 
 	beforeEach inject((gameStorage) ->
@@ -116,7 +118,7 @@ describe 'game rounds', ->
 	describe "Round controller", ->
 		params = { category: 'books', tag: {name: 'lotr', regex: /lotr/}, before: '1391212800000' }
 
-		beforeEach angular.mock.inject(($controller) ->
+		beforeEach angular.mock.inject(($controller, $timeout) ->
 			$controller "RoundCtrl",
 			  $scope: scope
 			  $state: scope.$state
@@ -151,7 +153,7 @@ describe 'game rounds', ->
 			it "redirects to the end state on a correct guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()
 				scope.updateGuess("#lotr")
-				$timeout.flush()
+				timeout.flush()
 				expect(scope.$state.transitionTo).toHaveBeenCalledWith "end", tag : 'lotr', before: '1391212800000', win: true
 			it "does not refresh on an incorrect guess", ->
 				spyOn(scope.$state, "transitionTo").andCallThrough()

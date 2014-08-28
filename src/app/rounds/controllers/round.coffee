@@ -1,29 +1,5 @@
 rounds = angular.module 'tumblrGame.rounds'
 
-modalView = ($templateCache) ->
-  restrict: 'E'
-
-  scope:
-    _modalShow: '&modalShow'
-    _modalContent: '&modalContent'
-
-  template: $templateCache.get('rounds/views/modal.tpl.html')
-
-rounds.directive('modalView', ['$templateCache', modalView])
-
-modalService = ($timeout) ->
-  new class Modal
-    isOpen: => !!@content
-    content: ''
-    close: => @content = ''
-    open: (content) =>
-      self = @
-      @content = content
-      @timeout = $timeout((->
-        self.close()), 2000)
-
-rounds.factory('Modal', ['$timeout', modalService])
-
 rounds.directive "shaker", [
   "$animate"
   ($animate) ->
@@ -37,15 +13,13 @@ rounds.directive "shaker", [
 ]
 
 class RoundCtrl
-  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader', 'Modal']
+  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
 
-  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader, Modal) ->
+  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
     # preloader stuff
     $scope.isLoading = true
     $scope.isSuccessful = false
     $scope.percentLoaded = 0
-
-    $scope.modal = Modal
 
     # Prevent the backspace key from navigating back.
     Mousetrap.bind "backspace", (event) ->
