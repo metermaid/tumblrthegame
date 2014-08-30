@@ -31,6 +31,18 @@ all_tags = {
     {"name": "captain america", "regex": /captain ?(america|handsome)/},
     {"name": "fantastic four", "regex": /fantastic ?(four|4)|f4|ff/}
   ],
+  'harry potter': [
+    {"name": "harry potter", "regex" : /harry ?potter/},
+    {"name": "draco malfoy", "regex": /draco ?malfoy/},
+    {"name": "cho chang", "regex": /cho ?chang/},
+    {"name": "hermione granger", "regex": /hermione ?granger/},
+    {"name": "ron weasley", "regex": /ron ?weasley/},
+    {"name": "dumbledore", "regex": /dumbledore/},
+    {"name": "sirius black", "regex": /sirius ?black/},
+    {"name": "the marauders", "regex": /(the ?)?marauders/},
+    {"name": "dementors", "regex": /dementors?/},
+    {"name": "hagrid", "regex": /hagrid/}
+  ],
   'cartoons': [
     {"name": "adventure time", "regex" : /adventure ?time/},
     {"name": "my little pony", "regex": /my ?little ?pony/},
