@@ -198,16 +198,6 @@ all_tags = {
     {"name": "pittsburgh penguins", "regex": /(pittsburgh ?)?penguins?/},
     {"name": "new york rangers", "regex": /(new ?york ?)?rangers?/}
   ],
-  'Wild Cats': [
-    {"name": "lions", "regex": /lion/},
-    {"name": "tigers", "regex": /tiger/},
-    {"name": "ocelots", "regex": /ocelot/},
-    {"name": "panthers", "regex": /panther/},
-    {"name": "leopards", "regex": /leopard/},
-    {"name": "snow leopards", "regex": /snow leopard/},
-    {"name": "cheetahs", "regex": /cheetah/},
-    {"name": "cougars", "regex": /cougar/}
-  ],
   'Rappers': [
     {"name": "nicki minaj", "regex": /nicki ?minaj/},
     {"name": "kanye west", "regex": /kanye|yeezy/},
