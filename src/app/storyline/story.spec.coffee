@@ -65,6 +65,12 @@ describe 'story', ->
 		   	['series', 'anime', 'characters', 'dog breeds']
 		   check_tag_aliases: (type, tag, guess) ->
 		   	guess == 'lotr'
+		$provide.value "StoryService",
+			get_story: ->
+				[
+		        {content: "test"},
+		        {content: "test2"}
+		      ]
 		$provide.value "RandomDateService",
 			fromPastMonths: ->
 		   	'1391212800000'
@@ -103,7 +109,7 @@ describe 'story', ->
 
 		beforeEach angular.mock.inject(($controller) ->
 
-			params = { tag: 'lotr', before: '1391212800000' }
+			params = { category: 'movies', type: 'start' }
 
 			$controller "StoryCtrl",
 			  $scope: scope
@@ -111,7 +117,6 @@ describe 'story', ->
 			  gameStorage: storage
 			  $stateParams: params
 
-			scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=reaction-gif&before=1391212800000&callback=JSON_CALLBACK").respond lotrPosts
 			scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond lotrPosts
 
 			scope.$digest()
@@ -123,9 +128,16 @@ describe 'story', ->
 			it "reports no rounds won", ->
 				expect(scope.round).toEqual 1
 
-			it "has one post", ->
-				expect(scope.posts.length).toEqual 1
+		describe "A dialog box has been shown", ->
+			it "shows the next dialog box if it exists", ->
+				spyOn(scope.$state, "transitionTo").andCallThrough()
+				expect(scope.dialogID).toEqual 0
+				scope.next()
+				expect(scope.$state.transitionTo).not.toHaveBeenCalled
+				expect(scope.dialogID).toEqual 1
 
-			it "has one reaction gif", ->
-				expect(scope.gif).toEqual lotrPosts.response[0].photos[0].original_size.url
-
+			it "redirects to round if it is the last dialog box", ->
+				spyOn(scope.$state, "transitionTo").andCallThrough()
+				scope.dialogID = 1
+				scope.next()
+				expect(scope.$state.transitionTo).toHaveBeenCalledWith "round", category : 'movies', before: '1391212800000', index: 0
