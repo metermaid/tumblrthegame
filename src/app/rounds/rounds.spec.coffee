@@ -99,6 +99,22 @@ describe 'game rounds', ->
 		scope.httpBackend.verifyNoOutstandingExpectation()
 		scope.httpBackend.verifyNoOutstandingRequest()
 
+	describe "Header controller", ->
+
+		beforeEach angular.mock.inject(($controller) ->
+			$controller "HeaderCtrl",
+			  $scope: scope
+			  $state: scope.$state
+			  gameStorage: storage
+		)
+
+		# tests start here
+		describe "Initial render", ->
+			it "reports score", ->
+				expect(scope.score).toEqual 0
+			it "reports lives", ->
+				expect(scope.lives).toEqual 3
+
 	describe "Select controller", ->
 
 		beforeEach angular.mock.inject(($controller) ->
@@ -236,3 +252,22 @@ describe 'game rounds', ->
 
 			it "has one reaction gif", ->
 				expect(scope.gif).toEqual lotrPosts.response[0].photos[0].original_size.url
+
+
+
+	describe "Lose controller", ->
+
+		beforeEach angular.mock.inject(($controller) ->
+			$controller "LoseCtrl",
+			  $scope: scope
+			  $state: scope.$state
+			  gameStorage: storage
+		)
+
+		# tests start here
+		describe "Initial render", ->
+			it "reports no rounds won", ->
+				expect(scope.round).toEqual 1
+
+			it "reports the score", ->
+				expect(scope.score).toEqual 0

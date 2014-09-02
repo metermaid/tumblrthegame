@@ -23,9 +23,9 @@ home.config homeConfig
 homeController = ($scope, $state, hotkeys, gameStorage) ->
   # nothing in the example
   $scope.play = ->
-    if gameStorage.get('lives') == "0"
+    if gameStorage.get('lives') is "0"
       gameStorage.put('score', 0)
-      gameStorage.put('round', 1)
+      gameStorage.put('current_round', 1)
       gameStorage.put('lives', 5)
     $state.transitionTo "select"
 

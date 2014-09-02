@@ -31,6 +31,18 @@ all_tags = {
     {"name": "captain america", "regex": /captain ?(america|handsome)/},
     {"name": "fantastic four", "regex": /fantastic ?(four|4)|f4|ff/}
   ],
+  'harry potter': [
+    {"name": "harry potter", "regex" : /harry ?potter/},
+    {"name": "draco malfoy", "regex": /draco ?malfoy/},
+    {"name": "cho chang", "regex": /cho ?chang/},
+    {"name": "hermione granger", "regex": /hermione ?granger/},
+    {"name": "ron weasley", "regex": /ron ?weasley/},
+    {"name": "dumbledore", "regex": /dumbledore/},
+    {"name": "sirius black", "regex": /sirius ?black/},
+    {"name": "the marauders", "regex": /(the ?)?marauders/},
+    {"name": "dementors", "regex": /dementors?/},
+    {"name": "hagrid", "regex": /hagrid/}
+  ],
   'cartoons': [
     {"name": "adventure time", "regex" : /adventure ?time/},
     {"name": "my little pony", "regex": /my ?little ?pony/},
@@ -60,12 +72,23 @@ all_tags = {
     {"name" : "lord of the rings", "regex" : /(lotr)|(lord ?of ?the ?rings)|(potatoes)/},
     {"name" : "hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
     {"name" : "harry potter" , "regex" :/(harry ?potter)/},
+    {"name" : "star wars" , "regex" :/(star ?wars)/},
     {"name": "pacific rim", "regex" : /pacific ?rim/},
+    {"name": "indiana jones", "regex" : /indiana ?jones/},
+    {"name": "the matrix", "regex" : /the ?matrix/},
+    {"name": "die hard", "regex" : /die ?hard/},
+    {"name": "pulp fiction", "regex" : /pulp ?fiction/},
+    {"name": "kill bill", "regex" : /kill ?bill/},
+    {"name": "austin powers", "regex" : /austin ?powers/},
+    {"name": "jurassic park", "regex" : /jurassic ?park/},
     {"name": "rushmore", "regex" : /rushmore/},
+    {"name": "shrek", "regex" : /shrek/},
     {"name": "the royal tenenbaums", "regex" : /(the)? ?royal ?tenenbaums/},
     {"name": "the hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
-    {"name": "pitch perfect", "regex" : /pitch ? perfect/},
-    {"name": "the dark knight", "regex" : /(the)? ?dark ?knight/}
+    {"name": "pitch perfect", "regex" : /pitch ?perfect/},
+    {"name": "toy story", "regex" : /toy ?story/},
+    {"name": "james bond", "regex" : /james ?bond/},
+    {"name": "the dark knight", "regex" : /(the)? ?dark ?knight|batman/}
   ],
   'video games' : [
     {"name": "harvest moon", "regex" : /harvest ?moon/},
@@ -197,16 +220,6 @@ all_tags = {
     {"name": "vancouver canucks", "regex": /(vancouver ?)?canucks?/},
     {"name": "pittsburgh penguins", "regex": /(pittsburgh ?)?penguins?/},
     {"name": "new york rangers", "regex": /(new ?york ?)?rangers?/}
-  ],
-  'Wild Cats': [
-    {"name": "lions", "regex": /lion/},
-    {"name": "tigers", "regex": /tiger/},
-    {"name": "ocelots", "regex": /ocelot/},
-    {"name": "panthers", "regex": /panther/},
-    {"name": "leopards", "regex": /leopard/},
-    {"name": "snow leopards", "regex": /snow leopard/},
-    {"name": "cheetahs", "regex": /cheetah/},
-    {"name": "cougars", "regex": /cougar/}
   ],
   'Rappers': [
     {"name": "nicki minaj", "regex": /nicki ?minaj/},

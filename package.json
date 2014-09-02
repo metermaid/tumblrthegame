@@ -26,6 +26,7 @@
     "gulp-karma": "git://github.com/lazd/gulp-karma.git#adb54c4fdddb442778aa114343645b75192e41e5",
     "karma-phantomjs-launcher": "~0.1.1",
     "karma-jasmine": "^0.1.5",
+    "karma-coverage": "git://github.com/mokemokechicken/karma-coverage.git#master",
     "karma-chrome-launcher": "~0.1.2",
     "karma-coffee-preprocessor": "^0.2.1",
     "karma": "^0.12.9",
