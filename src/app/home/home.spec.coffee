@@ -53,12 +53,15 @@ describe 'story', ->
       # tests start here
       describe "Play Button", ->
          it "resets the store if there are no lives", ->
-            storage.put('lives',0)
-            expect(storage.get('lives')).toEqual 0
+            storage.put('lives',"0")
+            expect(storage.get('lives')).toEqual "0"
+            spyOn(storage, "get").andCallThrough()
+            spyOn(storage, "put").andCallThrough()
             scope.play()
-            expect(storage.get('lives')).toEqual 5
-            expect(storage.get('score')).toEqual 0
-            expect(storage.get('current_round')).toEqual 1
+            expect(storage.get).toHaveBeenCalledWith 'lives'
+            expect(storage.put).toHaveBeenCalledWith 'lives', 5
+            expect(storage.put).toHaveBeenCalledWith 'score', 0
+            expect(storage.put).toHaveBeenCalledWith 'current_round', 1
          it "does not resets the store if there are lives", ->
             spyOn(storage, "get").andCallThrough()
             spyOn(storage, "put").andCallThrough()
@@ -66,7 +69,6 @@ describe 'story', ->
             expect(storage.get).toHaveBeenCalledWith 'lives'
             expect(storage.get('lives')).toEqual 3
             expect(storage.put).not.toHaveBeenCalled
-
 
          it "transitions to select", ->
             spyOn(scope.$state, "transitionTo").andCallThrough()
