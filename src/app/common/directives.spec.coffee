@@ -1,5 +1,6 @@
-describe 'Directive: focus', ->
+describe 'Directive: shaker', ->
   element = scope = compile = defaultData = null
+  validTemplate = '<input shaker></input>'
 
   createDirective = (data, template) ->
     # Setup scope state
@@ -9,7 +10,7 @@ describe 'Directive: focus', ->
     elm = compile(template or validTemplate) scope
 
     # Trigger watchers
-    #scope.$apply()
+    scope.$apply()
 
     # Return
     elm
@@ -29,7 +30,7 @@ describe 'Directive: focus', ->
 
     # Inject in angular constructs otherwise,
     #  you would need to inject these into each test
-    inject ($rootScope, $compile) ->
+    inject ($rootScope, $compile, $state) ->
       scope = $rootScope.$new()
       compile = $compile
 

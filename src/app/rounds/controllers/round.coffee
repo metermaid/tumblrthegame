@@ -1,21 +1,9 @@
 rounds = angular.module 'tumblrGame.rounds'
 
-rounds.directive "shaker", [
-  "$animate"
-  ($animate) ->
-     link: (scope, element, attrs) ->
-        element.bind "keydown keypress", (event) ->
-          if event.which == 13
-            scope.$apply ->
-              $animate.addClass element, "shake",
-                $animate.removeClass element, "shake"
-            
-]
-
 class RoundCtrl
-  @$inject: ['$scope', '$templateCache', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
+  @$inject: ['$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
 
-  constructor: ($scope, $templateCache, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
+  constructor: ($scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
     # preloader stuff
     $scope.isLoading = true
     $scope.isSuccessful = false

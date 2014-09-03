@@ -56,16 +56,7 @@ class StoryCtrl
       images = $scope.posts.map (post) -> post.photos[0].alt_sizes[1].url
 
       # Preload the images; then, update display when returned.
-      imagePreloader.preloadImages(images).then ( (images) ->
-        # Loading was successful.
-        $scope.isLoading = false
-        $scope.isSuccessful = true
-      ), ( (image) ->
-        # Loading failed on at least one image, but that's ok
-        $scope.isLoading = false
-        $scope.isSuccessful = false
-      ), (event) ->
-        $scope.percentLoaded = event.percent
+      imagePreloader.preloadImages(images)
 
     $scope.dialogID = 0
 
