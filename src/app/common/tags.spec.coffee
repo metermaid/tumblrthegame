@@ -1,7 +1,7 @@
 # CoffeeScript
-describe 'Service: tags', ->
-  mySvc = null
-'''
+describe 'Service: TagsService', ->
+  TagsService = null
+
   # Use to provide any mocks needed
   _provide = (callback) ->
     # Execute callback with $provide
@@ -12,14 +12,17 @@ describe 'Service: tags', ->
 
   # Use to inject the code under test
   _inject = ->
-    inject (_mySvc_) ->
-      mySvc = _mySvc_
+    inject (_TagsService_) ->
+      TagsService = _TagsService_
+    inject (allTags) ->
+      tags = allTags
+
 
   # Call this before each test, except where you are testing for errors
   _setup = ->
     # Mock any expected data
     _provide (provide) ->
-      provide.value 'myVal', {}
+      provide.constant 'allTags', {'dorks': ['sherlock']}
 
     # Inject the code under test
     _inject()
@@ -34,22 +37,20 @@ describe 'Service: tags', ->
       _setup()
 
     it 'should exist', ->
-      expect(!!mySvc).toBe true
+      expect(!!TagsService).toBe true
 
-    # Add specs
+    it 'random_categories should return an array of category names', ->
+      result = TagsService.random_categories(1)
+      expect(result).toEqual(['dorks'])
 
-  describe 'service errors', ->
- 
-    it 'should throw an error when required dependency is missing', ->
-      # Use an anonymous function to wrap the code that will fail
-      wrapper = ->
-        # Inject WITHOUT providing required values
-        _inject()
-      expect(wrapper).toThrow 'mySvc: myVal not provided'
-      ###
-      Note: you can use Function.bind to avoid an anonymous function wrapper for inject,
-      however, you'll need a polyfill for PhantomJS such as: http://goo.gl/XSLOdx
-      svc = (mySvc) ->
-      expect(inject.bind(null, svc)).toThrow 'mySvc: myVal not provided'
-      ###
- '''
+    it 'random_tag_index should return the index of a tag within that category', ->
+      result = TagsService.random_tag_index('dorks')
+      expect(result).toEqual(0)
+
+    it 'tag should return that tag given an index and a category', ->
+      result = TagsService.tag('dorks', 0)
+      expect(result).toEqual('sherlock')
+
+    it 'random_tag should return a tag within that category', ->
+      result = TagsService.random_tag('dorks')
+      expect(result).toEqual('sherlock')

@@ -20,7 +20,7 @@ describe 'Directive: shaker', ->
     module 'tumblrGame'
 
     # Reset data each time
-    defaultData = [attrs.focus]
+    defaultData = []
 
     # Provide any mocks needed
     module ($provide) ->

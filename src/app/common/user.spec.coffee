@@ -1,26 +1,17 @@
 # CoffeeScript
-describe 'Service: userStorage', ->
-  mySvc = null
-'''
-  # Use to provide any mocks needed
-  _provide = (callback) ->
-    # Execute callback with $provide
-    module ($provide) ->
-      callback $provide
-      # Make sure CoffeeScript doesn't return anything
-      null
+describe 'Service: gameStorage', ->
+  gameStorage = null
 
   # Use to inject the code under test
   _inject = ->
-    inject (_mySvc_) ->
-      mySvc = _mySvc_
+    inject (_gameStorage_) ->
+      gameStorage = _gameStorage_
+      gameStorage.put('current_round', '1')
+      gameStorage.put('score', '0')
+      gameStorage.put('lives', '5')
 
   # Call this before each test, except where you are testing for errors
   _setup = ->
-    # Mock any expected data
-    _provide (provide) ->
-      provide.value 'myVal', {}
-
     # Inject the code under test
     _inject()
 
@@ -34,22 +25,18 @@ describe 'Service: userStorage', ->
       _setup()
 
     it 'should exist', ->
-      expect(!!mySvc).toBe true
+      expect(!!gameStorage).toBe true
 
-    # Add specs
+    it 'get score should return expected value', ->
+      result = gameStorage.get('score')
+      expect(result).toEqual('0')
 
-  describe 'service errors', ->
- 
-    it 'should throw an error when required dependency is missing', ->
-      # Use an anonymous function to wrap the code that will fail
-      wrapper = ->
-        # Inject WITHOUT providing required values
-        _inject()
-      expect(wrapper).toThrow 'mySvc: myVal not provided'
-      ###
-      Note: you can use Function.bind to avoid an anonymous function wrapper for inject,
-      however, you'll need a polyfill for PhantomJS such as: http://goo.gl/XSLOdx
-      svc = (mySvc) ->
-      expect(inject.bind(null, svc)).toThrow 'mySvc: myVal not provided'
-      ###
- '''
+    it 'put score should update the score', ->
+      gameStorage.put('score', '5')
+      result = gameStorage.get('score')
+      expect(result).toEqual('5')
+
+    it 'increment score should update the score', ->
+      gameStorage.increment('score', '5')
+      result = gameStorage.get('score')
+      expect(result).toEqual('5')
