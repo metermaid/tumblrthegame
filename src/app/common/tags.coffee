@@ -237,7 +237,7 @@ tags.service "TagsService", ['allTags', (allTags) ->
   random_categories: (length) ->
     categories = Object.keys(allTags)
     # From the end of the list to the beginning, pick element `i`.
-    for i in [categories.length-1..1]
+    for i in [categories.length-1..0]
       # Choose random element `j` to the front of `i` to swap with.
       j = Math.floor Math.random() * (i + 1)
       # Swap `j` with `i`, using destructured assignment

@@ -2,14 +2,27 @@
 describe 'Service: StoryService', ->
   StoryService = null
 
+  # Use to provide any mocks needed
+  _provide = (callback) ->
+    # Execute callback with $provide
+    module ($provide) ->
+      callback $provide
+      # Make sure CoffeeScript doesn't return anything
+      null
+
   # Use to inject the code under test
   _inject = ->
     inject (_StoryService_) ->
       StoryService = _StoryService_
-      StoryService.random_chapters = {"start": ["dsd"]}
+    inject (random_chapters) ->
+      chapters = random_chapters
 
   # Call this before each test, except where you are testing for errors
   _setup = ->
+    # Mock any expected data
+    _provide (provide) ->
+      provide.constant 'random_chapters', {"start": ["dsd"]}
+
     # Inject the code under test
     _inject()
 
@@ -31,3 +44,4 @@ describe 'Service: StoryService', ->
 
     it 'get_story should return a random checkpoint cutscene', ->
       result = StoryService.get_story('11', 'start')
+      expect(result).toEqual("dsd")
