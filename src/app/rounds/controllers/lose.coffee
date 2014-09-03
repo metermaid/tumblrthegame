@@ -1,9 +1,9 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class LoseCtrl
-   @$inject: ['$scope', 'TagsService', 'gameStorage', '$state', 'hotkeys']
+   @$inject: ['$scope', 'gameStorage', '$state', 'hotkeys']
 
-   constructor: ($scope, TagsService, gameStorage, $state, hotkeys) ->
+   constructor: ($scope, gameStorage, $state, hotkeys) ->
       $scope.round = gameStorage.get('current_round')
       $scope.score = gameStorage.get('score')
 

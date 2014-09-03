@@ -9,7 +9,8 @@ modules = [
   'tumblrGame.home',
   'tumblrGame.rounds',
   'tumblrGame.storyline',
-
+  
+  'story.services',
   'rounds.services',
 
   'cfp.hotkeys',

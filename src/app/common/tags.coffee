@@ -1,11 +1,7 @@
-class Alias
-  constructor: (names) ->
-    @names = names
-  name: -> @names[0]
-  aliases: -> @names
+tags = angular.module "common.tags", []
 
 # tags are represented as a set of regular expressions
-all_tags = {
+tags.constant "allTags", {
   'TV series': [
     {"name": "adventure time", "regex" : /adventure ?time/},
     {"name": "supernatural", "regex" : /supernatural/},
@@ -237,13 +233,11 @@ all_tags = {
     # template: {"name": "", "regex": //}
 }
 
-tags = angular.module "common.tags", []
-
-tags.service "TagsService", ->
+tags.service "TagsService", ['allTags', (allTags) ->
   random_categories: (length) ->
-    categories = Object.keys(all_tags)
+    categories = Object.keys(allTags)
     # From the end of the list to the beginning, pick element `i`.
-    for i in [categories.length-1..1]
+    for i in [categories.length-1..0]
       # Choose random element `j` to the front of `i` to swap with.
       j = Math.floor Math.random() * (i + 1)
       # Swap `j` with `i`, using destructured assignment
@@ -251,11 +245,12 @@ tags.service "TagsService", ->
     # Return the shuffled array.
     categories.slice(0,length)
   random_tag_index: (type) ->
-    tags = all_tags[type]
+    tags = allTags[type]
     return Math.floor(Math.random() * tags.length)
   tag: (type, index) ->
-    tags = all_tags[type]
+    tags = allTags[type]
     return tags[index]
   random_tag: (type) ->
-    tags = all_tags[type]
+    tags = allTags[type]
     return tags[Math.floor(Math.random() * tags.length)]
+]
