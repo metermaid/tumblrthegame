@@ -166,25 +166,26 @@ button, .button {
 	font-weight: bold;
 	color: $white;
 	cursor: pointer;
-	&.start {
-		width: 250px;
-		height: 45px;
-		line-height: 45px;
-		font-size: 16px;
-		text-align: center;
-	}
+	width: 250px;
+	height: 45px;
+	line-height: 45px;
+	font-size: 16px;
+	text-align: center;
 	&.category {
-		width: 250px;
-		height: 45px;
-		line-height: 45px;
-		font-size: 16px;
-		text-align: center;
 		text-transform: capitalize;
 		img {
 			vertical-align: middle;
 			width: 32px;
 		}
 	}
+	&.social {
+		i {
+			font-size: 32px;
+			margin-right: 2px;
+			vertical-align: middle;
+		}
+	}
+
 	&:active, &:hover, &:visited {
 		color: $white;
 	}
@@ -212,7 +213,6 @@ footer {
 	padding: 10px;
 	font-size: 14px;
 }
-
 .f-left {
 	float: left;
 }

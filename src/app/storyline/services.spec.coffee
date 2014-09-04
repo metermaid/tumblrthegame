@@ -39,7 +39,7 @@ describe 'Service: StoryService', ->
       expect(!!StoryService).toBe true
 
     it 'get_story should return a specified checkpoint cutscene', ->
-      result = StoryService.get_story('12', 'start')
+      result = StoryService.get_story('10', 'start')
       expect(result).toEqual([new Dialog("r u still not at 250 looool", "message B", "becky")])
 
     it 'get_story should return a random checkpoint cutscene', ->
