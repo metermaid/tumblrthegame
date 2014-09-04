@@ -17,15 +17,10 @@ storyline.constant "check_points", {
     new Dialog("omg, i bet you cant beat my hi score of 250!! ur such a loser", "message B", "becky"),
     new Dialog("She's kinda mean. Why are you friends with Becky again?")
   ],
-  "3_start": [
-    new Dialog("You receive a message from Kcklqkla before this latest round."),
-    new Dialog("Hey, did you know that you can use keyboard shortcuts in this game? Just hit space at most screens, and then in the round selection page you can use alt + # to select the category.", "message K", "kcklqkla"),
-    new Dialog("Ugh, why didn't she tell you this sooner?")
-  ],
-  "7_start": [
+  "5_start": [
     new Dialog("hey loser have u gotten 250 yet, i bet u havent", "message B", "becky")
   ],
-  "12_start": [
+  "10_start": [
     new Dialog("r u still not at 250 looool", "message B", "becky")
   ]
 }

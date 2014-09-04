@@ -96,12 +96,12 @@ body {
 		font-family: "Bookman Old Style", "Garamond Premier Pro Caption", Palatino, Garamond, serif;
 	  	@media screen and (max-width: 650px) {
 			line-height: 0.8em;
-		}	
+		}
 		a.info {
 			font-size: 13px;
 		  font-family: $base-font-family;
 
-		}	
+		}
 	}
 	nav {
 		float: right;
@@ -112,11 +112,11 @@ body {
 		  	@media screen and (max-width: 650px) {
 		  		text-align: left;
 				line-height: 0.9em;
-			}		
+			}
 		}
 	  	@media screen and (max-width: 650px) {
 	  		padding-top: 15px;
-		}		
+		}
 	}
 	.info.tooltip {
 		width: 50%;
@@ -138,10 +138,10 @@ body {
 	   }
 	  	@media screen and (max-width: 650px) {
 	  		top: 60px;
-		}		
+		}
 	  	@media screen and (max-width: 425px) {
 	  		top: 90px;
-		}		
+		}
 	}
 	.info.tooltip:after {
 		bottom: 100%;
@@ -166,21 +166,26 @@ button, .button {
 	font-weight: bold;
 	color: $white;
 	cursor: pointer;
-	&.start {
-		width: 250px;
-		height: 45px;
-		line-height: 45px;
-		font-size: 16px;
-		text-align: center;
-	}
+	width: 250px;
+	height: 45px;
+	line-height: 45px;
+	font-size: 16px;
+	text-align: center;
 	&.category {
-		width: 250px;
-		height: 45px;
-		line-height: 45px;
-		font-size: 16px;
-		text-align: center;
 		text-transform: capitalize;
+		img {
+			vertical-align: middle;
+			width: 32px;
+		}
 	}
+	&.social {
+		i {
+			font-size: 32px;
+			margin-right: 2px;
+			vertical-align: middle;
+		}
+	}
+
 	&:active, &:hover, &:visited {
 		color: $white;
 	}
@@ -208,7 +213,6 @@ footer {
 	padding: 10px;
 	font-size: 14px;
 }
-
 .f-left {
 	float: left;
 }
