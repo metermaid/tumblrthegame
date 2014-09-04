@@ -7,8 +7,6 @@ modules = [
   'common.tags',
   'common.user_storage',
 
-  'tumblrGame.storyline',
-
   'ngResource',
   'ngAnimate',
 

@@ -1,11 +1,7 @@
-class Alias
-  constructor: (names) ->
-    @names = names
-  name: -> @names[0]
-  aliases: -> @names
+tags = angular.module "common.tags", []
 
 # tags are represented as a set of regular expressions
-all_tags = {
+tags.constant "allTags", {
   'TV series': [
     {"name": "adventure time", "regex" : /adventure ?time/},
     {"name": "supernatural", "regex" : /supernatural/},
@@ -30,6 +26,18 @@ all_tags = {
     {"name": "hulk", "regex": /hulk/},
     {"name": "captain america", "regex": /captain ?(america|handsome)/},
     {"name": "fantastic four", "regex": /fantastic ?(four|4)|f4|ff/}
+  ],
+  'harry potter': [
+    {"name": "harry potter", "regex" : /harry ?potter/},
+    {"name": "draco malfoy", "regex": /draco ?malfoy/},
+    {"name": "cho chang", "regex": /cho ?chang/},
+    {"name": "hermione granger", "regex": /hermione ?granger/},
+    {"name": "ron weasley", "regex": /ron ?weasley/},
+    {"name": "dumbledore", "regex": /dumbledore/},
+    {"name": "sirius black", "regex": /sirius ?black/},
+    {"name": "the marauders", "regex": /(the ?)?marauders/},
+    {"name": "dementors", "regex": /dementors?/},
+    {"name": "hagrid", "regex": /hagrid/}
   ],
   'cartoons': [
     {"name": "adventure time", "regex" : /adventure ?time/},
@@ -60,12 +68,23 @@ all_tags = {
     {"name" : "lord of the rings", "regex" : /(lotr)|(lord ?of ?the ?rings)|(potatoes)/},
     {"name" : "hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
     {"name" : "harry potter" , "regex" :/(harry ?potter)/},
+    {"name" : "star wars" , "regex" :/(star ?wars)/},
     {"name": "pacific rim", "regex" : /pacific ?rim/},
+    {"name": "indiana jones", "regex" : /indiana ?jones/},
+    {"name": "the matrix", "regex" : /the ?matrix/},
+    {"name": "die hard", "regex" : /die ?hard/},
+    {"name": "pulp fiction", "regex" : /pulp ?fiction/},
+    {"name": "kill bill", "regex" : /kill ?bill/},
+    {"name": "austin powers", "regex" : /austin ?powers/},
+    {"name": "jurassic park", "regex" : /jurassic ?park/},
     {"name": "rushmore", "regex" : /rushmore/},
+    {"name": "shrek", "regex" : /shrek/},
     {"name": "the royal tenenbaums", "regex" : /(the)? ?royal ?tenenbaums/},
     {"name": "the hunger games", "regex" : /((the ?)?hunger ?games)|(thg)/},
-    {"name": "pitch perfect", "regex" : /pitch ? perfect/},
-    {"name": "the dark knight", "regex" : /(the)? ?dark ?knight/}
+    {"name": "pitch perfect", "regex" : /pitch ?perfect/},
+    {"name": "toy story", "regex" : /toy ?story/},
+    {"name": "james bond", "regex" : /james ?bond/},
+    {"name": "the dark knight", "regex" : /(the)? ?dark ?knight|batman/}
   ],
   'video games' : [
     {"name": "harvest moon", "regex" : /harvest ?moon/},
@@ -198,16 +217,6 @@ all_tags = {
     {"name": "pittsburgh penguins", "regex": /(pittsburgh ?)?penguins?/},
     {"name": "new york rangers", "regex": /(new ?york ?)?rangers?/}
   ],
-  'Wild Cats': [
-    {"name": "lions", "regex": /lion/},
-    {"name": "tigers", "regex": /tiger/},
-    {"name": "ocelots", "regex": /ocelot/},
-    {"name": "panthers", "regex": /panther/},
-    {"name": "leopards", "regex": /leopard/},
-    {"name": "snow leopards", "regex": /snow leopard/},
-    {"name": "cheetahs", "regex": /cheetah/},
-    {"name": "cougars", "regex": /cougar/}
-  ],
   'Rappers': [
     {"name": "nicki minaj", "regex": /nicki ?minaj/},
     {"name": "kanye west", "regex": /kanye|yeezy/},
@@ -224,13 +233,11 @@ all_tags = {
     # template: {"name": "", "regex": //}
 }
 
-tags = angular.module "common.tags", []
-
-tags.service "TagsService", ->
+tags.service "TagsService", ['allTags', (allTags) ->
   random_categories: (length) ->
-    categories = Object.keys(all_tags)
+    categories = Object.keys(allTags)
     # From the end of the list to the beginning, pick element `i`.
-    for i in [categories.length-1..1]
+    for i in [categories.length-1..0]
       # Choose random element `j` to the front of `i` to swap with.
       j = Math.floor Math.random() * (i + 1)
       # Swap `j` with `i`, using destructured assignment
@@ -238,11 +245,12 @@ tags.service "TagsService", ->
     # Return the shuffled array.
     categories.slice(0,length)
   random_tag_index: (type) ->
-    tags = all_tags[type]
+    tags = allTags[type]
     return Math.floor(Math.random() * tags.length)
   tag: (type, index) ->
-    tags = all_tags[type]
+    tags = allTags[type]
     return tags[index]
   random_tag: (type) ->
-    tags = all_tags[type]
+    tags = allTags[type]
     return tags[Math.floor(Math.random() * tags.length)]
+]

@@ -99,6 +99,22 @@ describe 'game rounds', ->
 		scope.httpBackend.verifyNoOutstandingExpectation()
 		scope.httpBackend.verifyNoOutstandingRequest()
 
+	describe "Header controller", ->
+
+		beforeEach angular.mock.inject(($controller) ->
+			$controller "HeaderCtrl",
+			  $scope: scope
+			  $state: scope.$state
+			  gameStorage: storage
+		)
+
+		# tests start here
+		describe "Initial render", ->
+			it "reports score", ->
+				expect(scope.score).toEqual 0
+			it "reports lives", ->
+				expect(scope.lives).toEqual 3
+
 	describe "Select controller", ->
 
 		beforeEach angular.mock.inject(($controller) ->
@@ -209,21 +225,66 @@ describe 'game rounds', ->
 
 	describe "End controller", ->
 
+		# tests start here
+		describe "Initial render of winning state", ->
+			beforeEach angular.mock.inject(($controller) ->
+
+				params = { tag: 'lotr', before: '1391212800000', win: 'true' }
+
+				$controller "EndCtrl",
+				  $scope: scope
+				  $state: scope.$state
+				  gameStorage: storage
+				  $stateParams: params
+
+				scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond lotrPosts
+
+				scope.$digest()
+				scope.httpBackend.flush()
+			)
+			it "reports no rounds won", ->
+				expect(scope.round).toEqual 1
+
+			it "has one post", ->
+				expect(scope.posts.length).toEqual 1
+
+			it "returns a positive message", ->
+				expect(scope.message).toEqual "Correct! Now reblog some posts!"
+
+		describe "Initial render of losing state", ->
+			beforeEach angular.mock.inject(($controller) ->
+
+				params = { tag: 'lotr', before: '1391212800000', win: 'false' }
+
+				$controller "EndCtrl",
+				  $scope: scope
+				  $state: scope.$state
+				  gameStorage: storage
+				  $stateParams: params
+
+				scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond lotrPosts
+
+				scope.$digest()
+				scope.httpBackend.flush()
+			)
+
+			it "reports no rounds won", ->
+				expect(scope.round).toEqual 1
+
+			it "has one post", ->
+				expect(scope.posts.length).toEqual 1
+
+			it "returns a negative message", ->
+				expect(scope.message).toEqual "Out of time! The answer was \"lotr\""
+
+
+	describe "Lose controller", ->
+
 		beforeEach angular.mock.inject(($controller) ->
-
-			params = { tag: 'lotr', before: '1391212800000' }
-
-			$controller "EndCtrl",
+			$controller "LoseCtrl",
 			  $scope: scope
 			  $state: scope.$state
 			  gameStorage: storage
-			  $stateParams: params
-
-			scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=reaction-gif&before=1391212800000&callback=JSON_CALLBACK").respond lotrPosts
-			scope.httpBackend.expectJSONP("https://api.tumblr.com/v2/tagged?api_key=iI6dl4tEgEt96yvRl1urojakH0Wk86544k2ooTuNxHxVGysBMm&tag=lotr&before=1391212800000&callback=JSON_CALLBACK").respond lotrPosts
-
-			scope.$digest()
-			scope.httpBackend.flush()
 		)
 
 		# tests start here
@@ -231,8 +292,5 @@ describe 'game rounds', ->
 			it "reports no rounds won", ->
 				expect(scope.round).toEqual 1
 
-			it "has one post", ->
-				expect(scope.posts.length).toEqual 1
-
-			it "has one reaction gif", ->
-				expect(scope.gif).toEqual lotrPosts.response[0].photos[0].original_size.url
+			it "reports the score", ->
+				expect(scope.score).toEqual 0
