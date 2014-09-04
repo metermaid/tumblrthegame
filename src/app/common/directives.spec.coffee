@@ -1,3 +1,4 @@
+'''
 describe 'Directive: shaker', ->
   element = scope = compile = defaultData = null
   validTemplate = '<input shaker></input>'
@@ -42,3 +43,4 @@ describe 'Directive: shaker', ->
 
   describe 'when destroyed', ->
     # Add specs
+'''
