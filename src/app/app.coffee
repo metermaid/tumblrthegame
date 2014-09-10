@@ -16,16 +16,22 @@ modules = [
   'cfp.hotkeys',
   'ngAnimate'
   
-  'ui.router'
+  'ui.router',
+  'angular-google-analytics'
 ]
 
 appModule = angular.module('tumblrGame', modules)
 
-appConfig = ($stateProvider, $urlRouterProvider) ->
+appConfig = ($stateProvider, $urlRouterProvider, AnalyticsProvider) ->
   $urlRouterProvider.otherwise '/home'
+  AnalyticsProvider.setAccount "UA-397121-4"
+  AnalyticsProvider.trackPages true
+  AnalyticsProvider.ignoreFirstPageLoad true
 
-appConfig.$inject = ['$stateProvider', '$urlRouterProvider']
+appConfig.$inject = ['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider']
 appModule.config appConfig
+
+appModule.run (Analytics) ->
 
 
 appController = ($scope, $location) ->

@@ -9,6 +9,7 @@ module.exports = function(config) {
       'vendor/angular-hotkeys/build/hotkeys.js',
       'vendor/angular-mocks/angular-mocks.js',
       'vendor/angular-animate/angular-animate.js',
+      'vendor/angular-google-analytics/dist/angular-google-analytics.js',
       'vendor/angular-resource/angular-resource.js',
       'build/src/templates.js',
       'src/*/*/*.coffee', // include root modules before controller modules
