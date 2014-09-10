@@ -1,13 +1,14 @@
 rounds = angular.module 'tumblrGame.rounds'
 
 class RoundCtrl
-  @$inject: ['$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
+  @$inject: ['Analytics', '$scope', 'TagsService', 'RandomDateService', 'RoundsRes', 'gameStorage', '$state', '$stateParams', '$timeout', 'imagePreloader']
 
-  constructor: ($scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
+  constructor: (Analytics, $scope, TagsService, RandomDateService, RoundsRes, gameStorage, $state, $stateParams, $timeout, imagePreloader) ->
     # preloader stuff
     $scope.isLoading = true
     $scope.isSuccessful = false
     $scope.percentLoaded = 0
+
 
     # Prevent the backspace key from navigating back.
     Mousetrap.bind "backspace", (event) ->
@@ -25,6 +26,9 @@ class RoundCtrl
     before_date = $stateParams.before
     tag = TagsService.tag($scope.category, $stateParams.index)
     tag_regex = new RegExp("^#?" + tag.regex.source + "$", "i")
+
+    Analytics.addItem('round', $stateParams.category, tag, 1)
+
 
     $scope.posts = []
 

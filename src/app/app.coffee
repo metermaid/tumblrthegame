@@ -26,7 +26,8 @@ appConfig = ($stateProvider, $urlRouterProvider, AnalyticsProvider) ->
   $urlRouterProvider.otherwise '/home'
   AnalyticsProvider.setAccount "UA-397121-4"
   AnalyticsProvider.trackPages true
-  AnalyticsProvider.ignoreFirstPageLoad true
+  AnalyticsProvider.useAnalytics true
+  AnalyticsProvider.useEnhancedLinkAttribution(true)
 
 appConfig.$inject = ['$stateProvider', '$urlRouterProvider', 'AnalyticsProvider']
 appModule.config appConfig
